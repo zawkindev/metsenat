@@ -32,11 +32,32 @@ const routes = [
     path: "/dashboard",
     name: "Dashboard",
     component: DashboardLayout,
+    meta: { layout: "dashboard" },
     children: [
       {
         path: "",
         component: () => import("./views/DashboardView.vue"),
         meta: { layout: "dashboard" },
+      },
+      {
+        path: "students",
+        name: "StudentList",
+        children: [
+          {
+            path: "/:id",
+            name: "StudentProfile",
+          },
+        ],
+      },
+      {
+        path: "sponsors",
+        name: "SponsorsList",
+        children: [
+          {
+            path: "/:id",
+            name: "SponsorProfile",
+          },
+        ],
       },
     ],
   },
