@@ -1,6 +1,6 @@
 import VueRouter from "vue-router";
-import HomeLayout from "./layouts/HomeLayout.vue";
-import AuthLayout from "./layouts/AuthLayout.vue";
+import HomeLayout from "../layouts/HomeLayout.vue";
+import AuthLayout from "../layouts/AuthLayout.vue";
 
 const routes = [
   {
@@ -42,7 +42,7 @@ const routes = [
     children: [
       {
         path: "login",
-        component: () => import("./views/LoginView.vue"),
+        component: () => import("../views/LoginView.vue"),
         meta: { layout: "auth" },
       },
     ],
