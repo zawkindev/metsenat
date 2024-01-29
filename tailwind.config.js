@@ -21,6 +21,7 @@ export default {
         danger: {
           400: "var(--danger-400)",
           300: "var(--danger-300)",
+          200: "var(--danger-200)",
         },
       },
     },

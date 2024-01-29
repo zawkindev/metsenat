@@ -12,6 +12,8 @@ export default defineConfig({
       views: "/src/views",
       layouts: "/src/layouts",
       assets: "/src/assets",
+      images: "/src/assets/images",
+      icons: "/src/assets/images/icons",
     },
   },
 });
