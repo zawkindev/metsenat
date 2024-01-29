@@ -1,3 +1,38 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Tailwind CSS Variables */
+@font-face {
+  font-family: "Poppins";
+  src:
+    url("./assets/fonts/Poppins/Poppins-Regular.ttf") format("ttf"),
+    url("./assets/fonts/Poppins/Poppins-SemiBold.ttf") format("ttf"),
+    url("./assets/fonts/Poppins/Poppins-Bold.ttf") format("ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --primary-300: ##2e5bff;
+  --primary-200: #3365fc;
+
+  --secondary-400: #2e384d;
+  --secondary-300: #b1b1b8;
+  --secondary-200: #edf1fd;
+  --secondary-100: #f5f5f7;
+
+  --success-300: #00cf83;
+
+  --danger-400: #e94a47;
+  --danger-300: #ff4945;
+
+  /* Background Colors */
+  --bg-light: #f8f8fb;
+  --bg-dark: #141625;
+}
+
+* {
+  font-family: "League Spartan", sans-serif;
+  font-size: 15px;
+}
