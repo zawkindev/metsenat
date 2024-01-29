@@ -1,3 +1,7 @@
 <template>
-  <h1 class="bg-yellow-700">Success</h1>
+  <PlayGround />
 </template>
+
+<script setup>
+import PlayGround from "@/playGround/PlayGround.vue";
+</script>

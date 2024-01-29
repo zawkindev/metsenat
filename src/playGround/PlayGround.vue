@@ -1,3 +1,9 @@
-<template></template>
+<template>
+  <CButton #default>
+    Yuborish
+  </CButton>
+</template>
 
-<script setup></script>
+<script setup>
+import CButton from "components/base/CButton.vue"
+</script>

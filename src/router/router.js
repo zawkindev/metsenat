@@ -1,4 +1,4 @@
-import VueRouter from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import HomeLayout from "../layouts/HomeLayout.vue";
 import AuthLayout from "../layouts/AuthLayout.vue";
 
@@ -49,8 +49,8 @@ const routes = [
   },
 ];
 
-const router = new VueRouter({
-  history: VueRouter.createWebHistory(),
+const router = createRouter({
+  history: createWebHistory(),
   routes,
 });
 

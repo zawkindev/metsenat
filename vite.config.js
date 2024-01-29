@@ -6,11 +6,11 @@ export default defineConfig({
   plugins: [vue()],
   resolve: {
     alias: {
-      "~": "./",
-      "@": "./src",
-      components: "./src/components",
-      views: "./src/views",
-      layouts: "./src/layouts",
+      "~": "/",
+      "@": "/src",
+      components: "/src/components",
+      views: "/src/views",
+      layouts: "/src/layouts",
     },
   },
 });

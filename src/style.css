@@ -2,19 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Tailwind CSS Variables */
-@font-face {
-  font-family: "Poppins";
-  src:
-    url("./assets/fonts/Poppins/Poppins-Regular.ttf") format("ttf"),
-    url("./assets/fonts/Poppins/Poppins-SemiBold.ttf") format("ttf"),
-    url("./assets/fonts/Poppins/Poppins-Bold.ttf") format("ttf");
-  font-weight: normal;
-  font-style: normal;
-}
-
 :root {
-  --primary-300: ##2e5bff;
+  --primary-300: #2e5bff;
   --primary-200: #3365fc;
 
   --secondary-400: #2e384d;
@@ -26,6 +15,18 @@
 
   --danger-400: #e94a47;
   --danger-300: #ff4945;
+}
+
+/* Tailwind CSS Variables */
+@font-face {
+  font-family: "Poppins";
+  src:
+    url("./assets/fonts/Poppins/Poppins-Regular.woff2") format("woff2"),
+    url("./assets/fonts/Poppins/Poppins-SemiBold.woff2") format("woff2"),
+    url("./assets/fonts/Poppins/Poppins-Medium.woff2") format("woff2"),
+    url("./assets/fonts/Poppins/Poppins-Bold.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
 }
 
 * {
