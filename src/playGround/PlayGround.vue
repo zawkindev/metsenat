@@ -55,7 +55,7 @@
       </div>
 
 
-     <Tab :options="['salom','xayr','alvido']" /> 
+     <Tab :options="['salom','alvido','salom','alvido']" /> 
 
     </div>
   </div>

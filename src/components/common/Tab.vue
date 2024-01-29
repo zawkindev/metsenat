@@ -1,10 +1,16 @@
 <template>
   <div class="flex flex-row bg-white rounded-md border overflow-hidden">
-    <div v-for="(option, index) in options" class="flex justify-center items-center text-blue-400"
-      :class="getTabClass(index)" @click="activeTab = index">
-      <span class="p-4 uppercase" :class="{ 'text-white': index === activeTab }">{{
-        option
-      }}</span>
+    <div
+      v-for="(option, index) in options"
+      class="cursor-pointer flex justify-center items-center text-blue-400"
+      :class="getTabClass(index)"
+      @click="activeTab = index"
+    >
+      <span
+        class="p-4 uppercase"
+        :class="{ 'text-white': index === activeTab }"
+        >{{ option }}</span
+      >
     </div>
   </div>
 </template>
@@ -24,4 +30,3 @@ function getTabClass(index) {
   };
 }
 </script>
-
