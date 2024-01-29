@@ -25,6 +25,13 @@
         delete
       </Badge>
 
+      <CInput id="fafa" label="F.I.SH." />
+      <CInput id="adsfadsf">
+        <p class="font-bold">
+          LOGIN
+        </p>
+      </CInput>
+
     </div>
   </div>
 </template>
@@ -32,4 +39,5 @@
 <script setup>
 import CButton from "components/base/CButton.vue"
 import Badge from "../components/common/Badge.vue";
+import CInput from "../components/base/CInput.vue";
 </script>
