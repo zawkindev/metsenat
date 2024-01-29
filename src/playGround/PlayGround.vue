@@ -6,17 +6,18 @@
         Yuborish
       </CButton>
 
+      <CButton>
+        <img src="icons/save.svg" />
+        Yuborish
+      </CButton>
+
       <CButton variant="secondary">
-        <template #icon>
-          <img alt="" src="icons/filter.svg" />
-        </template>
+        <img alt="" src="icons/filter.svg" />
         Filter
       </CButton>
 
       <CButton variant="danger">
-        <template #icon>
-          <img src="icons/trash.svg" />
-        </template>
+        <img src="icons/trash.svg" />
         Filter
       </CButton>
 
