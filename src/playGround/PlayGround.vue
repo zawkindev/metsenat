@@ -1,5 +1,8 @@
 <template>
-  <CButton #default>
+  <CButton>
+  <template #icon>
+<img alt=""/>
+  </template>
     Yuborish
   </CButton>
 </template>
