@@ -1,5 +1,5 @@
 <template>
-  <div :class="getClasses()" class="font-normal w-fit">
+  <div :class="getClasses()" class="font-normal h-fit">
     <slot />
   </div>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <button
     :class="getClasses()"
-    class="flex justify-center gap-2 w-full py-[14px] px-6 font-bold capitalize rounded-md"
+    class="flex justify-center gap-2 w-full py-4 px-5 font-bold capitalize rounded-md border-2"
   >
     <slot />
   </button>
@@ -13,13 +13,16 @@ const props = defineProps(["variant"]);
 function getClasses() {
   switch (props.variant) {
     case undefined:
-      return "text-white bg-primary-300 hover:bg-primary-200 active:bg-blue-500";
+      return "text-white border-primary-300 bg-primary-300 hover:bg-primary-200 active:bg-blue-500";
 
     case "secondary":
-      return "bg-secondary-200 text-primary-300 hover:bg-gray-200 active:bg-gray-300";
+      return "border-secondaery-200 bg-secondary-200 text-primary-300 hover:bg-gray-200 active:bg-gray-300";
 
     case "danger":
-      return "bg-danger-200 text-danger-300 hover:bg-red-200 active:bg-red-300";
+      return "border-danger-200 bg-danger-200 text-danger-300 hover:bg-red-200 active:bg-red-300";
+
+    case "outline":
+      return "text-primary-300 border-primary-200 hover:bg-blue-100 active:bg-primary-300 active:text-white";
   }
 }
 </script>

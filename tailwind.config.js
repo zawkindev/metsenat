@@ -17,6 +17,7 @@ export default {
         },
         success: {
           300: "var(--success-300)",
+          200: "var(--success-200)",
         },
         danger: {
           400: "var(--danger-400)",

@@ -1,8 +1,11 @@
 <template>
-  <div class="gap-6 bg-gray-400 h-screen w-screen flex flex-col justify-center items-center">
-    <div class="w-full flex flex-col bg-white rounded-md gap-5 justify-center items-center p-10">
+  <div class="gap-6 bg-gray-400 min-h-screen w-screen flex flex-col justify-center items-center">
+    <div class="w-full flex flex-col rounded-md gap-5 justify-center items-center p-10">
+
+      <Header />
 
       <CButton>
+
         Yuborish
       </CButton>
 
@@ -26,7 +29,7 @@
       </Badge>
 
       <CInput id="fafa" label="F.I.SH." />
-     <Search /> 
+      <Search />
 
       <div class="overflow-x-auto w-full">
         <div class="table w-full">
@@ -51,7 +54,7 @@
       </div>
 
 
-     <Tab :options="['salom','alvido','salom','alvido']" /> 
+      <Tab :options="['salom', 'alvido', 'salom', 'alvido']" />
 
     </div>
   </div>
@@ -63,4 +66,5 @@ import Badge from "../components/common/Badge.vue";
 import CInput from "../components/base/CInput.vue";
 import Tab from "components/common/Tab.vue"
 import Search from "components/common/Search.vue"
+import Header from "../components/layout/Header.vue";
 </script>
