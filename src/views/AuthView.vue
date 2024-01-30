@@ -1,23 +1,35 @@
 <template>
-  <div
-    class="w-screen h-screen flex flex-col items-center justify-center gap-10 bg-secondary-100"
-  >
-    <div class="flex items-center gap-2">
+  
+  <div class="flex flex-col gap-12">
+    <div class="flex justify-center items-center gap-2">
       <img src="images/logo.svg" />
       <Badge variant="danger"> club </Badge>
     </div>
 
-    <form @submit="handleSubmit" class="p-8 bg-white rounded-xl">
+    <form class="p-8 bg-white rounded-xl w-fit">
       <h3 class="text-3xl">Kirish</h3>
       <div class="flex flex-col gap-6 mt-11">
-        <CInput v-model="login" label="login" placeholder="admin" />
-        <CInput
-          v-model="parol"
-          label="parol"
-          placeholder="admin"
-          type="password"
-        />
-        <CButton>Kirish</CButton>
+        <div class="flex flex-col gap-2">
+          <label for="login" class="uppercase font-semibold">login</label>
+          <CInput
+            id="login"
+            v-model="login"
+            label="login"
+            placeholder="admin"
+          />
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label for="login" class="uppercase font-semibold">parol</label>
+          <CInput
+            id="parol"
+            v-model="parol"
+            label="parol"
+            placeholder="admin"
+            type="password"
+          />
+        </div>
+        <CButton @click.prevent="handleSubmit">Kirish</CButton>
       </div>
     </form>
   </div>
@@ -37,8 +49,9 @@ const parol = ref("");
 
 function handleSubmit() {
   if (login.value === "admin" && parol.value === "admin") {
+  console.log("SUCCCCCCCCEEEESSSSSSSSS")
     localStorage.setItem("access-token", "7803087efjdfa");
-    router.push("/");
+    router.push({name: "Home"});
   }
 }
 </script>

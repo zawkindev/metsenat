@@ -1,18 +1,19 @@
 <template>
-  <div class="w-full gap-2 flex flex-col justify-start">
-    <slot>
-      <label :id="id" class="uppercase font-semibold">{{ label }}</label>
-    </slot>
-    <input
-      :id="id"
-      :type="type"
-      :value="value"
-      :placeholder="placeholder"
-      class="rounded-md py-3 px-4 focus:outline-none bg-gray-50 border-2 border-[#E0E7FF] focus:border-primary-200"
-    />
-  </div>
+  <input
+    :id="id"
+    :type="type"
+    v-model="inputValue"
+    :placeholder="placeholder"
+    @input="emit('update:modelValue', $event.target.value)"
+    class="min-w-[370px] rounded-md py-3 px-4 focus:outline-none bg-gray-50 border-2 border-[#E0E7FF] focus:border-primary-200"
+  />
 </template>
 
 <script setup>
-const props = defineProps(["id", "label", "type", "value", "placeholder"]);
+import { ref } from "vue";
+
+const props = defineProps(["id", "label", "type", "modelValue", "placeholder"]);
+const emit = defineEmits(["update:modelValue"]);
+
+const inputValue = ref(props.modelValue);
 </script>

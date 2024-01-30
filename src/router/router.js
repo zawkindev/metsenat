@@ -7,7 +7,7 @@ const routes = [
     meta: { layout: "default" },
     component: () =>
       localStorage.getItem("access-token")
-        ? import("views/DashboardView.vue")
+        ? import("../views/DashboardView.vue")
         : import("../views/HomeView.vue"),
     children: [
       {
