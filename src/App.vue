@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- Dynamic component rendering based on the currentLayout value -->
     <component :is="currentLayout" />
   </div>
 </template>
