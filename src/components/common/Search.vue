@@ -1,7 +1,7 @@
 <template>
   <div class="relative w-full group">
     <input type="text" placeholder="Izlash"
-      class="w-full rounded-md py-3 pr-4 pl-10 bg-[#e8e8e8] border-2 border-transparent focus:border-primary-300 focus:outline-none "
+      class="w-full h-full rounded-md pr-4 pl-10 bg-[#e8e8e8] border-2 border-transparent focus:border-primary-300 focus:outline-none "
       @focus="isFocused = true" @blur="isFocused = false" />
     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-[#000]"

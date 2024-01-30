@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full bg-white py-5 px-32 custom-shadow select-none">
+  <div class="w-full z-10 bg-white py-5 px-32 custom-shadow select-none">
     <div v-if="variant == 'default'" class="flex justify-between select-none">
       <div class="flex items-center gap-2">
         <RouterLink class="flex gap-2" :to="{ name: 'Home' }">

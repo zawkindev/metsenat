@@ -1,4 +1,10 @@
 <template>
-  <h1>Dashboard View</h1>
+  <div class="flex flex-col w-full">
+    <div class="px-32 bg-white">
+      <Bar />
+    </div>
+  </div>
 </template>
-<script setup></script>
+<script setup>
+import Bar from "components/layout/Bar.vue";
+</script>

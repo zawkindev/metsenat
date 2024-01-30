@@ -1,7 +1,7 @@
 <template>
   <button
     :class="getClasses()"
-    class="flex justify-center gap-2 w-full py-4 px-5 font-bold capitalize rounded-md border-2"
+    class="flex justify-center gap-2 w-full py-4 px-10 font-bold capitalize rounded-md border-2"
   >
     <slot />
   </button>
@@ -22,7 +22,7 @@ function getClasses() {
       return "border-danger-200 bg-danger-200 text-danger-300 hover:bg-red-200 active:bg-red-300";
 
     case "outline":
-      return "text-primary-300 border-primary-200 hover:bg-blue-100 active:bg-primary-300 active:text-white";
+      return "text-primary-300 border-primary-200 hover:bg-blue-100 active:bg-blue-300";
   }
 }
 </script>
