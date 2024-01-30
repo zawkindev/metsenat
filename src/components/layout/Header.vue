@@ -24,7 +24,7 @@
       </div>
     </div>
 
-    <div v-if="(variant == 'withoutMenu')" class="flex justify-between">
+    <div v-if="variant == 'withoutMenu'" class="flex justify-between">
       <img src="images/logo2.svg" />
       <div class="flex gap-10">
         <div class="flex bg-gray-200 p-1 items-center rounded-md">
@@ -35,7 +35,9 @@
             <img src="icons/user1.svg" />
           </div>
         </div>
-        <img class="cursor-pointer" src="icons/log-out.svg" />
+        <button @click="logOut">
+          <img class="cursor-pointer" src="icons/log-out.svg" />
+        </button>
       </div>
     </div>
   </div>
@@ -44,9 +46,16 @@
 <script setup>
 import Badge from "components/common/Badge.vue";
 import CButton from "components/base/CButton.vue";
-import { RouterLink } from "vue-router";
+import { RouterLink, useRouter } from "vue-router";
 
 const props = defineProps(["variant"]);
+
+const router = useRouter()
+
+function logOut() {
+  localStorage.removeItem("access-token");
+  router.push({name:'Auth'})
+}
 </script>
 
 <style>

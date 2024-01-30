@@ -52,6 +52,8 @@ function handleSubmit() {
   console.log("SUCCCCCCCCEEEESSSSSSSSS")
     localStorage.setItem("access-token", "7803087efjdfa");
     router.push({name: "Home"});
+  }else{
+  alert("login or password is incorrect!")
   }
 }
 </script>
