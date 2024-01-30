@@ -25,7 +25,6 @@ const activeTab = ref(0);
 
 function handleClick(index) {
   activeTab.value = index;
-  console.log(index)
   emit("activate", index);
 }
 
