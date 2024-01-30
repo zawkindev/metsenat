@@ -26,11 +26,7 @@
       </Badge>
 
       <CInput id="fafa" label="F.I.SH." />
-      <CInput id="adsfadsf">
-        <p class="font-bold">
-          LOGIN
-        </p>
-      </CInput>
+     <Search /> 
 
       <div class="overflow-x-auto w-full">
         <div class="table w-full">
@@ -66,4 +62,5 @@ import CButton from "components/base/CButton.vue"
 import Badge from "../components/common/Badge.vue";
 import CInput from "../components/base/CInput.vue";
 import Tab from "components/common/Tab.vue"
+import Search from "components/common/Search.vue"
 </script>

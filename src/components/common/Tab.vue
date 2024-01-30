@@ -7,7 +7,7 @@
       @click="activeTab = index"
     >
       <span
-        class="p-4 uppercase"
+        class="p-4 uppercase font-semibold"
         :class="{ 'text-white': index === activeTab }"
         >{{ option }}</span
       >
