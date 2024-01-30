@@ -4,7 +4,7 @@
       v-for="(option, index) in options"
       class="cursor-pointer w-full flex justify-center items-center text-blue-400"
       :class="getTabClass(index)"
-      @click="activeTab = index"
+      @click="handleClick(index)"
     >
       <span
         class="p-4 uppercase font-semibold"
@@ -19,8 +19,15 @@
 import { ref } from "vue";
 
 const props = defineProps(["options"]);
+const emit = defineEmits(["activate"]);
 
 const activeTab = ref(0);
+
+function handleClick(index) {
+  activeTab.value = index;
+  console.log(index)
+  emit("activate", index);
+}
 
 function getTabClass(index) {
   return {

@@ -8,6 +8,13 @@
         v-for="(item, index) in options"
         :isActive="activeOption === index"
         :value="item"
+        @click="
+          () => {
+            store.ammount = index;
+
+            activeOption = index;
+          }
+        "
       />
     </div>
   </div>
@@ -16,7 +23,10 @@
 <script setup>
 import CRadio from "components/base/CRadio.vue";
 import { ref } from "vue";
+import {useMetsenatStore} from "@/store/store.js";
+
 const props = defineProps(["options"]);
+const store = useMetsenatStore();
 
 const activeOption = ref(0);
 </script>

@@ -1,19 +1,29 @@
 <template>
   <div class="flex h-full">
     <div class="flex w-7/12 h-full items-center justify-center">
-      <div class="flex w-3/5 flex-col gap-12">
-        <h2 class="text-5xl font-sans w-4/5 font-bold">
+      <div class="flex w-3/5 flex-col gap-7">
+        <h2 class="text-4xl font-sans w-4/5 font-bold">
           Homiy sifatida ariza topshirish
         </h2>
-        <Tab :options="['jismoniy shaxs', 'yuridik shaxs']" />
+        <Tab
+          :options="['jismoniy shaxs', 'yuridik shaxs']"
+          @activate="(index)=>handleEmit(index)"
+        />
         <CInput
-          placeholder="Abdullayev Abdulla Abdulla o’g’li"
           label="F.I.Sh. (Familiya Ism Sharifingiz)"
+          placeholder="Abdullayev Abdulla Abdulla o’g’li"
         />
         <CInput value="+998 " type="tel" label="Telefon raqamingiz" />
         <RadioGroup :options="['100', '200', '300', 'Boshqasi']">
           To‘lov summasi
         </RadioGroup>
+        <CInput
+          v-if="selectedTab === 0"
+          label="Tashkilot nomi"
+          placeholder="Orient group"
+        />
+
+        <CButton> Yuborish </CButton>
       </div>
     </div>
     <div class="right-side flex flex-col gap-4 w-5/12 p-16">
@@ -38,7 +48,18 @@
 <script setup>
 import Tab from "components/common/Tab.vue";
 import CInput from "components/base/CInput.vue";
-import RadioGroup from "../components/common/RadioGroup.vue";
+import CButton from "components/base/CButton.vue";
+import RadioGroup from "components/common/RadioGroup.vue";
+import { ref } from "vue";
+
+const emit = defineEmits(["activate"]);
+
+const selectedTab = ref(0);
+
+function handleEmit(index) {
+  selectedTab.value = index;
+  console.log(index)
+}
 </script>
 
 <style>
