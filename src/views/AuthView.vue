@@ -35,21 +35,26 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
+import { RouterLink, useRouter } from "vue-router";
+import { useMetsenatStore } from "@/store/store";
 import Badge from "components/common/Badge.vue";
 import CInput from "components/base/CInput.vue";
 import CButton from "components/base/CButton.vue";
-import { RouterLink, useRouter } from "vue-router";
-import { ref } from "vue";
+
 
 const router = useRouter();
+
+const store = useMetsenatStore()
 
 const login = ref("");
 const parol = ref("");
 
 function handleSubmit() {
   if (login.value === "admin" && parol.value === "admin") {
-    console.log("SUCCCCCCCCEEEESSSSSSSSS");
     localStorage.setItem("access-token", "7803087efjdfa");
+    store.userAuthorized = true
+    console.log(store.userAuthorized)
     router.push({ name: "Home" });
   } else {
     alert("login or password is incorrect!");

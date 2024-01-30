@@ -16,7 +16,7 @@
           >
           <CInput
             id="fullName"
-            v-model="fullName"
+            v-model="inputValues.fullName"
             placeholder="Abdullayev Abdulla Abdulla o’g’li"
           />
         </div>
@@ -25,7 +25,7 @@
           <label for="phoneNumber" class="uppercase font-semibold"
             >Telefon raqamingiz</label
           >
-          <CInput id="phoneNumber" v-model="phoneNumber" type="tel" />
+          <CInput id="phoneNumber" v-model="inputValues.phoneNumber" type="tel" />
         </div>
         <RadioGroup :options="['100', '200', '300', 'Boshqasi']">
           To‘lov summasi
@@ -35,7 +35,7 @@
           <label for="company" class="uppercase font-semibold"
             >Tashkilot nomi</label
           >
-          <CInput id="company" v-model="company" placeholder="Commeta" />
+          <CInput id="company" v-model="inputValues.company" placeholder="Commeta" />
         </div>
 
         <CButton> Yuborish </CButton>
@@ -65,14 +65,17 @@ import Tab from "components/common/Tab.vue";
 import CInput from "components/base/CInput.vue";
 import CButton from "components/base/CButton.vue";
 import RadioGroup from "components/common/RadioGroup.vue";
-import { ref } from "vue";
+import { ref, reactive } from "vue";
 
 const emit = defineEmits(["activate"]);
 
 const selectedTab = ref(0);
 
-const fullName = ref("");
-const phoneNumber = ref("+998 ");
+const inputValues = reactive({
+  fullName: "",
+  company: "",
+  phoneNumber: "",
+});
 
 function handleEmit(index) {
   selectedTab.value = index;

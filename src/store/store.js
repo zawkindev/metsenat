@@ -2,8 +2,8 @@ import {defineStore} from "pinia";
 import { ref } from "vue";
 
 export const useMetsenatStore = defineStore("metsenat", () => {
-  const count = ref(0);
   const amount = ref();
+  const userAuthorized = ref(false)
 
-  return { count, amount };
+  return { amount, userAuthorized };
 });

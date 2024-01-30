@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full bg-white py-5 px-32 custom-shadow">
+  <div class="w-full bg-white py-5 px-32 custom-shadow select-none">
     <div v-if="variant == 'default'" class="flex justify-between select-none">
       <div class="flex items-center gap-2">
         <RouterLink class="flex gap-2" :to="{ name: 'Home' }">
@@ -29,7 +29,7 @@
     <div v-if="variant == 'withoutMenu'" class="flex justify-between">
       <img src="images/logo2.svg" />
       <div class="flex gap-10">
-        <div class="flex bg-gray-200 p-1 items-center rounded-md">
+        <div class="flex bg-gray-200 p-1 items-center rounded-md cursor-pointer">
           <span class="px-5 font-bold">Shohruz</span>
           <div
             class="px-1 pt-2 pb-0 flex items-end bg-success-200 rounded h-fit"

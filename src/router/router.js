@@ -5,10 +5,20 @@ const routes = [
     path: "/",
     name: "Home",
     meta: { layout: "default" },
-    component: () =>
-      localStorage.getItem("access-token")
-        ? import("../views/DashboardView.vue")
-        : import("../views/HomeView.vue"),
+    component: ()=> import("views/HomeView.vue"),
+    beforeEnter: (_, __, next) => {
+      if (localStorage.getItem("access-token")) {
+        next("/dashboard");
+      } else {
+        next();
+      }
+    },
+  },
+  {
+    path: "/dashboard",
+    name: "Dashboard",
+    meta: { layout: "default" },
+    component: ()=> import("views/DashboardView.vue"),
     children: [
       {
         path: "students",
