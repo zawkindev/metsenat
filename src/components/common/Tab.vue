@@ -2,7 +2,7 @@
   <div class="flex flex-row bg-white rounded-md border overflow-hidden">
     <div
       v-for="(option, index) in options"
-      class="cursor-pointer flex justify-center items-center text-blue-400"
+      class="cursor-pointer w-full flex justify-center items-center text-blue-400"
       :class="getTabClass(index)"
       @click="activeTab = index"
     >

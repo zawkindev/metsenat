@@ -1,7 +1,7 @@
 <template>
-  <div class="w-full flex flex-col justify-start">
-    <slot :id="id">
-      <label>{{ label }}</label>
+  <div class="w-full gap-2 flex flex-col justify-start">
+    <slot>
+      <label :id="id" class="uppercase font-semibold">{{ label }}</label>
     </slot>
     <input
       :id="id"
