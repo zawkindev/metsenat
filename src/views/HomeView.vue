@@ -1,27 +1,42 @@
 <template>
   <div class="flex h-full">
-    <div class="flex w-7/12 h-full items-center justify-center">
+    <div class="flex w-7/12 h-full justify-center mt-20">
       <div class="flex w-3/5 flex-col gap-7">
         <h2 class="text-4xl font-sans w-4/5 font-bold">
           Homiy sifatida ariza topshirish
         </h2>
         <Tab
           :options="['jismoniy shaxs', 'yuridik shaxs']"
-          @activate="(index)=>handleEmit(index)"
+          @activate="(index) => handleEmit(index)"
         />
-        <CInput
-          label="F.I.Sh. (Familiya Ism Sharifingiz)"
-          placeholder="Abdullayev Abdulla Abdulla o’g’li"
-        />
-        <CInput value="+998 " type="tel" label="Telefon raqamingiz" />
+
+        <div class="flex flex-col gap-2">
+          <label for="fullName" class="uppercase font-semibold"
+            >F.I.Sh. (Familiya Ism Sharifingiz)</label
+          >
+          <CInput
+            id="fullName"
+            v-model="fullName"
+            placeholder="Abdullayev Abdulla Abdulla o’g’li"
+          />
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label for="phoneNumber" class="uppercase font-semibold"
+            >Telefon raqamingiz</label
+          >
+          <CInput id="phoneNumber" v-model="phoneNumber" type="tel" />
+        </div>
         <RadioGroup :options="['100', '200', '300', 'Boshqasi']">
           To‘lov summasi
         </RadioGroup>
-        <CInput
-          v-if="selectedTab === 0"
-          label="Tashkilot nomi"
-          placeholder="Orient group"
-        />
+
+        <div v-if="selectedTab === 0" class="flex flex-col gap-2">
+          <label for="company" class="uppercase font-semibold"
+            >Tashkilot nomi</label
+          >
+          <CInput id="company" v-model="company" placeholder="Commeta" />
+        </div>
 
         <CButton> Yuborish </CButton>
       </div>
@@ -56,9 +71,12 @@ const emit = defineEmits(["activate"]);
 
 const selectedTab = ref(0);
 
+const fullName = ref("");
+const phoneNumber = ref("+998 ");
+
 function handleEmit(index) {
   selectedTab.value = index;
-  console.log(index)
+  console.log(index);
 }
 </script>
 

@@ -2,8 +2,10 @@
   <div class="w-full bg-white py-5 px-32 custom-shadow">
     <div v-if="variant == 'default'" class="flex justify-between select-none">
       <div class="flex items-center gap-2">
-        <img src="images/logo.svg" />
-        <Badge variant="danger"> club </Badge>
+        <RouterLink class="flex gap-2" :to="{ name: 'Home' }">
+          <img src="images/logo.svg" />
+          <Badge variant="danger"> club </Badge></RouterLink
+        >
       </div>
 
       <div class="flex items-center gap-10">
@@ -50,11 +52,11 @@ import { RouterLink, useRouter } from "vue-router";
 
 const props = defineProps(["variant"]);
 
-const router = useRouter()
+const router = useRouter();
 
 function logOut() {
   localStorage.removeItem("access-token");
-  router.push({name:'Auth'})
+  router.push({ name: "Auth" });
 }
 </script>
 
