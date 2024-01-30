@@ -1,6 +1,7 @@
 <template>
   <button
     :class="getClasses()"
+    :type="type"
     class="flex justify-center gap-2 w-full py-4 px-10 font-bold capitalize rounded-md border-2"
   >
     <slot />
@@ -8,7 +9,7 @@
 </template>
 
 <script setup>
-const props = defineProps(["variant"]);
+const props = defineProps(["variant","type"]);
 
 function getClasses() {
   switch (props.variant) {

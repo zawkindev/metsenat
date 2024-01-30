@@ -5,7 +5,7 @@ const routes = [
     path: "/",
     name: "Home",
     meta: { layout: "default" },
-    component: ()=> import("views/HomeView.vue"),
+    component: () => import("views/HomeView.vue"),
     beforeEnter: (_, __, next) => {
       if (localStorage.getItem("access-token")) {
         next("/dashboard");
@@ -18,11 +18,17 @@ const routes = [
     path: "/dashboard",
     name: "Dashboard",
     meta: { layout: "default" },
-    component: ()=> import("views/DashboardView.vue"),
+    component: () => import("views/DashboardView.vue"),
     children: [
       {
+        path: "",
+        name: "Stats",
+        component: () => import("views/dashboard/StatsView.vue"),
+      },
+      {
         path: "students",
-        name: "StudentList",
+        name: "StudentsList",
+        component: () => import("views/dashboard/StudentsView.vue"),
         children: [
           {
             path: "/:id",
@@ -33,6 +39,7 @@ const routes = [
       {
         path: "sponsors",
         name: "SponsorsList",
+        component: () => import("views/dashboard/SponsorsView.vue"),
         children: [
           {
             path: "/:id",
