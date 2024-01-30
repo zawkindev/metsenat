@@ -4,8 +4,11 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: () => import("../views/HomeView.vue"),
     meta: { layout: "default" },
+    component: () =>
+      localStorage.getItem("access-token")
+        ? import("views/DashboardView.vue")
+        : import("../views/HomeView.vue"),
     children: [
       {
         path: "students",
@@ -32,8 +35,8 @@ const routes = [
   {
     path: "/auth",
     name: "Auth",
-    component: () => import("../views/AuthView.vue"),
     meta: { layout: "auth" },
+    component: () => import("../views/AuthView.vue"),
   },
 ];
 
