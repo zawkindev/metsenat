@@ -6,7 +6,7 @@
     />
     <div class="flex w-fit items-center gap-5">
       <Search class="min-w-72 h-full" />
-      <CButton variant="outline">
+      <CButton v-if="$route.name!=='Stats'" variant="outline">
         <img src="icons/filter.svg" alt="filter icon" />
         Filter
       </CButton>

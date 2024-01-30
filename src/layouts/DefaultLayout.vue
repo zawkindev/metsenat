@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col h-screen bg-secondary-100">
+  <div class="flex flex-col min-h-screen bg-secondary-100">
 
     <Header :variant="headerVariant" />
     <RouterView> </RouterView>

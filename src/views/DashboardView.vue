@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col w-full">
+  <div class="flex flex-col w-full gap-10">
     <div class="px-32 bg-white">
       <Bar />
     </div>
