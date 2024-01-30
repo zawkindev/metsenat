@@ -1,18 +1,12 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeLayout from "../layouts/HomeLayout.vue";
-import AuthLayout from "../layouts/AuthLayout.vue";
 
 const routes = [
   {
     path: "/",
     name: "Home",
-    component: HomeLayout,
-    meta: { layout: "dashboard" },
+    component: () => import("../views/HomeView.vue"),
+    meta: { layout: "default" },
     children: [
-      {
-        path: "",
-        component: () => import("../views/HomeView.vue"),
-      },
       {
         path: "students",
         name: "StudentList",
@@ -38,14 +32,8 @@ const routes = [
   {
     path: "/auth",
     name: "Auth",
-    component: AuthLayout,
-    children: [
-      {
-        path: "login",
-        component: () => import("../views/LoginView.vue"),
-        meta: { layout: "auth" },
-      },
-    ],
+    component: () => import("../views/AuthView.vue"),
+    meta: { layout: "auth" },
   },
 ];
 
