@@ -2,11 +2,12 @@
   <div class="flex w-full justify-between py-6">
     <Tab
       @activate="(index) => handleActivate(index)"
-      :options="['dashboard', 'homiylar', 'talabalar']"
+      :default-tab="activeTab"
+      :options="tabs"
     />
     <div class="flex w-fit items-center gap-5">
       <Search class="min-w-72 h-full" />
-      <CButton v-if="$route.name!=='Stats'" variant="outline">
+      <CButton v-if="$route.name !== 'Stats'" variant="outline">
         <img src="icons/filter.svg" alt="filter icon" />
         Filter
       </CButton>
@@ -18,26 +19,23 @@
 import Tab from "components/common/Tab.vue";
 import Search from "components/common/Search.vue";
 import CButton from "components/base/CButton.vue";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
+import { onMounted, ref } from "vue";
 
+const route = useRoute();
 const router = useRouter();
 
+
 const tabs = ["dashboard", "homiylar", "talabalar"];
+const routeNames = ["Stats", "SponsorsList", "StudentsList"];
+
+const activeTab = ref(routeNames.findIndex(el=>el===route.name));
 
 function handleActivate(index) {
-  let routeName;
-
-  switch (tabs[index]) {
-    case "dashboard":
-      routeName = "Stats";
-      break;
-    case "homiylar":
-      routeName = "SponsorsList";
-      break;
-    case "talabalar":
-      routeName = "StudentsList";
-      break;
-  }
-  router.push({ name: routeName });
+  router.push({ name: routeNames[index] });
 }
+
+onMounted(()=>{
+console.log()
+})
 </script>

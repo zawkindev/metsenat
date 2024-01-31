@@ -18,10 +18,10 @@
 <script setup>
 import { ref } from "vue";
 
-const props = defineProps(["options"]);
+const props = defineProps(["options", "defaultTab"]);
 const emit = defineEmits(["activate"]);
 
-const activeTab = ref(0);
+const activeTab = ref(props.defaultTab ?? 0);
 
 function handleClick(index) {
   activeTab.value = index;
