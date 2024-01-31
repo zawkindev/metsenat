@@ -4,9 +4,9 @@
       <Bar />
     </div>
 
-    <RouterView>
-
-    </RouterView>
+    <div class="px-32">
+      <RouterView> </RouterView>
+    </div>
   </div>
 </template>
 <script setup>

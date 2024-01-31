@@ -6,6 +6,9 @@ export const useMetsenatStore = defineStore("metsenat", () => {
   const userAuthorized = ref(false)
   const sponsorsList = ref([])
   const sponsorsCurrentPage = ref(1)
+  const studentsList = ref([])
+  const studentsCurrentPage = ref(1)
 
-  return { amount, userAuthorized, sponsorsList, sponsorsCurrentPage };
+
+  return { amount, userAuthorized, sponsorsList, sponsorsCurrentPage, studentsList, studentsCurrentPage };
 });

@@ -1,36 +1,38 @@
 <template>
-  <h1>Sponsors</h1>
+  <CTable :data="store.sponsorsList??[]" />
 </template>
 
 <script setup>
 import { useFetch } from "@/composables/useFetch";
 import { onBeforeMount, ref } from "vue";
-import { useMetsenatStore } from "@/store/store"
+import { useMetsenatStore } from "@/store/store";
+import CTable from "../../components/base/CTable.vue";
 
-const { get } = useFetch()
-const store = useMetsenatStore()
+const { get } = useFetch();
+const store = useMetsenatStore();
 
-const pageSize = ref(10)
+const pageSize = ref(10);
 
-console.log(store.sponsorsList)
+console.log(store.sponsorsList);
 
 const fetchData = async (page) => {
   if (store.sponsorsList.length === 0 || store.sponsorsCurrentPage !== page) {
     try {
-      store.sponsorsCurrentPage = page
-      const response = await get('sponsor-list/', { page: page, pageSize: pageSize.value })
-      store.sponsorsList = response
+      store.sponsorsCurrentPage = page;
+      const response = await get("sponsor-list", {
+        page: page,
+        pageSize: pageSize.value,
+      });
+      store.sponsorsList = response;
 
-      console.log(response)
+      console.log(response);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
-}
+};
 
 onBeforeMount(() => {
-  fetchData(store.sponsorsCurrentPage)
-})
-
-
+  fetchData(store.sponsorsCurrentPage);
+});
 </script>
