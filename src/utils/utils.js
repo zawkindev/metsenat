@@ -1,4 +1,4 @@
-export function formatMoney(number) {
+export function formatMoney(number="") {
 
     let strNumber = number.toString();
     

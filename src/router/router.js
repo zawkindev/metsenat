@@ -8,7 +8,7 @@ const routes = [
     component: () => import("views/HomeView.vue"),
     beforeEnter: (_, __, next) => {
       if (localStorage.getItem("access-token")) {
-        next("/dashboard");
+        next({name: "Dashboard"});
       } else {
         next();
       }
@@ -53,7 +53,7 @@ const routes = [
     path: "/auth",
     name: "Auth",
     meta: { layout: "auth" },
-    component: () => import("../views/AuthView.vue"),
+    component: () => import("views/AuthView.vue"),
   },
 ];
 
