@@ -1,72 +1,81 @@
 <template>
   <div class="flex flex-col gap-5">
-    <!--  HEADER  -->
-
-    <div class="row flex flex-between w-full px-4">
+    <!-- HEADER -->
+    <div class="row flex w-full px-4">
       <slot name="header">
-        <div class="flex w-4/12 font-bold">
-          <p class="uppercase text-secondary-300 text-sm">
-            <span class="mr-2">#</span> f.i.sh
-          </p>
+        <!-- First Column -->
+        <div class="flex w-1/4 font-bold text-secondary-300 uppercase">
+          <p class="mr-8 w-[2%]">#</p>
+          <p>f.i.sh</p>
         </div>
-
-        <div class="flex justify-between w-full gap-10">
-          <div
-            v-for="item in headerNames"
-            class="flex text-center justify-end whitespace-nowrap font-bold"
-          >
-            <span class="uppercase text-secondary-300 text-sm">
-              {{ item }}
-            </span>
-          </div>
+        <div class="flex w-3/4">
+          <template v-for="item in headerNames">
+            <div
+              :class="`w-[${item.width}]`"
+              class="text-center whitespace-nowrap"
+            >
+              <span>{{ item.label }}</span>
+            </div>
+          </template>
         </div>
       </slot>
     </div>
 
-    <!--  ROW  -->
+    <!-- ROW -->
+    <div
+      v-for="(obj, index) in data.results"
+      class="bg-white flex w-full px-4 py-6 rounded-lg"
+    >
+      <!-- First Column -->
+      <div class="flex w-1/4 font-bold">
+        <p class="w-[2%] text-sm">{{ index + 1 }}</p>
 
-    <div v-for="(item, index) in data.results" class="bg-white flex flex-between w-full px-4 py-6 rounded-lg">
+        <p>{{ obj.full_name }}</p>
+      </div>
 
-      <slot name="header">
-        <div class="flex w-4/12 font-bold">
-          <p class="uppercase text-sm">
-          <span class="mr-2">{{index+1}}</span>{{item.full_name}} 
-         
-          </p>
-        </div>
-
-        <div class="flex justify-between w-full gap-10">
+      <!-- Remaining Columns -->
+      <div class="flex w-3/4">
+        <template v-for="item in rowValues" :key="item.label">
           <div
-            v-for="item in headerNames"
-            class="flex text-center justify-end whitespace-nowrap font-bold"
+            :class="`w-[${item.width}]`"
+            class="text-center whitespace-nowrap"
           >
-            <span class="uppercase text-sm">
-              {{ item }}
+            <span v-if="item.label === 'created_at'">
+              {{ formatDate(obj[item]) }}
             </span>
+            <img v-else-if="item === 'action'" src="icons/eye.svg" />
+            <span v-else>{{ obj[item.label] }}</span>
           </div>
-        </div>
-      </slot>
+        </template>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref} from "vue";
-const props = defineProps(["data"])
+import { ref } from "vue";
+import { formatDate } from "@/utils/utils";
+const props = defineProps(["data"]);
 
 const headerNames = ref([
-  "tel.raqami",
-  "homiylik summasi",
-  "sarflangan summa",
-  "sana",
-  "holati",
-  "amallar",
+  { label: "f.i.sh.", width: "34%" },
+  { label: "Tel.Raqami", width: "16%" },
+  { label: "Homiylik summasi", width: "10%" },
+  { label: "Sarflangan summa", width: "15%" },
+  { label: "Holati", width: "15%" },
+  { label: "Sana", width: "8%" },
+  { label: "Amallar", width: "8%" },
 ]);
 
 const rowValues = ref([
-"full_name", "phone", "sum", "spent"
-])
-
+  { label: "full_name", width: "34%" },
+  { label: "phone", width: "16%" },
+  { label: "sum", width: "10%" },
+  { label: "spent", width: "15%" },
+  { label: "created_at", width: "15%" },
+  { label: "get_status_display", width: "8%" },
+  { label: "action", width: "8%" },
+]);
 </script>
 
 <style>
