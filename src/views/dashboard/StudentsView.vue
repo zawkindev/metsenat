@@ -1,39 +1,42 @@
 <template>
   <div class="flex flex-col px-32 pb-32">
     <div class="flex w-full justify-end pt-10">
-      <CButton class="primary">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-        >
-          <path
-            d="M19.9999 11.9999H4.00007"
-            stroke="#fff"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <path
-            d="M12 4V19.9999"
-            stroke="#fff"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
+      <RouterLink :to="{name: 'AddStudent'}">
 
-        Talaba qo'shish
-      </CButton>
+        <CButton class="primary">
+          <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+          >
+            <path
+                d="M19.9999 11.9999H4.00007"
+                stroke="#fff"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            />
+            <path
+                d="M12 4V19.9999"
+                stroke="#fff"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            />
+          </svg>
+
+          Talaba qo'shish
+        </CButton>
+      </RouterLink>
     </div>
     <CTable>
       <template #header>
         <li
-          v-for="(column, index) in columns"
-          :key="index"
-          :class="`w-[${column.width}] ${index === 1 ? 'text-left' : 'text-center'} uppercase text-sm font-bold`"
+            v-for="(column, index) in columns"
+            :key="index"
+            :class="`w-[${column.width}] ${index === 1 ? 'text-left' : 'text-center'} uppercase text-sm font-bold`"
         >
           {{ column.label }}
         </li>
@@ -41,9 +44,9 @@
 
       <template #body>
         <li
-          v-for="(item, index) in store.studentsList?.results"
-          :key="index"
-          class="bg-white py-[22px] px-[14px] rounded-lg my-5 border-[#B2B7C1]"
+            v-for="(item, index) in store.studentsList?.results"
+            :key="index"
+            class="bg-white py-[22px] px-[14px] rounded-lg my-5 border-[#B2B7C1]"
         >
           <ul class="flex items-center justify-between">
             <li class="w-[2%] text-center">{{ index + 1 }}</li>
@@ -60,9 +63,9 @@
             </li>
             <li class="w-[8%] text-center flex items-center justify-center">
               <RouterLink
-                :to="{ name: 'StudentDetails', params: { id: item.id } }"
+                  :to="{ name: 'StudentDetails', params: { id: item.id } }"
               >
-                <img src="icons/eye.svg" alt="eye icon" />
+                <img src="icons/eye.svg" alt="eye icon"/>
               </RouterLink>
             </li>
           </ul>
@@ -80,32 +83,32 @@
       </div>
       <div class="flex items-center gap-4">
         <button
-          class="p-2 rounded-md border-2 duration-200"
-          :class="{
+            class="p-2 rounded-md border-2 duration-200"
+            :class="{
             'border-[#E0E7FF]': store.studentsCurrentPage === 1,
             'border-blue-300 hover:bg-blue-100 bg-blue-50 hover:border-blue-300':
               store.studentsCurrentPage !== 1,
           }"
-          @click="prevPage"
-          :disabled="store.studentsCurrentPage === 1"
+            @click="prevPage"
+            :disabled="store.studentsCurrentPage === 1"
         >
-          <img class="rotate-180" src="icons/arrow.svg" alt="arrow icon" />
+          <img class="rotate-180" src="icons/arrow.svg" alt="arrow icon"/>
         </button>
         <span>{{ store.studentsCurrentPage }}</span>
         <button
-          :class="{
+            :class="{
             'border-blue-300 hover:bg-blue-100 bg-blue-50 hover:border-blue-300':
               store.studentsCurrentPage !==
               Math.ceil(store.studentsList?.count / 10),
           }"
-          class="p-2 rounded-md border-2 duration-200"
-          @click="nextPage"
-          :disabled="
+            class="p-2 rounded-md border-2 duration-200"
+            @click="nextPage"
+            :disabled="
             store.studentsCurrentPage ===
             Math.ceil(store.studentsList?.count / 10)
           "
         >
-          <img src="/arrow.svg" alt="arrow icon" />
+          <img src="/arrow.svg" alt="arrow icon"/>
         </button>
       </div>
     </div>
@@ -113,15 +116,15 @@
 </template>
 
 <script setup>
-import { onBeforeMount, ref } from "vue";
-import { useMetsenatStore } from "@/store/store";
-import { useFetch } from "@/composables/useFetch";
-import { formatDate, formatMoney } from "@/utils/utils.js";
+import {onBeforeMount, ref} from "vue";
+import {useMetsenatStore} from "@/store/store";
+import {useFetch} from "@/composables/useFetch";
+import {formatDate, formatMoney} from "@/utils/utils.js";
 import CTable from "components/base/CTable.vue";
 import Badge from "components/common/Badge.vue";
 import CButton from "~/home/zawkin/development/metsenat/src/components/base/CButton.vue";
 
-const { get } = useFetch();
+const {get} = useFetch();
 const store = useMetsenatStore();
 
 const pageSize = ref(10);
@@ -161,22 +164,22 @@ const statusType = {
   "Bekor qilingan": "disabled",
 };
 const columns = [
-  { label: "#", width: "2%" },
-  { label: "f.i.sh.", width: "20%" },
-  { label: "Talabalik turi", width: "10%" },
-  { label: "OTM", width: "30%" },
-  { label: "Ajratilingan summa", width: "15%" },
-  { label: "Kontrakt miqdori", width: "15%" },
-  { label: "Amallar", width: "8%" },
+  {label: "#", width: "2%"},
+  {label: "f.i.sh.", width: "20%"},
+  {label: "Talabalik turi", width: "10%"},
+  {label: "OTM", width: "30%"},
+  {label: "Ajratilingan summa", width: "15%"},
+  {label: "Kontrakt miqdori", width: "15%"},
+  {label: "Amallar", width: "8%"},
 ];
 
 const dataKeys = ref([
-  { label: "full_name", width: "34%" },
-  { label: "type", width: "16%" },
-  { label: "institute", width: "10%" },
-  { label: "given", width: "15%" },
-  { label: "contract", width: "15%" },
-  { label: "action", width: "8%" },
+  {label: "full_name", width: "34%"},
+  {label: "type", width: "16%"},
+  {label: "institute", width: "10%"},
+  {label: "given", width: "15%"},
+  {label: "contract", width: "15%"},
+  {label: "action", width: "8%"},
 ]);
 
 onBeforeMount(() => {

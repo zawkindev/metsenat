@@ -31,6 +31,7 @@
       <CInput id="fafa" label="F.I.SH." />
       <Search />
 
+      <CSelect :options="['sdasf','asfa']" />
       <div class="overflow-x-auto w-full">
         <div class="table w-full">
           <div class="table-row-group">
@@ -67,4 +68,5 @@ import CInput from "../components/base/CInput.vue";
 import Tab from "components/common/Tab.vue"
 import Search from "components/common/Search.vue"
 import Header from "../components/layout/Header.vue";
+import CSelect from "~/home/zawkin/development/metsenat/src/components/base/CSelect.vue";
 </script>
