@@ -50,7 +50,7 @@
 import Badge from "components/common/Badge.vue";
 import CButton from "components/base/CButton.vue";
 import { RouterLink, useRouter } from "vue-router";
-import { useAuthStore } from "~/home/zawkin/development/metsenat/src/store/auth.js";
+import { useAuthStore } from "@/store/auth.js";
 
 const props = defineProps(["variant"]);
 
