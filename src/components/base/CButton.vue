@@ -2,7 +2,7 @@
   <button
     :class="getClasses()"
     :type="type"
-    class="flex justify-center gap-2 py-4 px-10 font-bold capitalize rounded-md border-2"
+    class="flex justify-center gap-2 py-4 px-6 font-bold capitalize rounded-md border-2"
   >
     <slot />
   </button>

@@ -121,6 +121,7 @@ const fetchData = async (page) => {
   if (store.sponsorsList.length === 0 || store.sponsorsCurrentPage !== page) {
     try {
       store.sponsorsCurrentPage = page;
+      store.sponsorsList = []
       const response = await get("sponsor-list", {
         page: page,
         pageSize: pageSize.value,

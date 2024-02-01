@@ -100,11 +100,11 @@ const pageSize = ref(10);
 console.log(store.studentsList);
 
 const nextPage = () => {
-  fetchData(store.sponsorsCurrentPage + 1);
+  fetchData(store.studentsCurrentPage + 1);
 };
 
 const prevPage = () => {
-  fetchData(store.sponsorsCurrentPage - 1);
+  fetchData(store.studentsCurrentPage - 1);
 };
 
 const fetchData = async (page) => {
