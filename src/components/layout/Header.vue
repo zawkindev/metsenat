@@ -51,13 +51,17 @@
 import Badge from "components/common/Badge.vue";
 import CButton from "components/base/CButton.vue";
 import { RouterLink, useRouter } from "vue-router";
+import { useAuthStore } from "~/home/zawkin/development/metsenat/src/store/auth.js";
 
 const props = defineProps(["variant"]);
 
 const router = useRouter();
 
+const authStore = useAuthStore();
+
 function logOut() {
   localStorage.removeItem("access-token");
+  authStore.clearToken();
   router.push({ name: "Auth" });
 }
 </script>

@@ -3,7 +3,7 @@
     <div class="flex w-full justify-center items-center">
       <RouterLink class="flex gap-2" :to="{ name: 'Home' }">
         <img src="images/logo.svg" />
-        <Badge variant="danger"> club </Badge>
+        <Badge variant="danger" :withBg="true"> club </Badge>
       </RouterLink>
     </div>
 
@@ -51,8 +51,8 @@ const parol = ref("");
 const handleSubmit = async () => {
   try {
     const data = await post("auth/login/", {
-      username: username.value,
-      password: password.value,
+      username: login.value,
+      password: parol.value,
     });
 
     localStorage.setItem("access_token", data.access);

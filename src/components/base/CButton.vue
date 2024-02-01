@@ -23,7 +23,7 @@ function getClasses() {
       return "border-danger-200 bg-danger-200 text-danger-300 hover:bg-red-200 active:bg-red-300";
 
     case "outline":
-      return "text-primary-300 border-primary-200 hover:bg-blue-100 active:bg-blue-300";
+      return "text-primary-300 bg-blue-100 border-transparent hover:bg-blue-200 active:bg-blue-300";
   }
 }
 </script>
