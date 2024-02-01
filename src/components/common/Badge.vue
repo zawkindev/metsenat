@@ -14,7 +14,7 @@ function getClasses() {
     case "success":
       return `capitalize px-3 py-1  text-green-500  ${props.withBg ? "bg-green-300 rounded-lg bg-opacity-40" : ""} `;
     case "warn":
-      return `capitalize px-3 py-1 text-yellow-400`;
+      return `capitalize px-3 py-1 text-yellow-400  ${props.withBg ? "bg-yellow-200 text-yellow-500 rounded-lg bg-opacity-40" : ""} `;
     case "danger":
       return `uppercase py-1 px-[10px] ${props.withBg ? "bg-danger-400 bg-opacity-40 rounded-xl" : ""} text-white `;
     case "disabled":

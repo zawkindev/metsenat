@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col px-32">
+  <div class="flex flex-col px-32 pb-32">
     <CTable>
       <template #header>
         <li
@@ -110,7 +110,8 @@ const prevPage = () => {
 const fetchData = async (page) => {
   if (store.studentsList.length === 0 || store.sponsorsCurrentPage !== page) {
     try {
-      store.sponsorsCurrentPage = page;
+      store.studentsCurrentPage = page;
+      store.studentsList = []
       const response = await get("student-list", {
         page: page,
         pageSize: pageSize.value,

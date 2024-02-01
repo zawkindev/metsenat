@@ -1,5 +1,5 @@
 <template>
-  <div class="flex mt-14 flex-col w-full px-32 gap-10">
+  <div class="flex mt-14 flex-col w-full px-32 pb-32 gap-10">
     <div class="flex justify-between">
       <MoneyCard>
         <img src="icons/money-blue.svg" />

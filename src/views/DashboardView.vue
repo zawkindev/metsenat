@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-col w-full overflow-visible pb-32">
-    <Bar v-if="!$route.fullPath.includes('students/')" />
+  <div class="flex flex-col w-full overflow-visible">
+    <Bar v-if="!$route.fullPath.includes('students/')&&!$route.fullPath.includes('sponsors/')" />
     <RouterView></RouterView>
   </div>
 </template>

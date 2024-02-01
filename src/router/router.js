@@ -39,12 +39,11 @@ const routes = [
         path: "sponsors",
         name: "SponsorsList",
         component: () => import("views/dashboard/SponsorsView.vue"),
-        children: [
-          {
-            path: "/:id",
-            name: "SponsorDetails",
-          },
-        ],
+      },
+      {
+        path: "sponsors/:id",
+        name: "SponsorDetails",
+        component: () => import("views/dashboard/sponsor/SponsorDetails.vue"),
       },
     ],
   },

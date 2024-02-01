@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col px-32">
+  <div class="flex flex-col px-32 pb-32">
     <CTable>
       <template #header>
         <li class="w-[2%] text-center">#</li>
@@ -41,7 +41,11 @@
               </Badge>
             </li>
             <li class="w-[8%] text-center flex items-center justify-center">
+              <RouterLink
+                  :to="{ name: 'SponsorDetails', params: { id: item.id } }"
+              >
               <img src="icons/eye.svg" alt="eye icon" />
+              </RouterLink>
             </li>
           </ul>
         </li>

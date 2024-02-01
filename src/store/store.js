@@ -4,9 +4,10 @@ import { ref } from "vue";
 export const useMetsenatStore = defineStore("metsenat", () => {
   const amount = ref();
   const userAuthorized = ref(false);
+  const sponsor = ref();
   const sponsorsList = ref([]);
   const sponsorsCurrentPage = ref(1);
-  const student = ref()
+  const student = ref();
   const studentsList = ref([]);
   const studentsCurrentPage = ref(1);
 
