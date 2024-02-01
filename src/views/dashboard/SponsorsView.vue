@@ -1,5 +1,5 @@
 <template>
-  <CTable :data="store.sponsorsList" :columns="columns"  />
+  <CTable :data="store.sponsorsList" :columns="columns" :data-keys="dataKeys" />
 </template>
 
 <script setup>

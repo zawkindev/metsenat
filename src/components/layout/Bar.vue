@@ -25,17 +25,16 @@ import { onMounted, ref } from "vue";
 const route = useRoute();
 const router = useRouter();
 
-
 const tabs = ["dashboard", "homiylar", "talabalar"];
 const routeNames = ["Stats", "SponsorsList", "StudentsList"];
 
-const activeTab = ref(routeNames.findIndex(el=>el===route.name));
+const activeTab = ref(routeNames.findIndex((el) => el === route.name));
 
 function handleActivate(index) {
   router.push({ name: routeNames[index] });
 }
 
-onMounted(()=>{
-console.log()
-})
+onMounted(() => {
+  console.log();
+});
 </script>

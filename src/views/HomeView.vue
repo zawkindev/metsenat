@@ -25,7 +25,11 @@
           <label for="phoneNumber" class="uppercase font-semibold"
             >Telefon raqamingiz</label
           >
-          <CInput id="phoneNumber" v-model="inputValues.phoneNumber" type="tel" />
+          <CInput
+            id="phoneNumber"
+            v-model="inputValues.phoneNumber"
+            type="tel"
+          />
         </div>
         <RadioGroup :options="['100', '200', '300', 'Boshqasi']">
           To‘lov summasi
@@ -35,7 +39,11 @@
           <label for="company" class="uppercase font-semibold"
             >Tashkilot nomi</label
           >
-          <CInput id="company" v-model="inputValues.company" placeholder="Commeta" />
+          <CInput
+            id="company"
+            v-model="inputValues.company"
+            placeholder="Commeta"
+          />
         </div>
 
         <CButton> Yuborish </CButton>

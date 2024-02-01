@@ -1,6 +1,6 @@
 <template>
   <div class="flex p-6 pr-32 gap-3 whitespace-nowrap bg-white rounded-lg w-fit">
-      <slot></slot>
+    <slot></slot>
   </div>
 </template>
 

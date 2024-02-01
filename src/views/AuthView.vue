@@ -39,8 +39,7 @@ import Badge from "components/common/Badge.vue";
 import CInput from "components/base/CInput.vue";
 import CButton from "components/base/CButton.vue";
 
-const { post } = useFetch()
-
+const { post } = useFetch();
 
 const router = useRouter();
 
@@ -48,7 +47,6 @@ const authStore = useAuthStore();
 
 const login = ref("");
 const parol = ref("");
-
 
 const handleSubmit = async () => {
   try {

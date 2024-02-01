@@ -1,6 +1,6 @@
 <template>
   <div :class="getClasses()" class="font-normal h-fit">
-    <slot/>
+    <slot />
   </div>
 </template>
 

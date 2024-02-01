@@ -23,7 +23,7 @@
 <script setup>
 import CRadio from "components/base/CRadio.vue";
 import { ref } from "vue";
-import {useMetsenatStore} from "@/store/store.js";
+import { useMetsenatStore } from "@/store/store.js";
 
 const props = defineProps(["options"]);
 const store = useMetsenatStore();

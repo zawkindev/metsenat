@@ -9,7 +9,7 @@
 </template>
 
 <script setup>
-const props = defineProps(["variant","type"]);
+const props = defineProps(["variant", "type"]);
 
 function getClasses() {
   switch (props.variant) {

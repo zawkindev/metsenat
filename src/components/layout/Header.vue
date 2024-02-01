@@ -29,7 +29,9 @@
     <div v-if="variant == 'withoutMenu'" class="flex justify-between">
       <img src="images/logo2.svg" />
       <div class="flex gap-10">
-        <div class="flex bg-gray-200 p-1 items-center rounded-md cursor-pointer">
+        <div
+          class="flex bg-gray-200 p-1 items-center rounded-md cursor-pointer"
+        >
           <span class="px-5 font-bold">Shohruz</span>
           <div
             class="px-1 pt-2 pb-0 flex items-end bg-success-200 rounded h-fit"

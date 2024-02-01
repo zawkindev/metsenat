@@ -8,7 +8,7 @@ const routes = [
     component: () => import("views/HomeView.vue"),
     beforeEnter: (_, __, next) => {
       if (localStorage.getItem("access-token")) {
-        next({name: "Dashboard"});
+        next({ name: "Dashboard" });
       } else {
         next();
       }
