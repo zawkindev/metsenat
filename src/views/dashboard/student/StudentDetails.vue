@@ -76,15 +76,15 @@
 
 <script setup>
 import TitleBar from "components/layout/TitleBar.vue";
-import { useMetsenatStore } from "~/home/zawkin/development/metsenat/src/store/store.js";
+import { useMetsenatStore } from "@/store/store.js";
 import { computed, onBeforeMount, ref } from "vue";
 import { useRoute } from "vue-router";
 import Badge from "~/home/zawkin/development/metsenat/src/components/common/Badge.vue";
-import CButton from "~/home/zawkin/development/metsenat/src/components/base/CButton.vue";
-import Chr from "~/home/zawkin/development/metsenat/src/components/base/Chr.vue";
+import CButton from "components/base/CButton.vue";
+import Chr from "components/base/Chr.vue";
 import { formatMoney } from "../../../utils/utils.js";
 import { defineStudentType } from "../../../helpers/helpers.js";
-import { useFetch } from "~/home/zawkin/development/metsenat/src/composables/useFetch.js";
+import { useFetch } from "@/composables/useFetch.js";
 
 const route = useRoute();
 

@@ -11,10 +11,10 @@ export const useMetsenatStore = defineStore("metsenat", () => {
   const studentsList = ref([]);
   const studentsCurrentPage = ref(1);
 
-  const selectedDropdownOption = ref()
+  const selectedDropdownOption = ref();
 
-  const instituteList = ref([])
-  const isSelectOpen = ref(false)
+  const instituteList = ref([]);
+  const isSelectOpen = ref(false);
 
   function getStudent(studentId) {
     return studentsList.value.results.find(
@@ -30,6 +30,6 @@ export const useMetsenatStore = defineStore("metsenat", () => {
     studentsList,
     studentsCurrentPage,
     instituteList,
-    isSelectOpen
+    isSelectOpen,
   };
 });
