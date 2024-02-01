@@ -29,12 +29,11 @@ const routes = [
         path: "students",
         name: "StudentsList",
         component: () => import("views/dashboard/StudentsView.vue"),
-        children: [
-          {
-            path: "/:id",
-            name: "StudentProfile",
-          },
-        ],
+      },
+      {
+        path: "students/:id",
+        name: "StudentDetails",
+        component: () => import("views/dashboard/student/StudentDetails.vue"),
       },
       {
         path: "sponsors",
@@ -43,7 +42,7 @@ const routes = [
         children: [
           {
             path: "/:id",
-            name: "SponsorProfile",
+            name: "SponsorDetails",
           },
         ],
       },
