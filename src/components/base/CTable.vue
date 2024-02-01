@@ -1,81 +1,69 @@
 <template>
-  <div class="flex flex-col gap-5">
-    <!-- HEADER -->
-    <div class="row flex w-full px-4">
-      <slot name="header">
-        <!-- First Column -->
-        <div class="flex w-1/4 font-bold text-secondary-300 uppercase">
-          <p class="mr-8 w-[2%]">#</p>
-          <p>f.i.sh</p>
-        </div>
-        <div class="flex w-3/4">
-          <template v-for="item in headerNames">
-            <div
-              :class="`w-[${item.width}]`"
-              class="text-center whitespace-nowrap"
+  <div class="w-full">
+    <div class="container mx-auto overflow-hidden overflow-x-auto">
+      <ul
+        class="w-full whitespace-nowrap flex gap-4 my-12 flex-col list-none p-0"
+      >
+        <!-- sponsors list row head cells -->
+        <li>
+          <ul class="text-[#B1B1B8] text-left flex gap-6 px-[14px]">
+            <li class="w-[2%] text-center">#</li>
+            <li
+              v-for="(column, index) in columns"
+              :key="index"
+              :class="`w-[${column.width}] ${index===0?'text-left':'text-center'}`"
             >
-              <span>{{ item.label }}</span>
-            </div>
-          </template>
-        </div>
-      </slot>
-    </div>
+              {{ column.label }}
+            </li>
+          </ul>
+        </li>
 
-    <!-- ROW -->
-    <div
-      v-for="(obj, index) in data.results"
-      class="bg-white flex w-full px-4 py-6 rounded-lg"
-    >
-      <!-- First Column -->
-      <div class="flex w-1/4 font-bold">
-        <p class="w-[2%] text-sm">{{ index + 1 }}</p>
-
-        <p>{{ obj.full_name }}</p>
-      </div>
-
-      <!-- Remaining Columns -->
-      <div class="flex w-3/4">
-        <template v-for="item in rowValues" :key="item.label">
-          <div
-            :class="`w-[${item.width}]`"
-            class="text-center whitespace-nowrap"
+        <div>
+          <li
+            v-for="(item, index) in data?.results"
+            :key="index"
+            class="bg-white py-[22px] px-[14px] rounded-lg my-5 border-[#B2B7C1]"
           >
-            <span v-if="item.label === 'created_at'">
-              {{ formatDate(obj[item]) }}
-            </span>
-            <img v-else-if="item === 'action'" src="icons/eye.svg" />
-            <span v-else>{{ obj[item.label] }}</span>
-          </div>
-        </template>
-      </div>
+            <ul class="flex items-center justify-between">
+              <li class="w-[2%] text-center">{{ index + 1 }}</li>
+              <li class="w-[34%] text-left">{{ item?.full_name }}</li>
+              <li class="w-[10%] text-center">{{ item?.phone }}</li>
+              <li class="w-[16%] text-center">
+                {{ formatMoney(item?.spent) }}<span class="ml-2 text-gray-400">UZS</span>
+              </li>
+              <li class="w-[15%] text-center">{{ formatMoney(item?.sum) }} <span class="ml-2 text-gray-400">UZS</span></li>
+              <li class="w-[15%] text-center">
+                {{ formatDate(item?.created_at) }}
+              </li>
+              <li class="w-[8%] text-center">
+                <!-- <CBadge :status="item?.get_status_display"></CBadge> -->
+                <Badge :variant="statusType[item?.get_status_display]">
+                  {{item?.get_status_display}}
+                </Badge>
+              </li>
+              <li class="w-[8%] text-center flex items-center justify-center">
+                <img src="icons/eye.svg" alt="eye icon" />
+              </li>
+            </ul>
+          </li>
+        </div>
+      </ul>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { formatDate } from "@/utils/utils";
-const props = defineProps(["data"]);
+import { formatDate, formatMoney } from "@/utils/utils";
+import Badge from "~/home/zawkin/development/metsenat/src/components/common/Badge.vue";
+const props = defineProps(["data", "columns"]);
 
-const headerNames = ref([
-  { label: "f.i.sh.", width: "34%" },
-  { label: "Tel.Raqami", width: "16%" },
-  { label: "Homiylik summasi", width: "10%" },
-  { label: "Sarflangan summa", width: "15%" },
-  { label: "Holati", width: "15%" },
-  { label: "Sana", width: "8%" },
-  { label: "Amallar", width: "8%" },
-]);
 
-const rowValues = ref([
-  { label: "full_name", width: "34%" },
-  { label: "phone", width: "16%" },
-  { label: "sum", width: "10%" },
-  { label: "spent", width: "15%" },
-  { label: "created_at", width: "15%" },
-  { label: "get_status_display", width: "8%" },
-  { label: "action", width: "8%" },
-]);
+const statusType = {
+  Yangi: "primary",
+  Moderatsiyada: "warn",
+  Tasdiqlangan: "success",
+  "Bekor qilingan": "disabled"
+}
 </script>
 
 <style>

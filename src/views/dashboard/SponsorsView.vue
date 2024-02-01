@@ -1,5 +1,5 @@
 <template>
-  <CTable :data="store.sponsorsList??[]" />
+  <CTable :data="store.sponsorsList" :columns="columns"  />
 </template>
 
 <script setup>
@@ -31,6 +31,26 @@ const fetchData = async (page) => {
     }
   }
 };
+
+const columns = ref([
+  { label: "f.i.sh.", width: "34%" },
+  { label: "Tel.Raqami", width: "16%" },
+  { label: "Homiylik summasi", width: "10%" },
+  { label: "Sarflangan summa", width: "15%" },
+  { label: "Sana", width: "8%" },
+  { label: "Holati", width: "15%" },
+  { label: "Amallar", width: "8%" },
+]);
+
+const dataKeys = ref([
+  { label: "full_name", width: "34%" },
+  { label: "phone", width: "16%" },
+  { label: "sum", width: "10%" },
+  { label: "spent", width: "15%" },
+  { label: "created_at", width: "15%" },
+  { label: "get_status_display", width: "8%" },
+  { label: "action", width: "8%" },
+]);
 
 onBeforeMount(() => {
   fetchData(store.sponsorsCurrentPage);
