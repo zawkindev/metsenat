@@ -4,8 +4,8 @@
       <div class="flex items-center gap-2">
         <RouterLink class="flex gap-2" :to="{ name: 'Home' }">
           <img src="images/logo.svg" />
-          <Badge variant="danger"> club </Badge></RouterLink
-        >
+          <Badge variant="danger"> club </Badge>
+        </RouterLink>
       </div>
 
       <div class="flex items-center gap-10">
@@ -27,15 +27,14 @@
     </div>
 
     <div v-if="variant == 'withoutMenu'" class="flex justify-between">
-      <img src="images/logo2.svg" />
+
+      <RouterLink :to="{ name: 'Home' }">
+        <img src="images/logo2.svg" />
+      </RouterLink>
       <div class="flex gap-10">
-        <div
-          class="flex bg-gray-200 p-1 items-center rounded-md cursor-pointer"
-        >
+        <div class="flex bg-gray-200 p-1 items-center rounded-md cursor-pointer">
           <span class="px-5 font-bold">Shohruz</span>
-          <div
-            class="px-1 pt-2 pb-0 flex items-end bg-success-200 rounded h-fit"
-          >
+          <div class="px-1 pt-2 pb-0 flex items-end bg-success-200 rounded h-fit">
             <img src="icons/user1.svg" />
           </div>
         </div>
