@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col w-full">
+  <div class="flex flex-col w-full overflow-visible pb-32">
     <Bar v-if="!$route.fullPath.includes('students/')" />
     <RouterView></RouterView>
   </div>

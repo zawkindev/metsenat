@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col px-32 pb-32">
+  <div class="flex flex-col px-32">
     <CTable>
       <template #header>
         <li class="w-[2%] text-center">#</li>
