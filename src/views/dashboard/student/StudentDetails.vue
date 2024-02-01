@@ -4,26 +4,26 @@
       <div class="flex items-center w-full justify-between">
         <p class="text-xl font-bold">{{ student?.full_name }}</p>
         <CButton variant="outline">
-          <img src="icons/plus.svg" alt="edit icon"/>
+          <img src="icons/plus.svg" alt="edit icon" />
           <p class="text-xl">homiy qo'shish</p>
         </CButton>
       </div>
     </TitleBar>
 
     <div
-        class="flex flex-col w-7/12 mx-auto bg-white p-10 mt-14 gap-8 rounded-lg"
+      class="flex flex-col w-7/12 mx-auto bg-white p-10 mt-14 gap-8 rounded-lg"
     >
       <div class="flex items-center justify-between">
         <h3 class="font-bold text-3xl">Talaba haqida</h3>
         <CButton variant="outline">
-          <img src="icons/edit.svg" alt="edit icon"/>
+          <img src="icons/edit.svg" alt="edit icon" />
           <p class="text-xl">tahrirlash</p>
         </CButton>
       </div>
       <Chr> asosiy ma'lumotlar</Chr>
       <div class="flex items-center gap-6">
         <div class="w-28 h-28 p-6 rounded-xl bg-gray-200">
-          <img class="w-full h-full" alt="profile icon" src="icons/user2.svg"/>
+          <img class="w-full h-full" alt="profile icon" src="icons/user2.svg" />
         </div>
         <p class="text-2xl h-fit font-bold box-border max-w-72 break-words">
           {{ student?.full_name }}
@@ -61,12 +61,12 @@
     </div>
 
     <div
-        class="flex flex-col w-7/12 mx-auto bg-white p-10 mt-14 gap-8 rounded-lg"
+      class="flex flex-col w-7/12 mx-auto bg-white p-10 mt-14 gap-8 rounded-lg"
     >
       <div class="flex items-center justify-between">
         <h3 class="font-bold text-3xl">Talabaga homiylar</h3>
         <CButton variant="outline">
-          <img src="icons/plus.svg" alt="edit icon"/>
+          <img src="icons/plus.svg" alt="edit icon" />
           <p class="text-xl">homiy qo'shish</p>
         </CButton>
       </div>
@@ -76,15 +76,15 @@
 
 <script setup>
 import TitleBar from "components/layout/TitleBar.vue";
-import {useMetsenatStore} from "~/home/zawkin/development/metsenat/src/store/store.js";
-import {computed, onBeforeMount, ref} from "vue";
-import {useRoute} from "vue-router";
+import { useMetsenatStore } from "~/home/zawkin/development/metsenat/src/store/store.js";
+import { computed, onBeforeMount, ref } from "vue";
+import { useRoute } from "vue-router";
 import Badge from "~/home/zawkin/development/metsenat/src/components/common/Badge.vue";
 import CButton from "~/home/zawkin/development/metsenat/src/components/base/CButton.vue";
 import Chr from "~/home/zawkin/development/metsenat/src/components/base/Chr.vue";
-import {formatMoney} from "../../../utils/utils.js";
-import {defineStudentType} from "../../../helpers/helpers.js";
-import {useFetch} from "~/home/zawkin/development/metsenat/src/composables/useFetch.js";
+import { formatMoney } from "../../../utils/utils.js";
+import { defineStudentType } from "../../../helpers/helpers.js";
+import { useFetch } from "~/home/zawkin/development/metsenat/src/composables/useFetch.js";
 
 const route = useRoute();
 
@@ -92,7 +92,7 @@ const store = useMetsenatStore();
 
 const student = computed(() => store.student);
 
-const {get} = useFetch();
+const { get } = useFetch();
 
 const fetchData = async (page) => {
   if (store.studentsList.length === 0 || store.sponsorsCurrentPage !== page) {

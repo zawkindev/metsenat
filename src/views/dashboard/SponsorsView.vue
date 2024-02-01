@@ -42,9 +42,9 @@
             </li>
             <li class="w-[8%] text-center flex items-center justify-center">
               <RouterLink
-                  :to="{ name: 'SponsorDetails', params: { id: item.id } }"
+                :to="{ name: 'SponsorDetails', params: { id: item.id } }"
               >
-              <img src="icons/eye.svg" alt="eye icon" />
+                <img src="icons/eye.svg" alt="eye icon" />
               </RouterLink>
             </li>
           </ul>
@@ -121,7 +121,7 @@ const fetchData = async (page) => {
   if (store.sponsorsList.length === 0 || store.sponsorsCurrentPage !== page) {
     try {
       store.sponsorsCurrentPage = page;
-      store.sponsorsList = []
+      store.sponsorsList = [];
       const response = await get("sponsor-list", {
         page: page,
         pageSize: pageSize.value,

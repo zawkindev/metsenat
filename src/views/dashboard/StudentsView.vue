@@ -1,5 +1,33 @@
 <template>
   <div class="flex flex-col px-32 pb-32">
+    <div class="flex w-full justify-end pt-10">
+      <CButton class="primary">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+        >
+          <path
+            d="M19.9999 11.9999H4.00007"
+            stroke="#fff"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M12 4V19.9999"
+            stroke="#fff"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+
+        Talaba qo'shish
+      </CButton>
+    </div>
     <CTable>
       <template #header>
         <li
@@ -91,6 +119,7 @@ import { useFetch } from "@/composables/useFetch";
 import { formatDate, formatMoney } from "@/utils/utils.js";
 import CTable from "components/base/CTable.vue";
 import Badge from "components/common/Badge.vue";
+import CButton from "~/home/zawkin/development/metsenat/src/components/base/CButton.vue";
 
 const { get } = useFetch();
 const store = useMetsenatStore();
@@ -111,7 +140,7 @@ const fetchData = async (page) => {
   if (store.studentsList.length === 0 || store.sponsorsCurrentPage !== page) {
     try {
       store.studentsCurrentPage = page;
-      store.studentsList = []
+      store.studentsList = [];
       const response = await get("student-list", {
         page: page,
         pageSize: pageSize.value,
@@ -154,3 +183,8 @@ onBeforeMount(() => {
   fetchData(store.sponsorsCurrentPage);
 });
 </script>
+<style>
+path {
+  stroke: white;
+}
+</style>

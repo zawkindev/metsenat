@@ -3,18 +3,14 @@
     <div class="w-[640px] p-10">
       <div class="flex justify-between items-center">
         <p class="text-xl font-bold capitalize">{{ name }}</p>
-        <img @click="emit('close')" src="icon/close.svg">
+        <img @click="emit('close')" src="icon/close.svg" />
       </div>
-      <slot>
-
-      </slot>
+      <slot> </slot>
     </div>
   </div>
 </template>
 
 <script setup>
-const props = defineProps(["name"])
-const emit = defineEmits(['close'])
-
+const props = defineProps(["name"]);
+const emit = defineEmits(["close"]);
 </script>
-
