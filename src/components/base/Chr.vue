@@ -1,5 +1,5 @@
 <script setup>
-import Badge from "~/home/zawkin/development/metsenat/src/components/common/Badge.vue";
+import Badge from "components/common/Badge.vue";
 </script>
 
 <template>
