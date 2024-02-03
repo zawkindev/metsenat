@@ -12,17 +12,23 @@
       <div class="flex flex-col gap-6 mt-11">
         <div class="flex flex-col gap-2">
           <label for="login" class="uppercase font-semibold">login</label>
-          <CInput id="login" v-model="login" placeholder="admin" />
+          <CInput id="login" v-model="form.name" placeholder="Login" />
+          <span v-if="v$?.name?.$error" class="text-red-600"
+            >Login is required.</span
+          >
         </div>
 
         <div class="flex flex-col gap-2">
           <label for="login" class="uppercase font-semibold">parol</label>
           <CInput
             id="parol"
-            v-model="parol"
-            placeholder="admin"
+            v-model="form.password"
+            placeholder="Password"
             type="password"
           />
+          <span v-if="v$?.password?.$error" class="text-red-600"
+            >Password is required.</span
+          >
         </div>
         <CButton @click.prevent="handleSubmit">Kirish</CButton>
       </div>
@@ -33,8 +39,8 @@
 <script setup>
 import { ref } from "vue";
 import { RouterLink, useRouter } from "vue-router";
-import { useAuthStore } from "@/store/auth";
 import { useFetch } from "@/composables/useFetch";
+import {useFormValidation} from "@/composables/useValidate"
 import Badge from "components/common/Badge.vue";
 import CInput from "components/base/CInput.vue";
 import CButton from "components/base/CButton.vue";
@@ -43,24 +49,26 @@ const { post } = useFetch();
 
 const router = useRouter();
 
-const authStore = useAuthStore();
+const { form, handleSubmit, v$ } = useFormValidation();
 
 const login = ref("");
 const parol = ref("");
 
-const handleSubmit = async () => {
+const postData = async () => {
   try {
     const data = await post("auth/login/", {
       username: login.value,
       password: parol.value,
     });
 
-    localStorage.setItem("access_token", data.access);
-    localStorage.setItem("refresh_token", data.refresh);
+    console.log("data: ", data);
 
-    authStore.setToken(data);
-
-    router.push({ name: "Dashboard" });
+    if (data.access) {
+      localStorage.setItem("access_token", data.access);
+      localStorage.setItem("refresh_token", data.refresh);
+      router.push({ name: "Dashboard" });
+    } else if (data.detail) {
+    }
   } catch (error) {
     console.error("Login error", error.message);
   }
