@@ -13,7 +13,7 @@
           variant="outline"
           :withBg="true"
         >
-          <img src="icons/filter.svg" alt="filter icon" />
+          <img src="@/assets/images/icons/filter.svg" alt="filter icon" />
           Filter
         </CButton>
       </div>

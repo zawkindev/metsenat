@@ -11,6 +11,6 @@
 </template>
 
 <script setup>
-const props = defineProps(["name"]);
-const emit = defineEmits(["close"]);
+defineProps(["name"]);
+defineEmits(["close"]);
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="relative w-full group">
-    <input
+    <CInput
       type="text"
       placeholder="Izlash"
       class="w-full h-full rounded-md pr-4 pl-10 bg-[#e8e8e8] border-2 border-transparent focus:border-primary-300 focus:outline-none"
@@ -29,7 +29,6 @@
           />
           <path
             :class="getStrokeColor()"
-            class=""
             id="Vector_2"
             d="M17.5 17.5L12.5 12.5"
             stroke-width="2"
@@ -49,8 +48,10 @@
 
 <script setup>
 import { ref } from "vue";
+import CInput from "@/components/base/CInput.vue";
 
 const isFocused = ref(false);
+
 function getStrokeColor() {
   if (isFocused.value === true) {
     return "stroke-primary-300";
@@ -59,12 +60,3 @@ function getStrokeColor() {
 }
 </script>
 
-<style>
-/* input:focus svg g path { */
-/*   stroke: #000; */
-/* } */
-
-/* .group:focus .curr { */
-/*   stroke: #fff; */
-/* } */
-</style>

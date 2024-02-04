@@ -1,7 +1,3 @@
-<script setup>
-import Badge from "components/common/Badge.vue";
-</script>
-
 <template>
   <div class="flex w-full items-center">
     <Badge variant="primary" :with-bg="true">
@@ -12,3 +8,6 @@ import Badge from "components/common/Badge.vue";
     <div class="w-full h-[1px] bg-gray-200" />
   </div>
 </template>
+<script setup>
+import Badge from "@/components/common/Badge.vue";
+</script>

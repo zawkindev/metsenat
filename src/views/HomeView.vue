@@ -6,7 +6,7 @@
           Homiy sifatida ariza topshirish
         </h2>
         <Tab
-          :options="['jismoniy shaxs', 'yuridik shaxs']"
+          :options="tabValues"
           @activate="(index) => handleEmit(index)"
         />
 
@@ -35,7 +35,7 @@
           To‘lov summasi
         </RadioGroup>
 
-        <div v-if="selectedTab === 0" class="flex flex-col gap-2">
+        <div v-if="selectedTab === 1" class="flex flex-col gap-2">
           <label for="company" class="uppercase font-semibold"
             >Tashkilot nomi</label
           >
@@ -75,9 +75,13 @@ import CButton from "components/base/CButton.vue";
 import RadioGroup from "components/common/RadioGroup.vue";
 import { ref, reactive } from "vue";
 
-const emit = defineEmits(["activate"]);
+defineEmits(["activate"]);
+
+const tabValues =  ['jismoniy shaxs', 'yuridik shaxs']
 
 const selectedTab = ref(0);
+
+
 
 const inputValues = reactive({
   fullName: "",

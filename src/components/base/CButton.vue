@@ -9,11 +9,20 @@
 </template>
 
 <script setup>
-const props = defineProps(["variant", "type"]);
+const props = defineProps({
+  variant: {
+    type: String,
+    default: "default",
+    validator(value) {
+      return ["default", "secondary", "danger", "outline"].includes(value);
+    },
+  },
+  type: String,
+});
 
 function getClasses() {
   switch (props.variant) {
-    case undefined:
+    case "default":
       return "text-white border-primary-300 bg-primary-300 hover:bg-primary-200 active:bg-blue-500";
 
     case "secondary":

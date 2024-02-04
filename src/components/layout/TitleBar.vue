@@ -7,6 +7,5 @@
   </Bar>
 </template>
 <script setup>
-import Bar from "components/layout/Bar.vue";
-import Badge from "components/common/Badge.vue";
+import Bar from "@/components/layout/Bar.vue";
 </script>

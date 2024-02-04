@@ -34,7 +34,7 @@
 </template>
 
 <script setup>
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import { useMetsenatStore } from "@/store/store.js";
 
 const store = useMetsenatStore();
@@ -45,8 +45,4 @@ function toggleSelect() {
   isOpen.value = !isOpen.value;
 }
 
-function selectOption(optionName) {
-  selectedOption.value = optionName;
-  isOpen.value = false;
-}
 </script>

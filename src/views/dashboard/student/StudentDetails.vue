@@ -75,15 +75,14 @@
 </template>
 
 <script setup>
-import TitleBar from "components/layout/TitleBar.vue";
+import TitleBar from "@/components/layout/TitleBar.vue";
 import { useMetsenatStore } from "@/store/store.js";
-import { computed, onBeforeMount, ref } from "vue";
+import { computed, onBeforeMount } from "vue";
 import { useRoute } from "vue-router";
-import Badge from "components/common/Badge.vue";
-import CButton from "components/base/CButton.vue";
-import Chr from "components/base/Chr.vue";
-import { formatMoney } from "../../../utils/utils.js";
-import { defineStudentType } from "../../../helpers/helpers.js";
+import CButton from "@/components/base/CButton.vue";
+import Chr from "@/components/base/Chr.vue";
+import { formatMoney } from "@/utils/utils.js";
+import { defineStudentType } from "@/helpers/helpers.js";
 import { useFetch } from "@/composables/useFetch.js";
 
 const route = useRoute();

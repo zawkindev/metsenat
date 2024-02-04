@@ -2,6 +2,7 @@
   <div class="flex flex-row bg-white rounded-md border overflow-hidden">
     <div
       v-for="(option, index) in options"
+      :key="index"
       class="cursor-pointer w-full flex justify-center items-center text-blue-400"
       :class="getTabClass(index)"
       @click="handleClick(index)"
@@ -18,7 +19,13 @@
 <script setup>
 import { ref } from "vue";
 
-const props = defineProps(["options", "defaultTab"]);
+const props = defineProps({
+  options: {
+    type: Array,
+    required: true,
+  },
+  defaultTab: Number,
+});
 const emit = defineEmits(["activate"]);
 
 const activeTab = ref(props.defaultTab ?? 0);

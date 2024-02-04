@@ -5,7 +5,18 @@
 </template>
 
 <script setup>
-const props = defineProps(["variant", "withBg"]);
+const props = defineProps({
+  variant: {
+    type: String,
+    required: true,
+    validator(value) {
+      return ["primary", "success", "warning", "danger", "disabled"].includes(
+        value,
+      );
+    },
+  },
+  withBg: Boolean,
+});
 
 function getClasses() {
   switch (props.variant) {

@@ -8,6 +8,7 @@
         v-for="(item, index) in options"
         :isActive="activeOption === index"
         :value="item"
+        :key="index"
         @click="
           () => {
             store.ammount = index;
@@ -21,11 +22,17 @@
 </template>
 
 <script setup>
-import CRadio from "components/base/CRadio.vue";
+import CRadio from "@/components/base/CRadio.vue";
 import { ref } from "vue";
 import { useMetsenatStore } from "@/store/store.js";
 
-const props = defineProps(["options"]);
+defineProps({
+  options: {
+    type: Array,
+    required: true,
+  },
+});
+
 const store = useMetsenatStore();
 
 const activeOption = ref(0);

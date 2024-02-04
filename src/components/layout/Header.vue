@@ -27,14 +27,17 @@
     </div>
 
     <div v-if="variant == 'withoutMenu'" class="flex justify-between">
-
-      <RouterLink :to="{ name: 'Home' }">
+      <RouterLink :to="{ name: 'Stats' }">
         <img src="images/logo2.svg" />
       </RouterLink>
       <div class="flex gap-10">
-        <div class="flex bg-gray-200 p-1 items-center rounded-md cursor-pointer">
+        <div
+          class="flex bg-gray-200 p-1 items-center rounded-md cursor-pointer"
+        >
           <span class="px-5 font-bold">Shohruz</span>
-          <div class="px-1 pt-2 pb-0 flex items-end bg-success-200 rounded h-fit">
+          <div
+            class="px-1 pt-2 pb-0 flex items-end bg-success-200 rounded h-fit"
+          >
             <img src="icons/user1.svg" />
           </div>
         </div>
@@ -51,10 +54,17 @@ import Badge from "components/common/Badge.vue";
 import CButton from "components/base/CButton.vue";
 import { RouterLink, useRouter } from "vue-router";
 
-const props = defineProps(["variant"]);
+defineProps({
+  variant: {
+    type: String,
+    required: true,
+    validator(value) {
+      return ["default", "withoutMenu"].includes(value);
+    },
+  },
+});
 
 const router = useRouter();
-
 
 function logOut() {
   localStorage.removeItem("access-token");

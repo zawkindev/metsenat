@@ -67,8 +67,7 @@ const postData = async () => {
       localStorage.setItem("access_token", data.access);
       localStorage.setItem("refresh_token", data.refresh);
       router.push({ name: "Dashboard" });
-    } else if (data.detail) {
-    }
+    } 
   } catch (error) {
     console.error("Login error", error.message);
   }
