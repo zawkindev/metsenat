@@ -10,32 +10,25 @@
     <form class="p-8 bg-white rounded-xl w-fit">
       <h3 class="text-3xl">Kirish</h3>
       <div class="flex flex-col gap-6 mt-11">
-        <div class="flex flex-col gap-2">
-          <label for="login" class="uppercase font-semibold">login</label>
-          <CInput
-            :class="{ 'border-red-400': v$?.name?.$error }"
-            id="login"
-            v-model="form.name"
-            placeholder="Login"
-          />
-          <span v-if="v$?.name?.$error" class="text-red-600"
-            >Login majburiy</span
-          >
-        </div>
 
-        <div class="flex flex-col gap-2">
-          <label for="login" class="uppercase font-semibold">parol</label>
-          <CInput
-            id="parol"
-            :class="{ 'border-red-400': v$?.password?.$error }"
-            v-model="form.password"
-            placeholder="Password"
-            type="password"
-          />
-          <span v-if="v$?.password?.$error" class="text-red-600"
-            >Parol majburiy</span
-          >
-        </div>
+        <InputGroup
+          id="login"
+          v-model="form.name"
+          placeholder="Login"
+          :validation="v$?.name?.$error"
+          errorMsg="Login majburiy"
+          label="login"
+        />
+
+        <InputGroup
+          id="password"
+          v-model="form.password"
+          placeholder="Password"
+          type="password"
+          :validation="v$?.password?.$error"
+          errorMsg="Parol majburiy"
+          label="parol"
+        />
         <p v-show="data?.detail" class="text-red-600">Akkount topilmadi</p>
         <CButton @click.prevent="handleSubmit">Kirish</CButton>
       </div>
@@ -51,6 +44,7 @@ import { ref } from "vue";
 import Badge from "@/components/common/Badge.vue";
 import CInput from "@/components/base/CInput.vue";
 import CButton from "@/components/base/CButton.vue";
+import InputGroup from "@/components/common/InputGroup.vue";
 
 const { post } = useFetch();
 
