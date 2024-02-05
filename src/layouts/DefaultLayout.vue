@@ -1,5 +1,5 @@
 <template>
-  <div class="image-bg flex flex-col min-h-screen bg-secondary-100">
+  <div :class="{'image-bg': $route.name==='Home'}" class="flex flex-col min-h-screen bg-secondary-100">
     <Header :variant="headerVariant" />
     <RouterView/>
   </div>
