@@ -49,6 +49,9 @@
 </template>
 
 <script setup>
+import TitleBar from "@/components/layout/TitleBar.vue";
+import CSelect from "@/components/base/CSelect.vue";
+import CInput from "@/components/base/CInput.vue";
 import { onBeforeMount, ref } from "vue";
 import { useMetsenatStore } from "@/store/store.js";
 
@@ -116,7 +119,4 @@ onBeforeMount(() => {
   fetchData();
 });
 
-import TitleBar from "components/layout/TitleBar.vue";
-import CSelect from "components/base/CSelect.vue";
-import CInput from "components/base/CInput.vue";
 </script>

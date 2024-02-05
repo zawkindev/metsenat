@@ -64,7 +64,7 @@
               <RouterLink
                 :to="{ name: 'StudentDetails', params: { id: item.id } }"
               >
-                <img src="icons/eye.svg" alt="eye icon" />
+                <img src="@/assets/images/icons/eye.svg" alt="eye icon" />
               </RouterLink>
             </li>
           </ul>
@@ -91,7 +91,7 @@
           @click="prevPage"
           :disabled="store.studentsCurrentPage === 1"
         >
-          <img class="rotate-180" src="icons/arrow.svg" alt="arrow icon" />
+          <img class="rotate-180" src="@/assets/images/icons/arrow.svg" alt="arrow icon" />
         </button>
         <span>{{ store.studentsCurrentPage }}</span>
         <button
@@ -107,7 +107,7 @@
             Math.ceil(store.studentsList?.count / 10)
           "
         >
-          <img src="/arrow.svg" alt="arrow icon" />
+          <img src="@/assets/images/icons/arrow.svg" alt="arrow icon" />
         </button>
       </div>
     </div>
@@ -118,9 +118,9 @@
 import { onBeforeMount, ref } from "vue";
 import { useMetsenatStore } from "@/store/store";
 import { useFetch } from "@/composables/useFetch";
-import { formatDate, formatMoney } from "@/utils/index";
-import CTable from "components/base/CTable.vue";
-import CButton from "components/base/CButton.vue";
+import { formatMoney } from "@/utils/index";
+import CTable from "@/components/base/CTable.vue";
+import CButton from "@/components/base/CButton.vue";
 
 const { get } = useFetch();
 const store = useMetsenatStore();

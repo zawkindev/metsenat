@@ -4,7 +4,7 @@
       <div class="flex items-center w-full justify-between">
         <p class="text-xl font-bold">{{ student?.full_name }}</p>
         <CButton variant="outline">
-          <img src="icons/plus.svg" alt="edit icon" />
+          <img src="@/assets/images/icons/plus.svg" alt="edit icon" />
           <p class="text-xl">homiy qo'shish</p>
         </CButton>
       </div>
@@ -16,7 +16,7 @@
       <div class="flex items-center justify-between">
         <h3 class="font-bold text-3xl">Talaba haqida</h3>
         <CButton variant="outline">
-          <img src="icons/edit.svg" alt="edit icon" />
+          <img src="@/assets/images/icons/edit.svg" alt="edit icon" />
           <p class="text-xl">tahrirlash</p>
         </CButton>
       </div>
@@ -66,7 +66,7 @@
       <div class="flex items-center justify-between">
         <h3 class="font-bold text-3xl">Talabaga homiylar</h3>
         <CButton variant="outline">
-          <img src="icons/plus.svg" alt="edit icon" />
+          <img src="@assets/images/icons/plus.svg" alt="edit icon" />
           <p class="text-xl">homiy qo'shish</p>
         </CButton>
       </div>

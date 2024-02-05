@@ -13,7 +13,7 @@
       <div class="flex items-center justify-between">
         <h3 class="font-bold text-3xl">Homiy haqida</h3>
         <CButton variant="outline">
-          <img src="icons/edit.svg" alt="edit icon" />
+          <img src="@/assets/images/icons/edit.svg" alt="edit icon" />
           <p class="text-xl">tahrirlash</p>
         </CButton>
       </div>
