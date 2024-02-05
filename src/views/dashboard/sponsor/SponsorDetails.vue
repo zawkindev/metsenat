@@ -47,14 +47,14 @@
 </template>
 
 <script setup>
-import TitleBar from "components/layout/TitleBar.vue";
-import { useMetsenatStore } from "@/store/store.js";
-import { computed, onBeforeMount, ref } from "vue";
+import TitleBar from "@/components/layout/TitleBar.vue";
+import { useMetsenatStore } from "@/store/store";
+import { computed, onBeforeMount } from "vue";
 import { useRoute } from "vue-router";
-import Badge from "components/common/Badge.vue";
-import CButton from "components/base/CButton.vue";
-import { formatMoney } from "../../../utils/utils.js";
-import { useFetch } from "@/composables/useFetch.js";
+import Badge from "@/components/common/Badge.vue";
+import CButton from "@/components/base/CButton.vue";
+import { formatMoney } from "@/utils/index";
+import { useFetch } from "@/composables/useFetch";
 
 const route = useRoute();
 
@@ -91,7 +91,7 @@ onBeforeMount(() => {
 
 <style>
 .background {
-  background-image: url("../../../assets/images/background.svg");
+  background-image: url("@/assets/images/background.svg");
   background-repeat: no-repeat;
   background-position: center bottom;
 }

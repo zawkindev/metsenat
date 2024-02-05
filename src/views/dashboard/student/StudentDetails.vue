@@ -81,7 +81,7 @@ import { computed, onBeforeMount } from "vue";
 import { useRoute } from "vue-router";
 import CButton from "@/components/base/CButton.vue";
 import Chr from "@/components/base/Chr.vue";
-import { formatMoney } from "@/utils/utils.js";
+import { formatMoney } from "@/utils/index.js";
 import { defineStudentType } from "@/helpers/helpers.js";
 import { useFetch } from "@/composables/useFetch.js";
 

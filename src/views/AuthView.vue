@@ -2,7 +2,7 @@
   <div class="flex flex-col gap-12">
     <div class="flex w-full justify-center items-center">
       <RouterLink class="flex gap-2" :to="{ name: 'Home' }">
-        <img src="images/logo.svg" />
+        <img src="@/assets/images/logo.svg" />
         <Badge variant="danger" :withBg="true"> club </Badge>
       </RouterLink>
     </div>
@@ -37,37 +37,44 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
 import { RouterLink, useRouter } from "vue-router";
 import { useFetch } from "@/composables/useFetch";
-import {useFormValidation} from "@/composables/useValidate"
-import Badge from "components/common/Badge.vue";
-import CInput from "components/base/CInput.vue";
-import CButton from "components/base/CButton.vue";
+import { useFormValidation } from "@/composables/useValidate";
+import Badge from "@/components/common/Badge.vue";
+import CInput from "@/components/base/CInput.vue";
+import CButton from "@/components/base/CButton.vue";
 
 const { post } = useFetch();
 
 const router = useRouter();
 
-const { form, handleSubmit, v$ } = useFormValidation();
+const { form, validateSubmit, v$ } = useFormValidation();
 
-const login = ref("");
-const parol = ref("");
+async function handleSubmit() {
+  const result = validateSubmit();
+  if (!result) {
+    alert("The form has errors");
 
+    return;
+  }
+  postData();
+}
 const postData = async () => {
   try {
     const data = await post("auth/login/", {
-      username: login.value,
-      password: parol.value,
+      username: form.name,
+      password: form.password,
     });
 
     console.log("data: ", data);
+    console.log("login: ", form.name, "password: ", form.password);
+
 
     if (data.access) {
       localStorage.setItem("access_token", data.access);
       localStorage.setItem("refresh_token", data.refresh);
-      router.push({ name: "Dashboard" });
-    } 
+      router.push({ name: "Stats" });
+    }
   } catch (error) {
     console.error("Login error", error.message);
   }

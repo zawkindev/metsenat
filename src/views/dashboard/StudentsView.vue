@@ -118,7 +118,7 @@
 import { onBeforeMount, ref } from "vue";
 import { useMetsenatStore } from "@/store/store";
 import { useFetch } from "@/composables/useFetch";
-import { formatDate, formatMoney } from "@/utils/utils.js";
+import { formatDate, formatMoney } from "@/utils/index";
 import CTable from "components/base/CTable.vue";
 import CButton from "components/base/CButton.vue";
 

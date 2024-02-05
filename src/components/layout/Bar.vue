@@ -22,9 +22,9 @@
 </template>
 
 <script setup>
-import Tab from "components/common/Tab.vue";
-import Search from "components/common/Search.vue";
-import CButton from "components/base/CButton.vue";
+import Tab from "@/components/common/Tab.vue";
+import Search from "@/components/common/Search.vue";
+import CButton from "@/components/base/CButton.vue";
 import { useRoute, useRouter } from "vue-router";
 import { ref } from "vue";
 

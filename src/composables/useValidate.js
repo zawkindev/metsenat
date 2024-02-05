@@ -25,7 +25,7 @@ export function useFormValidation() {
 
 	const v$ = useVuelidate(rules, form);
 
-	async function handleSubmit() {
+	async function validateSubmit() {
 		const result = await v$.value.$validate();
 		if (!result) {
 			return v$;
@@ -35,7 +35,7 @@ export function useFormValidation() {
 
 	return {
 		form,
-		handleSubmit,
+		validateSubmit,
 		v$,
 	};
 }

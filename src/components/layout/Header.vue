@@ -3,7 +3,7 @@
     <div v-if="variant == 'default'" class="flex justify-between select-none">
       <div class="flex items-center gap-2">
         <RouterLink class="flex gap-2" :to="{ name: 'Home' }">
-          <img src="images/logo.svg" />
+          <img src="@/assets/images/logo.svg" />
           <Badge variant="danger"> club </Badge>
         </RouterLink>
       </div>
@@ -15,7 +15,7 @@
 
         <RouterLink :to="{ name: 'Auth' }">
           <div class="flex items-center gap-2 cursor-pointer">
-            <img src="icons/log-in.svg" />
+            <img src="@/assets/images/icons/log-in.svg" />
             <p>Kirish</p>
           </div>
         </RouterLink>
@@ -28,7 +28,7 @@
 
     <div v-if="variant == 'withoutMenu'" class="flex justify-between">
       <RouterLink :to="{ name: 'Stats' }">
-        <img src="images/logo2.svg" />
+        <img src="@/assets/images/logo2.svg" />
       </RouterLink>
       <div class="flex gap-10">
         <div
@@ -38,11 +38,11 @@
           <div
             class="px-1 pt-2 pb-0 flex items-end bg-success-200 rounded h-fit"
           >
-            <img src="icons/user1.svg" />
+            <img src="@/assets/images/icons/user1.svg" />
           </div>
         </div>
         <button @click="logOut">
-          <img class="cursor-pointer" src="icons/log-out.svg" />
+          <img class="cursor-pointer" src="@/assets/images/icons/log-out.svg" />
         </button>
       </div>
     </div>
@@ -50,8 +50,8 @@
 </template>
 
 <script setup>
-import Badge from "components/common/Badge.vue";
-import CButton from "components/base/CButton.vue";
+import Badge from "@/components/common/Badge.vue";
+import CButton from "@/components/base/CButton.vue";
 import { RouterLink, useRouter } from "vue-router";
 
 defineProps({

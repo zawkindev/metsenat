@@ -57,7 +57,7 @@
       <div class="flex pl-6 gap-4 w-fit h-fit">
         <img
           class="w-16 h-16 object-cover rounded-2xl"
-          src="images/prezident.png"
+          src="@/assets/images/prezident.png"
         />
         <div class="flex flex-col">
           <p class="text-lg font-semibold">Shavkat Mirziyoyev</p>
@@ -69,10 +69,10 @@
 </template>
 
 <script setup>
-import Tab from "components/common/Tab.vue";
-import CInput from "components/base/CInput.vue";
-import CButton from "components/base/CButton.vue";
-import RadioGroup from "components/common/RadioGroup.vue";
+import Tab from "@/components/common/Tab.vue";
+import CInput from "@/components/base/CInput.vue";
+import CButton from "@/components/base/CButton.vue";
+import RadioGroup from "@/components/common/RadioGroup.vue";
 import { ref, reactive } from "vue";
 
 defineEmits(["activate"]);
