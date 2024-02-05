@@ -12,9 +12,14 @@
       <div class="flex flex-col gap-6 mt-11">
         <div class="flex flex-col gap-2">
           <label for="login" class="uppercase font-semibold">login</label>
-          <CInput id="login" v-model="form.name" placeholder="Login" />
+          <CInput
+            :class="{ 'border-red-400': v$?.name?.$error }"
+            id="login"
+            v-model="form.name"
+            placeholder="Login"
+          />
           <span v-if="v$?.name?.$error" class="text-red-600"
-            >Login is required.</span
+            >Login majburiy</span
           >
         </div>
 
@@ -22,14 +27,16 @@
           <label for="login" class="uppercase font-semibold">parol</label>
           <CInput
             id="parol"
+            :class="{ 'border-red-400': v$?.password?.$error }"
             v-model="form.password"
             placeholder="Password"
             type="password"
           />
           <span v-if="v$?.password?.$error" class="text-red-600"
-            >Password is required.</span
+            >Parol majburiy</span
           >
         </div>
+        <p v-show="data?.detail" class="text-red-600">Akkount topilmadi</p>
         <CButton @click.prevent="handleSubmit">Kirish</CButton>
       </div>
     </form>
@@ -40,6 +47,7 @@
 import { RouterLink, useRouter } from "vue-router";
 import { useFetch } from "@/composables/useFetch";
 import { useFormValidation } from "@/composables/useValidate";
+import { ref } from "vue";
 import Badge from "@/components/common/Badge.vue";
 import CInput from "@/components/base/CInput.vue";
 import CButton from "@/components/base/CButton.vue";
@@ -49,6 +57,10 @@ const { post } = useFetch();
 const router = useRouter();
 
 const { form, validateSubmit, v$ } = useFormValidation();
+
+const data = ref();
+
+const showIT = ref(false);
 
 async function handleSubmit() {
   const result = validateSubmit();
@@ -61,19 +73,20 @@ async function handleSubmit() {
 }
 const postData = async () => {
   try {
-    const data = await post("auth/login/", {
+    data.value = await post("auth/login/", {
       username: form.name,
       password: form.password,
     });
 
-    console.log("data: ", data);
+    console.log("data: ", data.value);
     console.log("login: ", form.name, "password: ", form.password);
 
-
-    if (data.access) {
-      localStorage.setItem("access_token", data.access);
-      localStorage.setItem("refresh_token", data.refresh);
+    if (data.value.access) {
+      localStorage.setItem("access_token", data.value.access);
+      localStorage.setItem("refresh_token", data.value.refresh);
       router.push({ name: "Stats" });
+    } else if (data.value.detail) {
+      showIT.value = true;
     }
   } catch (error) {
     console.error("Login error", error.message);

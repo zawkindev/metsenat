@@ -26,7 +26,7 @@ import Tab from "@/components/common/Tab.vue";
 import Search from "@/components/common/Search.vue";
 import CButton from "@/components/base/CButton.vue";
 import { useRoute, useRouter } from "vue-router";
-import { ref } from "vue";
+import { computed } from "vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -34,7 +34,7 @@ const router = useRouter();
 const tabs = ["dashboard", "homiylar", "talabalar"];
 const routeNames = ["Stats", "SponsorsList", "StudentsList"];
 
-const activeTab = ref(routeNames.findIndex((el) => el === route.name));
+const activeTab = computed(()=>(routeNames.findIndex((el) => el === route.name)))
 
 function handleActivate(index) {
   router.push({ name: routeNames[index] });
