@@ -10,14 +10,14 @@
       </MoneyCard>
       <MoneyCard
         img="icons/money-yellow.svg"
-        :amount="response.total_need"
+        :amount="response.total_paid"
         title="Jami to'langan summa"
         currency="UZS"
       >
       </MoneyCard>
       <MoneyCard
         img="icons/money-orange.svg"
-        :amount="response.total_need"
+        :amount="response.total_must_pay"
         title="Jami to'langan summa"
         currency="UZS"
       >

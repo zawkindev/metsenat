@@ -10,7 +10,7 @@ const props = defineProps({
     type: String,
     required: true,
     validator(value) {
-      return ["primary", "success", "warning", "danger", "disabled"].includes(
+      return ["primary", "success", "warn", "danger", "disabled"].includes(
         value,
       );
     },

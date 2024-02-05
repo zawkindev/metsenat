@@ -10,8 +10,7 @@
     <form class="p-8 bg-white rounded-xl w-fit">
       <h3 class="text-3xl">Kirish</h3>
       <div class="flex flex-col gap-6 mt-11">
-
-        <InputGroup
+        <FormGroup
           id="login"
           v-model="form.name"
           placeholder="Login"
@@ -20,7 +19,7 @@
           label="login"
         />
 
-        <InputGroup
+        <FormGroup
           id="password"
           v-model="form.password"
           placeholder="Password"
@@ -42,9 +41,8 @@ import { useFetch } from "@/composables/useFetch";
 import { useFormValidation } from "@/composables/useValidate";
 import { ref } from "vue";
 import Badge from "@/components/common/Badge.vue";
-import CInput from "@/components/base/CInput.vue";
 import CButton from "@/components/base/CButton.vue";
-import InputGroup from "@/components/common/InputGroup.vue";
+import FormGroup from "@/components/common/FormGroup.vue";
 
 const { post } = useFetch();
 
