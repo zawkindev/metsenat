@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col min-h-screen bg-secondary-100 overflow-x-auto">
+  <div class="image-bg flex flex-col min-h-screen bg-secondary-100">
     <Header :variant="headerVariant" />
     <RouterView/>
   </div>
@@ -17,4 +17,12 @@ const headerVariant = computed(() =>
 );
 </script>
 
-<style></style>
+<style>
+.image-bg {
+  background-image: url("@/assets/images/background.svg");
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-position: bottom right;
+  background-color: #f5f5f7;
+}
+</style>
