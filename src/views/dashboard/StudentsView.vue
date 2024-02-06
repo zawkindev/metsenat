@@ -128,7 +128,7 @@ function selectPage(page) {
 }
 
 onBeforeMount(() => {
-  fetchData(store.studentsCurrentPage);
+  fetchData(store.studentsCurrentPage || 1);
 });
 </script>
 <style>

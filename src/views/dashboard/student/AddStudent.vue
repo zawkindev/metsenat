@@ -1,6 +1,6 @@
 <template>
   <TitleBar>
-    <p class="text-xl font-bold">Talaba qo'shish</p>
+    <p class="text-xl font-bold" @click="$router.go(-1)">Talaba qo'shish</p>
   </TitleBar>
 
   <div

@@ -2,7 +2,7 @@
   <div class="pb-96 background">
     <TitleBar>
       <div class="flex items-center w-full justify-between">
-        <p class="text-xl font-bold">{{ student?.full_name }}</p>
+        <p @click="$router.go(-1)" class="text-xl font-bold">{{ student?.full_name }}</p>
         <CButton variant="outline">
           <img src="@/assets/images/icons/plus.svg" alt="edit icon" />
           <p class="text-xl">homiy qo'shish</p>
@@ -23,7 +23,7 @@
       <Chr> asosiy ma'lumotlar</Chr>
       <div class="flex items-center gap-6">
         <div class="w-28 h-28 p-6 rounded-xl bg-gray-200">
-          <img class="w-full h-full" alt="profile icon" src="icons/user2.svg" />
+          <img class="w-full h-full" alt="profile icon" src="@/assets/images/icons/user2.svg" />
         </div>
         <p class="text-2xl h-fit font-bold box-border max-w-72 break-words">
           {{ student?.full_name }}
@@ -66,7 +66,7 @@
       <div class="flex items-center justify-between">
         <h3 class="font-bold text-3xl">Talabaga homiylar</h3>
         <CButton variant="outline">
-          <img src="@assets/images/icons/plus.svg" alt="edit icon" />
+          <img src="@/assets/images/icons/plus.svg" alt="edit icon" />
           <p class="text-xl">homiy qo'shish</p>
         </CButton>
       </div>
@@ -93,10 +93,8 @@ const student = computed(() => store.student);
 
 const { get } = useFetch();
 
-const fetchData = async (page) => {
-  if (store.studentsList.length === 0 || store.sponsorsCurrentPage !== page) {
+const fetchData = async () => {
     try {
-      store.sponsorsCurrentPage = page;
       const response = await get(`student-detail/${route.params.id}`);
       store.student = response;
 
@@ -104,7 +102,6 @@ const fetchData = async (page) => {
     } catch (error) {
       console.log(error);
     }
-  }
 };
 
 onBeforeMount(() => {
@@ -114,7 +111,7 @@ onBeforeMount(() => {
 
 <style>
 .background {
-  background-image: url("../../../assets/images/background.svg");
+  background-image: url("@/assets/images/background.svg");
   background-repeat: no-repeat;
   background-position: center bottom;
 }

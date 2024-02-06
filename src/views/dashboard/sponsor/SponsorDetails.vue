@@ -1,7 +1,7 @@
 <template>
   <div class="pb-96 background">
     <TitleBar>
-      <p class="text-xl font-bold">{{ sponsor?.full_name }}</p>
+      <p class="text-xl font-bold" @click="$router.go(-1)">{{ sponsor?.full_name }}</p>
       <Badge :variant="statusType[sponsor?.get_status_display]" :with-bg="true">
         {{ sponsor?.get_status_display }}</Badge
       >
@@ -74,9 +74,8 @@ const statusType = {
   Tasdiqlangan: "success",
   "Bekor qilingan": "disabled",
 };
-const fetchData = async (page) => {
+const fetchData = async () => {
   try {
-    store.sponsorsCurrentPage = page;
     const response = await get(`sponsor-detail/${route.params.id}`);
     store.sponsor = response;
 

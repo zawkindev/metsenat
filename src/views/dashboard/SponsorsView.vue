@@ -121,6 +121,6 @@ function selectPage(page) {
 }
 
 onBeforeMount(() => {
-  fetchData(store.sponsorsCurrentPage);
+  fetchData(store.sponsorsCurrentPage || 1);
 });
 </script>

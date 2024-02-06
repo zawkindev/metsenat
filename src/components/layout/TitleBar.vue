@@ -5,6 +5,7 @@
         @click="$router.go(-1)"
         alt="back icon"
         src="@/assets/images/icons/back.svg"
+        class="cursor-pointer"
       />
       <slot> </slot>
     </div>
