@@ -68,6 +68,7 @@ const router = useRouter();
 
 function logOut() {
   localStorage.removeItem("access-token");
+  localStorage.removeItem("toast-showed");
   router.push({ name: "Auth" });
 }
 </script>
