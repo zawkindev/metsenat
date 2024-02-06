@@ -54,7 +54,7 @@ export function generatePaginationData(currentPage, totalCards, cardsPerPage) {
     }
   }
 
-  console.log("paginationDATA: ", currentPage, totalCards, cardsPerPage);
+  console.log("paginationDATA: ", currentPage, totalCards, cardsPerPage, lastPage);
 
   return [...leftSide, currentPage, ...rightSide];
 }

@@ -38,6 +38,7 @@ const activeTab = computed(() =>
   routeNames.findIndex((el) => el === route.name),
 );
 
+
 function handleActivate(index) {
   router.push({ name: routeNames[index] });
 }

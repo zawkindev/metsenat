@@ -81,7 +81,11 @@
         ko'rsatilmoqda
       </div>
       <div class="flex items-center gap-4">
-        <Pagination :options="paginationData" />
+        <Pagination
+          :options="paginationData"
+          @select-page="(page) => selectPage(page)"
+          :activePage="store?.studentsCurrentPage"
+        />
       </div>
     </div>
   </div>
@@ -105,25 +109,23 @@ const paginationData = computed(() =>
   generatePaginationData(
     store.studentsCurrentPage,
     store.studentsList.count,
-    store.studentsList?.results?.length,
+    pageSize.value,
   ),
 );
 
 const fetchData = async (page) => {
-  if (store.studentsList.length === 0 || store.sponsorsCurrentPage !== page) {
-    try {
-      store.studentsCurrentPage = page;
-      store.studentsList = [];
-      const response = await get("student-list", {
-        page: page,
-        pageSize: pageSize.value,
-      });
-      store.studentsList = response;
+  try {
+    store.studentsCurrentPage = page;
+    store.studentsList = [];
+    const response = await get("student-list", {
+      page: page,
+      pageSize: pageSize.value,
+    });
+    store.studentsList = response;
 
-      console.log("response: ", response);
-    } catch (error) {
-      console.log(error);
-    }
+    console.log("response: ", response);
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -136,6 +138,11 @@ const columns = [
   { label: "Kontrakt miqdori", width: "15%" },
   { label: "Amallar", width: "8%" },
 ];
+
+function selectPage(page) {
+  fetchData(page);
+  console.log("page: ", page);
+}
 
 onBeforeMount(() => {
   fetchData(store.sponsorsCurrentPage);

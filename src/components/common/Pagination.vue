@@ -3,8 +3,13 @@
     <button
       v-for="item in options"
       :key="item"
-      class="p-2 rounded-md border-2 duration-200"
+      class="py-1 px-3 rounded-md border-2 duration-200"
+      :class="{
+        'bg-blue-500 border-blue-500 text-white': item === activePage,
+        'hover:border-blue-400': item !== '...',
+      }"
       @click="emit('selectPage', item)"
+      :disabled="item === '...'"
     >
       <span>{{ item }}</span>
     </button>
@@ -16,7 +21,12 @@ const props = defineProps({
     type: Array,
     required: true,
   },
+  activePage: {
+    type: Number,
+    required: true,
+  },
 });
+
 
 const emit = defineEmits(["selectPage"]);
 

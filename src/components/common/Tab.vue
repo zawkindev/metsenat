@@ -17,7 +17,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
 const props = defineProps({
   options: {
@@ -29,6 +29,10 @@ const props = defineProps({
 const emit = defineEmits(["activate"]);
 
 const activeTab = ref(props.defaultTab ?? 0);
+
+watch(activeTab.value, (newValue) => {
+  console.log("tab: ",newValue);
+});
 
 function handleClick(index) {
   activeTab.value = index;
