@@ -44,5 +44,4 @@ const isOpen = computed(() => store.isSelectOpen);
 function toggleSelect() {
   isOpen.value = !isOpen.value;
 }
-
 </script>

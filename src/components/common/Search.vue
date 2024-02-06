@@ -59,4 +59,3 @@ function getStrokeColor() {
   return "stroke-gray-400";
 }
 </script>
-

@@ -24,9 +24,7 @@
     </div>
     <CSelect>
       <template #selectedOption>
-      <p class="flex ">
-
-      </p>
+        <p class="flex"></p>
         {{ selectedOption || "OTMni tanlang" }}
       </template>
       <template #options>
@@ -118,5 +116,4 @@ const fetchData = async (page) => {
 onBeforeMount(() => {
   fetchData();
 });
-
 </script>

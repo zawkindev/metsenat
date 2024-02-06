@@ -5,10 +5,7 @@
         <h2 class="text-4xl font-sans w-4/5 font-bold">
           Homiy sifatida ariza topshirish
         </h2>
-        <Tab
-          :options="tabValues"
-          @activate="(index) => handleEmit(index)"
-        />
+        <Tab :options="tabValues" @activate="(index) => handleEmit(index)" />
 
         <div class="flex flex-col gap-2">
           <label for="fullName" class="uppercase font-semibold"
@@ -77,11 +74,9 @@ import { ref, reactive } from "vue";
 
 defineEmits(["activate"]);
 
-const tabValues =  ['jismoniy shaxs', 'yuridik shaxs']
+const tabValues = ["jismoniy shaxs", "yuridik shaxs"];
 
 const selectedTab = ref(0);
-
-
 
 const inputValues = reactive({
   fullName: "",
@@ -97,7 +92,8 @@ function handleEmit(index) {
 
 <style>
 .quote {
-  background-image: url("@/assets/images/icons/quote-left.svg"), url("@/assets/images/icons/quote-right.svg");
+  background-image: url("@/assets/images/icons/quote-left.svg"),
+    url("@/assets/images/icons/quote-right.svg");
   background-repeat: no-repeat, no-repeat;
   background-position:
     left top,

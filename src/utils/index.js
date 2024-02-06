@@ -1,5 +1,5 @@
 export function formatMoney(number) {
-    // Convert number to string
+  // Convert number to string
   const strNumber = String(number);
 
   // Initialize formatted string
@@ -19,7 +19,8 @@ export function formatMoney(number) {
     }
   }
 
-  return formattedNumber;}
+  return formattedNumber;
+}
 
 console.log("money:::: ", formatMoney(1222));
 
@@ -31,33 +32,31 @@ export function formatDate(dateString) {
   return `${day}.${month}.${year}`;
 }
 
-export function generatePaginationData(
-  currentPagination,
-  totalCardNumber,
-  currentPageCardsNumber,
-) {
-  const lastPagination = Math.ceil(totalCardNumber / currentPageCardsNumber);
-  const firstPagination = 1;
+export function generatePaginationData(currentPage, totalCards, cardsPerPage) {
+  const lastPage = Math.ceil(totalCards / cardsPerPage);
+  const firstPage = 1;
 
   let leftSide = [];
   let rightSide = [];
 
-  if (currentPagination - firstPagination > 3) {
-    leftSide = [firstPagination, "...", currentPagination - 1];
+  if (currentPage - firstPage > 3) {
+    leftSide = [firstPage, "...", currentPage - 1];
   } else {
-    for (let i = firstPagination; i < currentPagination; i++) {
+    for (let i = firstPage; i < currentPage; i++) {
       leftSide.push(i);
     }
   }
-  if (lastPagination - currentPagination > 3) {
-    rightSide = [currentPagination + 1, "...", lastPagination];
+  if (lastPage - currentPage > 3) {
+    rightSide = [currentPage + 1, "...", lastPage];
   } else {
-    for (let i = currentPagination + 1; i <= lastPagination; i++) {
+    for (let i = currentPage + 1; i <= lastPage; i++) {
       rightSide.push(i);
     }
   }
 
-  return [...leftSide, currentPagination, ...rightSide];
+  console.log("paginationDATA: ", currentPage, totalCards, cardsPerPage);
+
+  return [...leftSide, currentPage, ...rightSide];
 }
 
 export function getImgUrl(img) {

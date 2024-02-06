@@ -71,7 +71,11 @@
           @click="prevPage"
           :disabled="store.sponsorsCurrentPage === 1"
         >
-          <img class="rotate-180" src="@/assets/images/icons/arrow.svg" alt="arrow icon" />
+          <img
+            class="rotate-180"
+            src="@/assets/images/icons/arrow.svg"
+            alt="arrow icon"
+          />
         </button>
         <span>{{ store.sponsorsCurrentPage }}</span>
         <button

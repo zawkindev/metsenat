@@ -34,7 +34,9 @@ const router = useRouter();
 const tabs = ["dashboard", "homiylar", "talabalar"];
 const routeNames = ["Stats", "SponsorsList", "StudentsList"];
 
-const activeTab = computed(()=>(routeNames.findIndex((el) => el === route.name)))
+const activeTab = computed(() =>
+  routeNames.findIndex((el) => el === route.name),
+);
 
 function handleActivate(index) {
   router.push({ name: routeNames[index] });

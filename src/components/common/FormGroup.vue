@@ -7,7 +7,7 @@
       :type="type"
       :placeholder="placeholder"
       :class="{ 'border-red-400': v$?.password?.$error }"
-      @update:modelValue="(value)=>emit('update:modelValue',value)"
+      @update:modelValue="(value) => emit('update:modelValue', value)"
     />
     <span v-if="validation" class="text-red-600">{{ errorMsg }}</span>
   </div>
@@ -15,7 +15,6 @@
 
 <script setup>
 import CInput from "@/components/base/CInput.vue";
-
 
 const emit = defineEmits(["update:modelValue"]);
 

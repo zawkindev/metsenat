@@ -10,7 +10,6 @@
 </template>
 
 <script setup>
-
 import { ref } from "vue";
 
 const props = defineProps({
@@ -25,5 +24,4 @@ const props = defineProps({
 const emit = defineEmits(["update:modelValue"]);
 
 const inputValue = ref(props.value);
-
 </script>

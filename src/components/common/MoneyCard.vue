@@ -14,7 +14,6 @@
 <script setup>
 import { formatMoney, getImgUrl } from "@/utils/index";
 
-
 defineProps({
   title: {
     type: String,

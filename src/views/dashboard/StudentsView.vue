@@ -81,61 +81,33 @@
         ko'rsatilmoqda
       </div>
       <div class="flex items-center gap-4">
-        <button
-          class="p-2 rounded-md border-2 duration-200"
-          :class="{
-            'border-[#E0E7FF]': store.studentsCurrentPage === 1,
-            'border-blue-300 hover:bg-blue-100 bg-blue-50 hover:border-blue-300':
-              store.studentsCurrentPage !== 1,
-          }"
-          @click="prevPage"
-          :disabled="store.studentsCurrentPage === 1"
-        >
-          <img class="rotate-180" src="@/assets/images/icons/arrow.svg" alt="arrow icon" />
-        </button>
-        <span>{{ store.studentsCurrentPage }}</span>
-        <button
-          :class="{
-            'border-blue-300 hover:bg-blue-100 bg-blue-50 hover:border-blue-300':
-              store.studentsCurrentPage !==
-              Math.ceil(store.studentsList?.count / 10),
-          }"
-          class="p-2 rounded-md border-2 duration-200"
-          @click="nextPage"
-          :disabled="
-            store.studentsCurrentPage ===
-            Math.ceil(store.studentsList?.count / 10)
-          "
-        >
-          <img src="@/assets/images/icons/arrow.svg" alt="arrow icon" />
-        </button>
+        <Pagination :options="paginationData" />
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { onBeforeMount, ref } from "vue";
+import { computed, onBeforeMount, ref } from "vue";
 import { useMetsenatStore } from "@/store/store";
 import { useFetch } from "@/composables/useFetch";
-import { formatMoney } from "@/utils/index";
+import { formatMoney, generatePaginationData } from "@/utils/index";
 import CTable from "@/components/base/CTable.vue";
 import CButton from "@/components/base/CButton.vue";
+import Pagination from "@/components/common/Pagination.vue";
 
 const { get } = useFetch();
 const store = useMetsenatStore();
 
 const pageSize = ref(10);
 
-console.log(store.studentsList);
-
-const nextPage = () => {
-  fetchData(store.studentsCurrentPage + 1);
-};
-
-const prevPage = () => {
-  fetchData(store.studentsCurrentPage - 1);
-};
+const paginationData = computed(() =>
+  generatePaginationData(
+    store.studentsCurrentPage,
+    store.studentsList.count,
+    store.studentsList?.results?.length,
+  ),
+);
 
 const fetchData = async (page) => {
   if (store.studentsList.length === 0 || store.sponsorsCurrentPage !== page) {
@@ -148,19 +120,13 @@ const fetchData = async (page) => {
       });
       store.studentsList = response;
 
-      console.log(response);
+      console.log("response: ", response);
     } catch (error) {
       console.log(error);
     }
   }
 };
 
-const statusType = {
-  Yangi: "primary",
-  Moderatsiyada: "warn",
-  Tasdiqlangan: "success",
-  "Bekor qilingan": "disabled",
-};
 const columns = [
   { label: "#", width: "2%" },
   { label: "f.i.sh.", width: "20%" },
@@ -170,15 +136,6 @@ const columns = [
   { label: "Kontrakt miqdori", width: "15%" },
   { label: "Amallar", width: "8%" },
 ];
-
-const dataKeys = ref([
-  { label: "full_name", width: "34%" },
-  { label: "type", width: "16%" },
-  { label: "institute", width: "10%" },
-  { label: "given", width: "15%" },
-  { label: "contract", width: "15%" },
-  { label: "action", width: "8%" },
-]);
 
 onBeforeMount(() => {
   fetchData(store.sponsorsCurrentPage);
