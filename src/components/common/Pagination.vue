@@ -27,7 +27,6 @@ const props = defineProps({
   },
 });
 
-
 const emit = defineEmits(["selectPage"]);
 
 console.log("options: ", props.options);

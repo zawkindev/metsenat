@@ -56,86 +56,56 @@
       <div>
         {{ store.sponsorsList?.count }} tadan
         {{ (store.sponsorsCurrentPage - 1) * 10 }}-{{
-          store.sponsorsCurrentPage * 10
+          store.sponsorsCurrentPage * 10 < store.sponsorsList?.count
         }}
         ko'rsatilmoqda
       </div>
       <div class="flex items-center gap-4">
-        <button
-          class="p-2 rounded-md border-2 duration-200"
-          :class="{
-            'border-[#E0E7FF]': store.sponsorsCurrentPage === 1,
-            'border-blue-300 hover:bg-blue-100 bg-blue-50 hover:border-blue-300':
-              store.sponsorsCurrentPage !== 1,
-          }"
-          @click="prevPage"
-          :disabled="store.sponsorsCurrentPage === 1"
-        >
-          <img
-            class="rotate-180"
-            src="@/assets/images/icons/arrow.svg"
-            alt="arrow icon"
-          />
-        </button>
-        <span>{{ store.sponsorsCurrentPage }}</span>
-        <button
-          :class="{
-            'border-blue-300 hover:bg-blue-100 bg-blue-50 hover:border-blue-300':
-              store.sponsorsCurrentPage !==
-              Math.ceil(store.sponsorsList?.count / 10),
-          }"
-          class="p-2 rounded-md border-2 duration-200"
-          @click="nextPage"
-          :disabled="
-            store.sponsorsCurrentPage ===
-            Math.ceil(store.sponsorsList?.count / 10)
-          "
-        >
-          <img src="@/assets/images/icons/arrow.svg" alt="arrow icon" />
-        </button>
+        <Pagination
+          :options="paginationData"
+          @select-page="(page) => selectPage(page)"
+          :activePage="store?.sponsorsCurrentPage"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { onBeforeMount, ref } from "vue";
-import { useMetsenatStore } from "@/store/store";
+import { onBeforeMount, ref, computed } from "vue";
+import { useSponsorStore } from "@/store/sponsor";
 import { useFetch } from "@/composables/useFetch";
-import { formatDate, formatMoney } from "@/utils/index";
+import { formatDate, formatMoney, generatePaginationData } from "@/utils/index";
 import CTable from "@/components/base/CTable.vue";
 import Badge from "@/components/common/Badge.vue";
+import Pagination from "@/components/common/Pagination.vue";
 
 const { get } = useFetch();
-const store = useMetsenatStore();
+const store = useSponsorStore();
 
 const pageSize = ref(10);
 
-console.log(store.sponsorsList);
-
-const nextPage = () => {
-  fetchData(store.sponsorsCurrentPage + 1);
-};
-
-const prevPage = () => {
-  fetchData(store.sponsorsCurrentPage - 1);
-};
+const paginationData = computed(() =>
+  generatePaginationData(
+    store.sponsorsCurrentPage,
+    store.sponsorsList.count,
+    pageSize.value,
+  ),
+);
 
 const fetchData = async (page) => {
-  if (store.sponsorsList.length === 0 || store.sponsorsCurrentPage !== page) {
-    try {
-      store.sponsorsCurrentPage = page;
-      store.sponsorsList = [];
-      const response = await get("sponsor-list", {
-        page: page,
-        pageSize: pageSize.value,
-      });
-      store.sponsorsList = response;
+  try {
+    store.sponsorsCurrentPage = page;
+    store.sponsorsList = [];
+    const response = await get("sponsor-list", {
+      page: page,
+      pageSize: pageSize.value,
+    });
+    store.sponsorsList = response;
 
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
+    console.log(response);
+  } catch (error) {
+    console.log(error);
   }
 };
 
@@ -155,15 +125,10 @@ const columns = ref([
   { label: "Amallar", width: "8%" },
 ]);
 
-const dataKeys = ref([
-  { label: "full_name", width: "34%" },
-  { label: "phone", width: "16%" },
-  { label: "sum", width: "10%" },
-  { label: "spent", width: "15%" },
-  { label: "created_at", width: "15%" },
-  { label: "get_status_display", width: "15%" },
-  { label: "action", width: "8%" },
-]);
+function selectPage(page) {
+  fetchData(page);
+  console.log("page: ", page);
+}
 
 onBeforeMount(() => {
   fetchData(store.sponsorsCurrentPage);

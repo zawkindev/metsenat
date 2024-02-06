@@ -93,7 +93,7 @@
 
 <script setup>
 import { computed, onBeforeMount, ref } from "vue";
-import { useMetsenatStore } from "@/store/store";
+import { useStudentStore } from "@/store/student";
 import { useFetch } from "@/composables/useFetch";
 import { formatMoney, generatePaginationData } from "@/utils/index";
 import CTable from "@/components/base/CTable.vue";
@@ -101,7 +101,7 @@ import CButton from "@/components/base/CButton.vue";
 import Pagination from "@/components/common/Pagination.vue";
 
 const { get } = useFetch();
-const store = useMetsenatStore();
+const store = useStudentStore();
 
 const pageSize = ref(10);
 

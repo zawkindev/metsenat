@@ -31,7 +31,7 @@ const emit = defineEmits(["activate"]);
 const activeTab = ref(props.defaultTab ?? 0);
 
 watch(activeTab.value, (newValue) => {
-  console.log("tab: ",newValue);
+  console.log("tab: ", newValue);
 });
 
 function handleClick(index) {
