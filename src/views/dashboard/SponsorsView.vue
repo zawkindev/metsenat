@@ -52,24 +52,12 @@
       </template>
     </CTable>
 
-    <div class="flex items-center justify-between">
-      <div>
-        {{ store.sponsorsList?.count }} tadan
-        {{ (store.sponsorsCurrentPage - 1) * 10 }}-{{
-          store.sponsorsCurrentPage * 10 < store.sponsorsList?.count
-            ? Number(store.sponsorsCurrentPage) * 10
-            : store.sponsorsList?.count
-        }}
-        ko'rsatilmoqda
-      </div>
-      <div class="flex items-center gap-4">
-        <Pagination
-          :options="paginationData"
-          @select-page="(page) => selectPage(page)"
-          :activePage="store?.sponsorsCurrentPage"
-        />
-      </div>
-    </div>
+    <Pagination
+      @select-page="(page) => selectPage(page)"
+      :current-page="store?.sponsorsCurrentPage"
+      :total-cards="store.sponsorsList.count"
+      :cards-per-page="pageSize"
+    />
   </div>
 </template>
 

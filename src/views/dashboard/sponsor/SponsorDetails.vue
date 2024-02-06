@@ -19,7 +19,11 @@
       </div>
       <div class="flex items-center gap-6">
         <div class="w-28 h-28 p-6 rounded-xl bg-gray-200">
-          <img class="w-full h-full" alt="profile icon" src="icons/user2.svg" />
+          <img
+            class="w-full h-full"
+            alt="profile icon"
+            src="@/assets/images/icons/user2.svg"
+          />
         </div>
         <p class="text-2xl h-fit font-bold box-border max-w-72 break-words">
           {{ sponsor?.full_name }}
@@ -48,7 +52,7 @@
 
 <script setup>
 import TitleBar from "@/components/layout/TitleBar.vue";
-import { useMetsenatStore } from "@/store/store";
+import { useSponsorStore } from "@/store/sponsor";
 import { computed, onBeforeMount } from "vue";
 import { useRoute } from "vue-router";
 import Badge from "@/components/common/Badge.vue";
@@ -58,7 +62,7 @@ import { useFetch } from "@/composables/useFetch";
 
 const route = useRoute();
 
-const store = useMetsenatStore();
+const store = useSponsorStore();
 
 const { get } = useFetch();
 
@@ -71,16 +75,14 @@ const statusType = {
   "Bekor qilingan": "disabled",
 };
 const fetchData = async (page) => {
-  if (store.studentsList.length === 0 || store.sponsorsCurrentPage !== page) {
-    try {
-      store.sponsorsCurrentPage = page;
-      const response = await get(`sponsor-detail/${route.params.id}`);
-      store.sponsor = response;
+  try {
+    store.sponsorsCurrentPage = page;
+    const response = await get(`sponsor-detail/${route.params.id}`);
+    store.sponsor = response;
 
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
+    console.log(response);
+  } catch (error) {
+    console.log(error);
   }
 };
 

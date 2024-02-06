@@ -72,30 +72,20 @@
       </template>
     </CTable>
 
-    <div class="flex items-center justify-between">
-      <div>
-        {{ store.studentsList?.count }} tadan
-        {{ (store.studentsCurrentPage - 1) * 10 }}-{{
-          store.studentsCurrentPage * 10
-        }}
-        ko'rsatilmoqda
-      </div>
-      <div class="flex items-center gap-4">
-        <Pagination
-          :options="paginationData"
-          @select-page="(page) => selectPage(page)"
-          :activePage="store?.studentsCurrentPage"
-        />
-      </div>
-    </div>
+    <Pagination
+      @select-page="(page) => selectPage(page)"
+      :current-page="store?.studentsCurrentPage"
+      :total-cards="store.studentsList.count"
+      :cards-per-page="pageSize"
+    />
   </div>
 </template>
 
 <script setup>
-import { computed, onBeforeMount, ref } from "vue";
+import { onBeforeMount, ref } from "vue";
 import { useStudentStore } from "@/store/student";
 import { useFetch } from "@/composables/useFetch";
-import { formatMoney, generatePaginationData } from "@/utils/index";
+import { formatMoney } from "@/utils/index";
 import CTable from "@/components/base/CTable.vue";
 import CButton from "@/components/base/CButton.vue";
 import Pagination from "@/components/common/Pagination.vue";
@@ -105,13 +95,6 @@ const store = useStudentStore();
 
 const pageSize = ref(10);
 
-const paginationData = computed(() =>
-  generatePaginationData(
-    store.studentsCurrentPage,
-    store.studentsList.count,
-    pageSize.value,
-  ),
-);
 
 const fetchData = async (page) => {
   try {
@@ -145,7 +128,7 @@ function selectPage(page) {
 }
 
 onBeforeMount(() => {
-  fetchData(store.sponsorsCurrentPage);
+  fetchData(store.studentsCurrentPage);
 });
 </script>
 <style>
