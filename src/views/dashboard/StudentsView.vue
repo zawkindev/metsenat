@@ -74,15 +74,16 @@
 
     <Pagination
       @select-page="(page) => selectPage(page)"
+      @select-page-size="(item) => selectPageSize(item)"
       :current-page="store?.studentsCurrentPage"
-      :total-cards="store.studentsList.count"
-      :cards-per-page="pageSize"
+      :total-cards="store?.studentsList.count"
+      :cards-per-page="store?.pageSize"
     />
   </div>
 </template>
 
 <script setup>
-import { onBeforeMount, ref } from "vue";
+import { onBeforeMount } from "vue";
 import { useStudentStore } from "@/store/student";
 import { useFetch } from "@/composables/useFetch";
 import { formatMoney } from "@/utils/index";
@@ -93,16 +94,13 @@ import Pagination from "@/components/common/Pagination.vue";
 const { get } = useFetch();
 const store = useStudentStore();
 
-const pageSize = ref(10);
-
-
 const fetchData = async (page) => {
   try {
     store.studentsCurrentPage = page;
     store.studentsList = [];
     const response = await get("student-list", {
       page: page,
-      pageSize: pageSize.value,
+      page_size: store.pageSize,
     });
     store.studentsList = response;
 
@@ -124,7 +122,11 @@ const columns = [
 
 function selectPage(page) {
   fetchData(page);
-  console.log("page: ", page);
+}
+
+function selectPageSize(size) {
+  store.pageSize = size;
+  fetchData(store.studentsCurrentPage);
 }
 
 onBeforeMount(() => {

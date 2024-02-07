@@ -1,17 +1,15 @@
 <template>
-  <div class="relative min-w-72">
+  <div class="relative">
     <!-- Visible selected option -->
     <div
-      class="flex justify-between bg-white rounded-lg px-3 py-2 cursor-pointer border-2 border-gray-200 focus:border-blue-300"
+      class="flex justify-between bg-white rounded-lg p-3 pr-1 py-2 cursor-pointer border-2 border-gray-200 focus:border-blue-300"
     >
       <slot name="selectedOption"> </slot>
 
       <svg
         :class="{ 'rotate-[270deg] fill-blue-400': isOpen }"
-        class="rotate-90 w-8 h-8 fill-gray-500 transition"
+        class="rotate-90 w-6 h-6 fill-gray-500 transition"
         xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
         viewBox="0 0 24 24"
         fill="none"
       >
@@ -37,11 +35,9 @@
 defineProps({
   validation: {
     type: Boolean,
-    required: true,
   },
   errorMsg: {
     type: String,
-    required: true,
   },
   isOpen: {
     type: Boolean,

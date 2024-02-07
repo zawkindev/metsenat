@@ -54,9 +54,10 @@
 
     <Pagination
       @select-page="(page) => selectPage(page)"
+      @select-page-size="(item) => selectPageSize(item)"
       :current-page="store?.sponsorsCurrentPage"
-      :total-cards="store.sponsorsList.count"
-      :cards-per-page="pageSize"
+      :total-cards="store?.sponsorsList.count"
+      :cards-per-page="store?.pageSize"
     />
   </div>
 </template>
@@ -73,15 +74,13 @@ import Pagination from "@/components/common/Pagination.vue";
 const { get } = useFetch();
 const store = useSponsorStore();
 
-const pageSize = ref(10);
-
 const fetchData = async (page) => {
   try {
     store.sponsorsCurrentPage = page;
     store.sponsorsList = [];
     const response = await get("sponsor-list", {
       page: page,
-      pageSize: pageSize.value,
+      page_size: store.pageSize,
     });
     store.sponsorsList = response;
 
@@ -110,6 +109,11 @@ const columns = ref([
 function selectPage(page) {
   fetchData(page);
   console.log("page: ", page);
+}
+
+function selectPageSize(size) {
+  store.pageSize = size;
+  fetchData(store.sponsorsCurrentPage);
 }
 
 onBeforeMount(() => {

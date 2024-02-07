@@ -128,6 +128,7 @@
 
 <script setup>
 import { onBeforeMount, ref } from "vue";
+import { useRouter } from "vue-router";
 import { useMetsenatStore } from "@/store/store.js";
 import { useCSelectStore } from "@/store/cselect.js";
 import { useFetch } from "@/composables/useFetch";
@@ -136,7 +137,6 @@ import TitleBar from "@/components/layout/TitleBar.vue";
 import CSelect from "@/components/base/CSelect.vue";
 import CButton from "@/components/base/CButton.vue";
 import FormGroup from "@/components/common/FormGroup.vue";
-import { useRouter } from "vue-router";
 
 const { get, post } = useFetch();
 const { form, validateSubmit, v$ } = useFormValidation();
