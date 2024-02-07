@@ -19,8 +19,8 @@
           :key="index"
           class="bg-white py-[22px] px-[14px] rounded-lg my-5 border-[#B2B7C1]"
         >
-          <ul class="flex items-center justify-between">
-            <li class="w-[2%] text-center">{{ index + 1 }}</li>
+          <ul class="flex items-center justify-between px-5">
+            <li class="w-[2%] text-left">{{ index + 1 }}</li>
             <li class="w-[34%] text-left">{{ item?.full_name }}</li>
             <li class="w-[10%] text-center">{{ item?.phone }}</li>
             <li class="w-[16%] text-center">
@@ -40,7 +40,7 @@
                 {{ item?.get_status_display }}
               </Badge>
             </li>
-            <li class="w-[8%] text-center flex items-center justify-center">
+            <li class="w-[8%] text-left flex items-center justify-end">
               <RouterLink
                 :to="{ name: 'SponsorDetails', params: { id: item.id } }"
               >
@@ -62,10 +62,10 @@
 </template>
 
 <script setup>
-import { onBeforeMount, ref, computed } from "vue";
+import { onBeforeMount, ref } from "vue";
 import { useSponsorStore } from "@/store/sponsor";
 import { useFetch } from "@/composables/useFetch";
-import { formatDate, formatMoney, generatePaginationData } from "@/utils/index";
+import { formatDate, formatMoney } from "@/utils/index";
 import CTable from "@/components/base/CTable.vue";
 import Badge from "@/components/common/Badge.vue";
 import Pagination from "@/components/common/Pagination.vue";
@@ -74,14 +74,6 @@ const { get } = useFetch();
 const store = useSponsorStore();
 
 const pageSize = ref(10);
-
-const paginationData = computed(() =>
-  generatePaginationData(
-    store.sponsorsCurrentPage,
-    store.sponsorsList.count,
-    pageSize.value,
-  ),
-);
 
 const fetchData = async (page) => {
   try {

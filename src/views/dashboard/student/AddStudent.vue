@@ -4,6 +4,7 @@
   </TitleBar>
 
   <form
+    @submit.prevent="handleSubmit()"
     class="flex flex-col w-7/12 mx-auto bg-white p-10 mt-14 gap-8 rounded-lg"
   >
     <div class="flex justify-between items-center gap-10">
@@ -11,7 +12,7 @@
         :validation="v$?.name?.$error"
         errorMsg="F.I.SH majburiy"
         id="full_name"
-        v-model="student.full_name"
+        v-model="form.name"
         placeholder="Abdullayev Abdulla Abdulla o'g'li"
         label="f.i.sh.(familiya ism sharif)"
       />
@@ -19,13 +20,13 @@
         :validation="v$?.phone?.$error"
         errorMsg="Telefon raqam majburiy"
         id="phone"
-        v-model="student.phone"
-        placeholder="+998 "
+        v-model="form.phone"
+        placeholder="998 "
         label="telefon raqam"
       />
     </div>
     <CSelect
-      :validation="v$?.name?.$error"
+      :validation="v$?.institute?.$error"
       errorMsg="OTM nomi raqam majburiy"
       v-model="form.institute"
       :isOpen="cselectStore.institute"
@@ -58,22 +59,21 @@
           >talabalik turi</label
         >
         <CSelect
-          :validation="v$?.name?.$error"
+          :validation="v$?.studentType?.$error"
           errorMsg="OTM nomi raqam majburiy"
-          v-model="form.studentType"
           :isOpen="cselectStore.studentType"
           @click="cselectStore.studentType = !cselectStore.studentType"
         >
           <template #selectedOption>
             <p class="flex items-center capitalize">
-              {{ student.type || "Barchasi" }}
+              {{ form.studentType.value || "Barchasi" }}
             </p>
           </template>
           <template #options>
             <div
-              v-for="(option, index) in studentTypes"
-              :key="index"
-              @click="student.type = option"
+              v-for="option in studentTypes"
+              :key="option.id"
+              @click="form.studentType = option"
               :class="{
                 'border-t-2': index !== 0,
                 'rounded-t-xl': index === 0,
@@ -81,19 +81,47 @@
               }"
               class="px-3 py-3 cursor-pointer items-center flex text-lg hover:bg-gray-100"
             >
-              <span>{{ option }}</span>
+              <span>{{ option.value }}</span>
             </div>
           </template>
         </CSelect>
       </div>
       <FormGroup
         :validation="v$?.contract?.$error"
-        errorMsg="Telefon raqam majburiy"
+        errorMsg="Kontrakt summa majburiy"
         id="phone"
         v-model="form.contract"
-        placeholder="+998 "
-        label="telefon raqam"
+        placeholder="summani kiriting"
+        label="Kontrakt summa"
       />
+    </div>
+    <div class="flex justify-end">
+      <CButton class="primary">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+        >
+          <path
+            d="M19.9999 11.9999H4.00007"
+            stroke="#fff"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M12 4V19.9999"
+            stroke="#fff"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+
+        Talaba qo'shish
+      </CButton>
     </div>
   </form>
 </template>
@@ -106,56 +134,52 @@ import { useFetch } from "@/composables/useFetch";
 import { useFormValidation } from "@/composables/useValidate";
 import TitleBar from "@/components/layout/TitleBar.vue";
 import CSelect from "@/components/base/CSelect.vue";
+import CButton from "@/components/base/CButton.vue";
 import FormGroup from "@/components/common/FormGroup.vue";
+import { useRouter } from "vue-router";
 
-const { get } = useFetch();
+const { get, post } = useFetch();
 const { form, validateSubmit, v$ } = useFormValidation();
+
+const router = useRouter();
 
 const store = useMetsenatStore();
 const cselectStore = useCSelectStore();
 
-const generataId = () => {
-  return Math.random().toString(36)[(0, 9)];
-};
-
 const response = ref();
 
-const student = ref({
-  id: generataId(),
-  full_name: "",
-  phone: "",
-  institute: "",
-  type: "",
-  contract: "",
-});
+const studentTypes = [
+  { id: 1, value: "Bakalavr" },
+  { id: 2, value: "Magistr" },
+  { id: 3, value: "Doktorantura" },
+];
 
-const studentTypes = ["Bakalavr", "Magistr"];
+async function handleSubmit() {
+  const result = await validateSubmit();
+  console.log("result of valiadtion: ", result);
+  if (!result) {
+    return;
+  }
+  addStudent();
+}
 
-// const addStudent = async () => {
-//   try {
-//     console.log(selectedInstitute.value);
-//     const response = await post(`student-create/`, {
-//       id: user.value.id,
-//       institute: selectedInstitute.value.id,
-//       full_name: user.value.full_name,
-//       phone: user.value.phone,
-//       type: user.value.type?.name === "Bakalavr" ? 1 : 2,
-//       contract: user.value.contract,
-//     });
-//
-//     user.value = {
-//       id: generataId(),
-//       full_name: "",
-//       phone: "",
-//       institute: "",
-//       type: "",
-//       contract: "",
-//     };
-//     router.push({ name: "Student", params: { id: response.id } });
-//   } catch (error) {
-//     console.error("Error fetching data:", error);
-//   }
-// };
+const addStudent = async () => {
+  try {
+    const response = await post(`student-create/`, {
+      full_name: form.name,
+      type: form.studentType.id,
+      phone: String(form.phone),
+      institute: form.institute.name,
+      contract: form.contract,
+    });
+
+    console.log("add studeeeent: ", response);
+
+    router.push({ name: "StudentsList" });
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+};
 
 const fetchData = async () => {
   try {

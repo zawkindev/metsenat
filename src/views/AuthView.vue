@@ -56,7 +56,6 @@ async function handleSubmit() {
   const result = validateSubmit();
   if (!result) {
     alert("The form has errors");
-
     return;
   }
   postData();

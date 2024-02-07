@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-2 w-full">
+  <div class="flex flex-col gap-2 w-full relative">
     <label :for="id" class="uppercase font-semibold">{{ label }}</label>
     <CInput
       :id="id"
@@ -8,7 +8,7 @@
       :class="{ 'border-red-400': v$?.password?.$error }"
       @update:modelValue="(value) => emit('update:modelValue', value)"
     />
-    <span v-if="validation" class="text-red-600">{{ errorMsg }}</span>
+    <span v-if="validation" class="text-red-600 absolute bottom-[-30px]">{{ errorMsg }}</span>
   </div>
 </template>
 

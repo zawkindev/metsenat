@@ -12,5 +12,5 @@
 
 <script setup>
 defineProps(["name"]);
-defineEmits(["close"]);
+const emit = defineEmits(["close"]);
 </script>
