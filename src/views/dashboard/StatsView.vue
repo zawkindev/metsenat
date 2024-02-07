@@ -22,36 +22,16 @@
         currency="UZS"
       >
       </MoneyCard>
-
-      <!-- <MoneyCard> -->
-      <!--   <img src="@/assets/images/icons/money-yellow.svg" /> -->
-      <!--   <div class="flex flex-col"> -->
-      <!--     <p class="text-sm text-gray-400">Jami so'ralgan summa</p> -->
-      <!--     <p class="text-2xl"> -->
-      <!--       {{ formatMoney(response?.total_need) }} -->
-      <!--       <span class="text-xl text-gray-500">UZS</span> -->
-      <!--     </p> -->
-      <!--   </div> -->
-      <!-- </MoneyCard> -->
-      <!---->
-      <!-- <MoneyCard> -->
-      <!--   <img src="@/assets/images/icons/money-orange.svg" /> -->
-      <!--   <div class="flex flex-col"> -->
-      <!--     <p class="text-sm text-gray-400">To‘lanishi kerak summa</p> -->
-      <!--     <p class="text-2xl"> -->
-      <!--       {{ formatMoney(response?.total_must_pay) }} -->
-      <!--       <span class="text-xl text-gray-500">UZS</span> -->
-      <!--     </p> -->
-      <!--   </div> -->
-      <!-- </MoneyCard> -->
     </div>
-    <img class="w-full" alt="graph" src="@/assets/images/graph.svg" />
+    <div class="flex w-full">
+      <Chart />
+    </div>
   </div>
 </template>
 
 <script setup>
 import MoneyCard from "@/components/common/MoneyCard.vue";
-import { formatMoney } from "@/utils/index";
+import Chart from "../../components/common/Chart.vue";
 import { useFetch } from "@/composables/useFetch";
 import { onBeforeMount, ref } from "vue";
 

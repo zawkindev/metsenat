@@ -52,7 +52,7 @@
         </div>
       </template>
     </CSelect>
-    <div class="flex justify-between w-full">
+    <div class="flex justify-between w-full gap-10">
       <div class="flex flex-col gap-2 w-full">
         <label :for="type" class="uppercase font-semibold"
           >talabalik turi</label
@@ -86,6 +86,14 @@
           </template>
         </CSelect>
       </div>
+      <FormGroup
+        :validation="v$?.contract?.$error"
+        errorMsg="Telefon raqam majburiy"
+        id="phone"
+        v-model="form.contract"
+        placeholder="+998 "
+        label="telefon raqam"
+      />
     </div>
   </form>
 </template>

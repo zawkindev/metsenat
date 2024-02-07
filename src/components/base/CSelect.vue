@@ -2,7 +2,7 @@
   <div class="relative min-w-72">
     <!-- Visible selected option -->
     <div
-      class="flex justify-between bg-white rounded-lg px-3 py-3 cursor-pointer border-2 border-gray-200 focus:border-blue-300"
+      class="flex justify-between bg-white rounded-lg px-3 py-2 cursor-pointer border-2 border-gray-200 focus:border-blue-300"
     >
       <slot name="selectedOption"> </slot>
 

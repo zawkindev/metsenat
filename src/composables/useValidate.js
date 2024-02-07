@@ -5,25 +5,29 @@ import { computed, reactive } from "vue";
 export function useFormValidation() {
   const form = reactive({
     name: "",
-    email: "",
     phone: "",
     password: "",
     institute: "",
-    studentType: ""
+    studentType: "",
+    contract: "",
   });
 
   const rules = computed(() => {
     return {
       name: { required },
-      password: {
-        required,
-        minLength: minLength(8), 
-      },
+
       phone: {
         required,
         numeric,
-        minLength: minLength(9), 
+        minLength: minLength(9),
       },
+      password: {
+        required,
+        minLength: minLength(8),
+      },
+      institute: { required },
+      studentType: { required },
+      contract: { numeric, required },
     };
   });
 
