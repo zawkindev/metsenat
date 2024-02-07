@@ -23,7 +23,7 @@
       >
       </MoneyCard>
     </div>
-    <div class="flex w-full">
+    <div class="flex w-full h-[500px]">
       <Chart />
     </div>
   </div>
@@ -31,7 +31,7 @@
 
 <script setup>
 import MoneyCard from "@/components/common/MoneyCard.vue";
-import Chart from "../../components/common/Chart.vue";
+import Chart from "@/components/common/Chart.vue";
 import { useFetch } from "@/composables/useFetch";
 import { onBeforeMount, ref } from "vue";
 

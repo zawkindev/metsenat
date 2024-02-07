@@ -1,8 +1,13 @@
 <template>
+  <div class="flex flex-col w-full h-full bg-white p-10 pb-20 rounded-lg">
+
+
+  <p class="text-3xl font-bold">Homiy va Talabalar soni</p>
   <Line :data="data" :options="options" />
+  </div>
 </template>
 
-<script lang="ts">
+<script>
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -42,9 +47,20 @@ const data = {
   labels: ["January", "February", "March", "April", "May", "June", "July"],
   datasets: [
     {
-      label: "Data One",
-      backgroundColor: "#f87979",
+      label: "Homiy",
+      borderColor: "#3e95cd",
+      backgroundColor: "#3e95cd",
       data: [40, 39, 10, 40, 39, 80, 40],
+      tension: 0.4,
+      pointRadius: 0,
+    },
+    {
+      label: "Talabalar",
+      borderColor: "#f23057", // Red color
+      backgroundColor: "#f23057",
+      data: [20, 50, 60, 20, 70, 40, 60],
+      tension: 0.4,
+      pointRadius: 0,
     },
   ],
 };
@@ -52,5 +68,16 @@ const data = {
 const options = {
   responsive: true,
   maintainAspectRatio: false,
+  scaleLineColor: "#fff",
+  scales: {
+    x: {
+      grid: {
+        display: false,
+      },
+    },
+    y: {
+      beginAtZero: true,
+    },
+  },
 };
 </script>
