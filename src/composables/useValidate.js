@@ -1,5 +1,5 @@
 import { useVuelidate } from "@vuelidate/core";
-import { numeric, required } from "@vuelidate/validators";
+import { minLength, numeric, required } from "@vuelidate/validators";
 import { computed, reactive } from "vue";
 
 export function useFormValidation() {
@@ -8,6 +8,8 @@ export function useFormValidation() {
     email: "",
     phone: "",
     password: "",
+    institute: "",
+    studentType: ""
   });
 
   const rules = computed(() => {
@@ -15,10 +17,12 @@ export function useFormValidation() {
       name: { required },
       password: {
         required,
+        minLength: minLength(8), 
       },
       phone: {
         required,
         numeric,
+        minLength: minLength(9), 
       },
     };
   });

@@ -3,7 +3,6 @@
     <!-- Visible selected option -->
     <div
       class="flex justify-between bg-white rounded-lg px-3 py-3 cursor-pointer border-2 border-gray-200 focus:border-blue-300"
-      @click="toggleSelect"
     >
       <slot name="selectedOption"> </slot>
 
@@ -22,10 +21,11 @@
         />
       </svg>
     </div>
+    <span v-if="validation" class="text-red-600">{{ errorMsg }}</span>
 
     <!-- Dropdown options -->
     <div
-      v-if="isOpen"
+      v-show="isOpen"
       class="absolute w-full mt-1 bg-white border border-gray-300 rounded-xl z-10"
     >
       <slot name="options"> </slot>
@@ -34,14 +34,19 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
-import { useMetsenatStore } from "@/store/store.js";
+defineProps({
+  validation: {
+    type: Boolean,
+    required: true,
+  },
+  errorMsg: {
+    type: String,
+    required: true,
+  },
+  isOpen: {
+    type: Boolean,
+    required: true,
+  },
+});
 
-const store = useMetsenatStore();
-
-const isOpen = computed(() => store.isSelectOpen);
-
-function toggleSelect() {
-  isOpen.value = !isOpen.value;
-}
 </script>

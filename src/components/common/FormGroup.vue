@@ -1,9 +1,8 @@
 <template>
-  <div class="flex flex-col gap-2">
+  <div class="flex flex-col gap-2 w-full">
     <label :for="id" class="uppercase font-semibold">{{ label }}</label>
     <CInput
       :id="id"
-      :value="value"
       :type="type"
       :placeholder="placeholder"
       :class="{ 'border-red-400': v$?.password?.$error }"
@@ -20,10 +19,6 @@ const emit = defineEmits(["update:modelValue"]);
 
 defineProps({
   id: {
-    type: String,
-    required: true,
-  },
-  value: {
     type: String,
     required: true,
   },

@@ -52,8 +52,6 @@ const { form, validateSubmit, v$ } = useFormValidation();
 
 const data = ref();
 
-const showIT = ref(false);
-
 async function handleSubmit() {
   const result = validateSubmit();
   if (!result) {
@@ -77,9 +75,7 @@ const postData = async () => {
       localStorage.setItem("access_token", data.value.access);
       localStorage.setItem("refresh_token", data.value.refresh);
       router.push({ name: "Stats" });
-    } else if (data.value.detail) {
-      showIT.value = true;
-    }
+    } 
   } catch (error) {
     console.error("Login error", error.message);
   }
