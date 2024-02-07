@@ -3,7 +3,7 @@
     <div v-if="variant == 'default'" class="flex justify-between select-none">
       <div class="flex items-center gap-2">
         <RouterLink class="flex gap-2" :to="{ name: 'Home' }">
-          <img src="@/assets/images/logo.svg" />
+          <img alt="logo" class="cursor-pointer" src="@/assets/images/logo.svg" />
           <Badge variant="danger"> club </Badge>
         </RouterLink>
       </div>
@@ -15,7 +15,7 @@
 
         <RouterLink :to="{ name: 'Auth' }">
           <div class="flex items-center gap-2 cursor-pointer">
-            <img src="@/assets/images/icons/log-in.svg" />
+            <img alt="log in icon" src="@/assets/images/icons/log-in.svg" />
             <p>Kirish</p>
           </div>
         </RouterLink>
@@ -28,7 +28,7 @@
 
     <div v-if="variant == 'withoutMenu'" class="flex justify-between">
       <RouterLink :to="{ name: 'Stats' }">
-        <img src="@/assets/images/logo2.svg" />
+        <img alt="logo" src="@/assets/images/logo2.svg" />
       </RouterLink>
       <div class="flex gap-10">
         <div
@@ -42,7 +42,7 @@
           </div>
         </div>
         <button @click="logOut">
-          <img class="cursor-pointer" src="@/assets/images/icons/log-out.svg" />
+          <img alt="log out icon" src="@/assets/images/icons/log-out.svg" />
         </button>
       </div>
     </div>

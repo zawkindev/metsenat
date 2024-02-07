@@ -37,6 +37,7 @@ import { onBeforeMount, ref } from "vue";
 
 const { get } = useFetch();
 
+
 const response = ref("");
 
 const fetchData = async () => {
@@ -47,6 +48,7 @@ const fetchData = async () => {
     console.log(error);
   }
 };
+
 
 onBeforeMount(() => {
   fetchData();

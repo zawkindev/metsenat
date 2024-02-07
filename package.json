@@ -19,7 +19,7 @@
     "vue": "^3.3.11",
     "vue-chartjs": "^5.3.0",
     "vue-router": "4",
-    "vue-toastification": "^1.7.14"
+    "vue-toastification": "next"
   },
   "devDependencies": {
     "@biomejs/biome": "1.5.3",

@@ -5,14 +5,14 @@
   </div>
 </template>
 <script setup>
-import { computed, onMounted } from "vue";
+import { computed, onBeforeMount, onMounted } from "vue";
 import { RouterView, useRoute } from "vue-router";
-// import { useToast } from "vue-toastification";
+import { useToast } from "vue-toastification";
 import Bar from "@/components/layout/Bar.vue";
 
 const route = useRoute();
 
-// const toast = useToast();
+const toast = useToast();
 
 const shouldRenderBar = computed(
   () =>
@@ -20,10 +20,10 @@ const shouldRenderBar = computed(
     !route.fullPath.includes("sponsors/"),
 );
 
-onMounted(() => {
+onBeforeMount(() => {
   if (!localStorage.getItem("toast-showed")) {
-    // toast.success("This is a success toast message");
-    localStorage.setItem("toast-showed", "");
+    toast.success("This is a success toast message");
+    localStorage.setItem("toast-showed", "showed");
   }
 });
 </script>
