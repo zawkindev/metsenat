@@ -79,7 +79,7 @@
       :total-cards="store?.studentsList?.count"
       :cards-per-page="store?.pageSize"
     />
-    <FilterModal v-if="filterModal.isOpen" @close="close(filterModal)" variant="sponsor" />
+    <FilterModal v-if="filterModal.isOpen" @close="close(filterModal)" variant="student" />
   </div>
 </template>
 

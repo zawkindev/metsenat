@@ -71,13 +71,13 @@
           </template>
           <template #options>
             <div
-              v-for="option in studentTypes"
+              v-for="option in studentStore.types"
               :key="option.id"
               @click="form.studentType = option"
               :class="{
                 'border-t-2': index !== 0,
                 'rounded-t-xl': index === 0,
-                'rounded-b-xl': index === studentTypes.length - 1,
+                'rounded-b-xl': index === studentStore.types.length - 1,
               }"
               class="px-3 py-3 cursor-pointer items-center flex text-lg hover:bg-gray-100"
             >
@@ -128,7 +128,7 @@
 <script setup>
 import { onBeforeMount, ref } from "vue";
 import { useRouter } from "vue-router";
-import { useMetsenatStore } from "@/store/store.js";
+import { useStudentStore } from "@/store/student.js";
 import { useCSelectStore } from "@/store/cselect.js";
 import { useFetch } from "@/composables/useFetch";
 import { useFormValidation } from "@/composables/useValidate";
@@ -142,16 +142,13 @@ const { form, validateSubmit, v$ } = useFormValidation();
 
 const router = useRouter();
 
-const store = useMetsenatStore();
+const studentStore = useStudentStore()
 const cselectStore = useCSelectStore();
 
 const response = ref();
 
-const studentTypes = [
-  { id: 1, value: "Bakalavr" },
-  { id: 2, value: "Magistr" },
-  { id: 3, value: "Doktorantura" },
-];
+
+
 
 async function handleSubmit() {
   const result = await validateSubmit();
@@ -183,7 +180,6 @@ const addStudent = async () => {
 const fetchData = async () => {
   try {
     response.value = await get(`institute-list`);
-    store.instituteList = response.value;
 
     console.log(response);
   } catch (error) {
