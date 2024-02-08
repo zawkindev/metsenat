@@ -1,6 +1,6 @@
 <template>
   <div
-    class="absolute left-0 top-0 z-10 w-screen min-h-screen flex items-center justify-center bg-black bg-opacity-50"
+    class="absolute left-0 top-0 z-10 w-screen min-h-screen flex items-center justify-center bg-black bg-opacity-50 overflow-scroll"
   >
     <div class="w-[640px] p-10 bg-white rounded-lg">
       <div class="flex justify-between items-center">

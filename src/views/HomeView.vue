@@ -70,9 +70,13 @@ import Tab from "@/components/common/Tab.vue";
 import CInput from "@/components/base/CInput.vue";
 import CButton from "@/components/base/CButton.vue";
 import RadioGroup from "@/components/common/RadioGroup.vue";
-import { ref, reactive } from "vue";
+import { ref, reactive, onBeforeMount } from "vue";
+import { useFetch } from "@/composables/useFetch.js";
 
 defineEmits(["activate"]);
+
+
+const { get } = useFetch()
 
 const tabValues = ["jismoniy shaxs", "yuridik shaxs"];
 
@@ -84,12 +88,29 @@ const inputValues = reactive({
   phoneNumber: "",
 });
 
-const radioOptions = ['100', '200', '300', 'Boshqasi']
+const radioOptions = ref([])
 
 function handleEmit(index) {
   selectedTab.value = index;
   console.log(index);
 }
+
+const fetchData = async () => {
+  try {
+    const response = await get(`tariff-list`);
+    radioOptions.value = response
+
+    console.log(response);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+onBeforeMount(() => {
+  fetchData();
+});
+
+
 </script>
 
 <style>

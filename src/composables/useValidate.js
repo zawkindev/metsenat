@@ -10,7 +10,9 @@ export function useFormValidation() {
     institute: "",
     studentType: "",
     contract: "",
-    application: ""
+    application: "",
+    amount: "",
+    date: "",
   });
 
   const rules = computed(() => {
@@ -30,6 +32,8 @@ export function useFormValidation() {
       studentType: { required },
       contract: { numeric, required },
       application: { required },
+      amount: {required},
+      date: {required}
     };
   });
 

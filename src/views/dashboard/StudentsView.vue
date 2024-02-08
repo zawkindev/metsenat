@@ -76,10 +76,10 @@
       @select-page="(page) => selectPage(page)"
       @select-page-size="(item) => selectPageSize(item)"
       :current-page="store?.studentsCurrentPage"
-      :total-cards="store?.studentsList.count"
+      :total-cards="store?.studentsList?.count"
       :cards-per-page="store?.pageSize"
     />
-    <FilterModal v-if="filterModal.isOpen" @close="close(filterModal)" />
+    <FilterModal v-if="filterModal.isOpen" @close="close(filterModal)" variant="sponsor" />
   </div>
 </template>
 

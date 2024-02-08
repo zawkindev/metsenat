@@ -4,7 +4,7 @@
   </TitleBar>
 
   <form
-    @submit.prevent="handleSubmit()"
+    @submit.prevent
     class="flex flex-col w-7/12 mx-auto bg-white p-10 mt-14 gap-8 rounded-lg"
   >
     <div class="flex justify-between items-center gap-10">
@@ -96,7 +96,7 @@
       />
     </div>
     <div class="flex justify-end">
-      <CButton class="primary">
+      <CButton class="primary" @click.prevent="handleSubmit()">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -119,8 +119,7 @@
             stroke-linejoin="round"
           />
         </svg>
-
-        Talaba qo'shish
+        <span class="font-bold text-xl"> qo'shish </span>
       </CButton>
     </div>
   </form>
@@ -156,7 +155,7 @@ const studentTypes = [
 
 async function handleSubmit() {
   const result = await validateSubmit();
-  console.log("result of valiadtion: ", result);
+  console.log("result of valiadtion in addStudent: ", result);
   if (!result) {
     return;
   }

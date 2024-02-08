@@ -1,39 +1,35 @@
 <template>
   <div class="flex flex-col w-full gap-2">
     <label class="uppercase font-semibold">
-      <slot> {{ label }} </slot>
+      <slot />
     </label>
     <div class="flex flex-wrap gap-4">
       <CRadio
-        v-for="(item, index) in options"
-        :isActive="activeOption === index"
-        :value="item"
-        :key="index"
-        @click="
-          () => {
-            store.ammount = index;
-
-            activeOption = index;
-          }
-        "
+        v-for="item in options"
+        :isActive="item.id === activeId"
+        :value="item.summa"
+        :key="item.id"
+        @click="emit('select', item)"
       />
     </div>
+    <span v-if="validation" class="text-red-600">{{ errorMsg }}</span>
   </div>
 </template>
 
 <script setup>
+import { computed } from "vue";
 import CRadio from "@/components/base/CRadio.vue";
-import { ref } from "vue";
-import { useMetsenatStore } from "@/store/store.js";
 
-defineProps({
+const props = defineProps({
   options: {
     type: Array,
     required: true,
   },
+  validation: Boolean,
+  activeOption: Number,
 });
 
-const store = useMetsenatStore();
+const activeId = computed(() => props?.activeOption?.id);
 
-const activeOption = ref(0);
+const emit = defineEmits(["select"]);
 </script>

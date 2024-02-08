@@ -56,22 +56,28 @@
       @select-page="(page) => selectPage(page)"
       @select-page-size="(item) => selectPageSize(item)"
       :current-page="store?.sponsorsCurrentPage"
-      :total-cards="store?.sponsorsList.count"
+      :total-cards="store?.sponsorsList?.count"
       :cards-per-page="store?.pageSize"
     />
+        <FilterModal v-if="filterModal.isOpen" @close="close(filterModal)" variant="sponsor" />
+
   </div>
 </template>
 
 <script setup>
 import { onMounted, ref } from "vue";
 import { useSponsorStore } from "@/store/sponsor";
+import { useModalStore } from "@/store/modal";
 import { useFetch } from "@/composables/useFetch";
 import { formatDate, formatMoney } from "@/utils/index";
 import CTable from "@/components/base/CTable.vue";
 import Badge from "@/components/common/Badge.vue";
 import Pagination from "@/components/common/Pagination.vue";
+import FilterModal from "@/modals/FilterModal.vue";
 
 const { get } = useFetch();
+const { filterModal, close } = useModalStore();
+
 const store = useSponsorStore();
 
 const fetchData = async (page) => {
