@@ -5,7 +5,7 @@
     <div class="w-[640px] p-10 bg-white rounded-lg">
       <div class="flex justify-between items-center">
         <p class="text-xl font-bold capitalize">{{ name }}</p>
-        <img @click="emit('close')" src="@/assets/images/icons/close.svg" />
+        <img class="cursor-pointer h-7 w-7" @click="emit('close')" src="@/assets/images/icons/close.svg" />
       </div>
       <slot> </slot>
     </div>
