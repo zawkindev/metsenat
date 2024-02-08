@@ -5,10 +5,12 @@ export const useCSelectStore = defineStore("cselect", () => {
   const institute = ref(false);
   const studentType = ref(false);
   const pageSize = ref(false);
+  const application = ref(false)
 
   return {
     institute,
     studentType,
     pageSize,
+    application
   };
 });

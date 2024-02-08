@@ -79,19 +79,24 @@
       :total-cards="store?.studentsList.count"
       :cards-per-page="store?.pageSize"
     />
+    <FilterModal v-if="filterModal.isOpen" @close="close(filterModal)" />
   </div>
 </template>
 
 <script setup>
 import { onBeforeMount } from "vue";
 import { useStudentStore } from "@/store/student";
+import { useModalStore } from "@/store/modal";
 import { useFetch } from "@/composables/useFetch";
 import { formatMoney } from "@/utils/index";
 import CTable from "@/components/base/CTable.vue";
 import CButton from "@/components/base/CButton.vue";
 import Pagination from "@/components/common/Pagination.vue";
+import FilterModal from "@/modals/FilterModal.vue";
 
 const { get } = useFetch();
+const { filterModal, close } = useModalStore();
+
 const store = useStudentStore();
 
 const fetchData = async (page) => {

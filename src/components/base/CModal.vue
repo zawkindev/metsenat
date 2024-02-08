@@ -1,9 +1,11 @@
 <template>
-  <div class="absolute z-10 w-screen h-screen flex items-center justify-center">
-    <div class="w-[640px] p-10">
+  <div
+    class="absolute left-0 top-0 z-10 w-screen min-h-screen flex items-center justify-center bg-black bg-opacity-50"
+  >
+    <div class="w-[640px] p-10 bg-white rounded-lg">
       <div class="flex justify-between items-center">
         <p class="text-xl font-bold capitalize">{{ name }}</p>
-        <img @click="emit('close')" src="icon/close.svg" />
+        <img @click="emit('close')" src="@/assets/images/icons/close.svg" />
       </div>
       <slot> </slot>
     </div>

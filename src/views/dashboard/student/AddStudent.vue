@@ -60,7 +60,7 @@
         >
         <CSelect
           :validation="v$?.studentType?.$error"
-          errorMsg="OTM nomi raqam majburiy"
+          errorMsg="talabalik turi majburiy"
           :isOpen="cselectStore.studentType"
           @click="cselectStore.studentType = !cselectStore.studentType"
         >

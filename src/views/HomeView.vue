@@ -28,7 +28,7 @@
             type="tel"
           />
         </div>
-        <RadioGroup :options="['100', '200', '300', 'Boshqasi']">
+        <RadioGroup :options="radioOptions">
           To‘lov summasi
         </RadioGroup>
 
@@ -83,6 +83,8 @@ const inputValues = reactive({
   company: "",
   phoneNumber: "",
 });
+
+const radioOptions = ['100', '200', '300', 'Boshqasi']
 
 function handleEmit(index) {
   selectedTab.value = index;

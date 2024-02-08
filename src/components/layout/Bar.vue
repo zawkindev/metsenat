@@ -10,6 +10,7 @@
         <Search class="min-w-72 h-full" />
         <CButton
           v-if="$route.name !== 'Stats'"
+          @click="open(filterModal)"
           variant="outline"
           :withBg="true"
         >
@@ -22,11 +23,14 @@
 </template>
 
 <script setup>
+import { useRoute, useRouter } from "vue-router";
+import { computed } from "vue";
+import { useModalStore } from "@/store/modal";
 import Tab from "@/components/common/Tab.vue";
 import Search from "@/components/common/Search.vue";
 import CButton from "@/components/base/CButton.vue";
-import { useRoute, useRouter } from "vue-router";
-import { computed } from "vue";
+
+const { filterModal, open } = useModalStore();
 
 const route = useRoute();
 const router = useRouter();
@@ -41,4 +45,6 @@ const activeTab = computed(() =>
 function handleActivate(index) {
   router.push({ name: routeNames[index] });
 }
+
+
 </script>
