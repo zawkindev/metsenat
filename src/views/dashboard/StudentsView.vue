@@ -84,7 +84,7 @@
 </template>
 
 <script setup>
-import { onBeforeMount } from "vue";
+import { onMounted } from "vue";
 import { useStudentStore } from "@/store/student";
 import { useModalStore } from "@/store/modal";
 import { useFetch } from "@/composables/useFetch";
@@ -134,7 +134,7 @@ function selectPageSize(size) {
   fetchData(store.studentsCurrentPage);
 }
 
-onBeforeMount(() => {
+onMounted(() => {
   fetchData(store.studentsCurrentPage || 1);
 });
 </script>

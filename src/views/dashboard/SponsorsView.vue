@@ -63,7 +63,7 @@
 </template>
 
 <script setup>
-import { onBeforeMount, ref } from "vue";
+import { onMounted, ref } from "vue";
 import { useSponsorStore } from "@/store/sponsor";
 import { useFetch } from "@/composables/useFetch";
 import { formatDate, formatMoney } from "@/utils/index";
@@ -116,7 +116,7 @@ function selectPageSize(size) {
   fetchData(store.sponsorsCurrentPage);
 }
 
-onBeforeMount(() => {
+onMounted(() => {
   fetchData(store.sponsorsCurrentPage || 1);
 });
 </script>
