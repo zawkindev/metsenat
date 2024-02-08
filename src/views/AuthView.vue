@@ -29,6 +29,10 @@
           label="parol"
         />
         <p v-show="data?.detail" class="text-red-600">Akkount topilmadi</p>
+        <div class="flex">
+
+        <ReCaptcha />
+        </div>
         <CButton @click.prevent="handleSubmit">Kirish</CButton>
       </div>
     </form>
@@ -43,6 +47,7 @@ import { ref } from "vue";
 import Badge from "@/components/common/Badge.vue";
 import CButton from "@/components/base/CButton.vue";
 import FormGroup from "@/components/common/FormGroup.vue";
+import ReCaptcha from "@/components/common/ReCaptcha.vue";
 
 const { post } = useFetch();
 
@@ -74,7 +79,7 @@ const postData = async () => {
       localStorage.setItem("access_token", data.value.access);
       localStorage.setItem("refresh_token", data.value.refresh);
       router.push({ name: "Stats" });
-    } 
+    }
   } catch (error) {
     console.error("Login error", error.message);
   }

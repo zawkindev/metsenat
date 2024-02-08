@@ -33,6 +33,8 @@ function getClasses() {
 
     case "outline":
       return "text-primary-300 bg-blue-100 border-transparent hover:bg-blue-200 active:bg-blue-300 w-fit";
+    case "disabled":
+    return "grayscale"
   }
 }
 </script>
