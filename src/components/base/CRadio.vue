@@ -1,7 +1,7 @@
 <template>
   <button
     :class="{ 'border-primary-300': isActive }"
-    class="relative flex px-6 py-4 gap-1 rounded-md border-2"
+    class="relative flex px-3 py-3 gap-1 rounded-md border-2 bg-white"
   >
     <p class="font-bold text-xl">
       {{ value }}

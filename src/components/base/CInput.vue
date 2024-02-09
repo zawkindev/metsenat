@@ -5,7 +5,7 @@
     v-model="inputValue"
     :placeholder="placeholder"
     @input="emit('update:modelValue', $event.target.value)"
-    class="min-w-[370px] rounded-md py-3 px-4 focus:outline-none bg-gray-50 border-2 border-[#E0E7FF] focus:border-primary-200"
+    class="rounded-md py-3 px-4 focus:outline-none bg-gray-50 border-2 border-[#E0E7FF] focus:border-primary-200"
   />
 </template>
 

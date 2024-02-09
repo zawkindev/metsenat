@@ -4,7 +4,7 @@
   </TitleBar>
 
   <form
-    @submit.prevent
+    @submit.prevent="handleSubmit"
     class="flex flex-col w-7/12 mx-auto bg-white p-10 mt-14 gap-8 rounded-lg"
   >
     <div class="flex justify-between items-center gap-10">
@@ -14,7 +14,7 @@
         id="full_name"
         v-model="form.name"
         placeholder="Abdullayev Abdulla Abdulla o'g'li"
-        label="f.i.sh.(familiya ism sharif)"
+        label="f.i.sh.(familiya ism$ sharif)"
       />
       <FormGroup
         :validation="v$?.phone?.$error"
@@ -94,9 +94,12 @@
         placeholder="summani kiriting"
         label="Kontrakt summa"
       />
+      <pre>
+      {{ form.contract }}
+      </pre>
     </div>
     <div class="flex justify-end">
-      <CButton class="primary" @click.prevent="handleSubmit()">
+      <CButton class="primary">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -142,21 +145,17 @@ const { form, validateSubmit, v$ } = useFormValidation();
 
 const router = useRouter();
 
-const studentStore = useStudentStore()
+const studentStore = useStudentStore();
 const cselectStore = useCSelectStore();
 
 const response = ref();
 
-
-
-
 async function handleSubmit() {
-  const result = await validateSubmit();
-  console.log("result of valiadtion in addStudent: ", result);
-  if (!result) {
+  const isFormCorrect = await v$.value.$touch();
+  if (!isFormCorrect) {
     return;
   }
-  addStudent();
+  await addStudent();
 }
 
 const addStudent = async () => {

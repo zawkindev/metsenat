@@ -1,8 +1,8 @@
 <template>
   <div class="flex items-center justify-between">
     <div>
-      {{ totalCards }} tadan {{ (currentPage - 1) * 10 }}-{{
-        currentPage * 10 < totalCards ? currentPage * 10 : totalCards
+      {{ totalCards }} tadan {{ (currentPage - 1) * cardsPerPage }}-{{
+        currentPage * cardsPerPage < totalCards ? currentPage * cardsPerPage : totalCards
       }}
       ko'rsatilmoqda
     </div>

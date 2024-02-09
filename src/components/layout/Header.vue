@@ -1,14 +1,18 @@
 <template>
-  <div class="w-full z-10 bg-white py-5 px-32 custom-shadow select-none">
+  <div class="w-full z-10 bg-white py-3 px-6 md:px-8 custom-shadow text-base select-none">
     <div v-if="variant == 'default'" class="flex justify-between select-none">
       <div class="flex items-center gap-2">
-        <RouterLink class="flex gap-2" :to="{ name: 'Home' }">
-          <img alt="logo" class="cursor-pointer" src="@/assets/images/logo.svg" />
+        <RouterLink class="flex flex-shrink-0 gap-2" :to="{ name: 'Home' }">
+          <img
+            alt="logo"
+            class="cursor-pointer w-32 sm:w-44"
+            src="@/assets/images/logo.svg"
+          />
           <Badge variant="danger"> club </Badge>
         </RouterLink>
       </div>
 
-      <div class="flex items-center gap-10">
+      <div class="hidden md:flex items-center text-base whitespace-nowrap gap-10">
         <p>Asosiy</p>
         <p>Grantlar</p>
         <p>Soliq imtiyozlari</p>

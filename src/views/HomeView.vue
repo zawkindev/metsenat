@@ -1,7 +1,7 @@
 <template>
-  <div class="flex">
-    <div class="flex w-7/12 h-full justify-center mt-20">
-      <div class="flex w-3/5 flex-col gap-7">
+  <div class="flex flex-col md:flex-row">
+    <div class="flex w-full md:w-7/12 h-full justify-center mt-20">
+      <div class="flex w-full md:w-4/5 px-6 sm:px-16 flex-col gap-7">
         <h2 class="text-4xl font-sans w-4/5 font-bold">
           Homiy sifatida ariza topshirish
         </h2>
@@ -46,7 +46,7 @@
         <CButton> Yuborish </CButton>
       </div>
     </div>
-    <div class="flex flex-col gap-4 w-5/12 p-16">
+    <div class="flex flex-col gap-4 w-full md:w-5/12 p-6 sm:p-16">
       <p class="quote flex w-10/12 text-xl pl-6 pt-6">
         Yuqori sinflarda bolalar shaxs boʻlib, jamoa boʻlib shakllanadi. Ayni
         oʻsha paytda ularni oʻzlari oʻrgangan muhitdan ajratib qoʻymaslik kerak.
