@@ -1,5 +1,5 @@
 <template>
-  <div :class="getClasses()" class="font-normal h-fit w-fit whitespace-nowrap">
+  <div :class="getClasses()" class="font-normal whitespace-nowrap">
     <slot />
   </div>
 </template>
@@ -9,11 +9,6 @@ const props = defineProps({
   variant: {
     type: String,
     required: true,
-    validator(value) {
-      return ["primary", "success", "warn", "danger", "disabled"].includes(
-        value,
-      );
-    },
   },
   withBg: Boolean,
 });
@@ -27,7 +22,7 @@ function getClasses() {
     case "warn":
       return `capitalize px-3 py-1 text-yellow-400  ${props.withBg ? "bg-yellow-200 text-yellow-500 rounded-lg bg-opacity-40" : ""} `;
     case "danger":
-      return `uppercase py-1 px-[10px] ${props.withBg ? "bg-danger-400 bg-opacity-40 rounded-xl" : ""} text-white `;
+      return `uppercase py-1 px-2 sm:px-[10px] ${props.withBg ? "bg-danger-400 bg-opacity-40 rounded-xl" : ""} text-white `;
     case "disabled":
       return `capitalize px-3 py-1 text-gray-400`;
   }

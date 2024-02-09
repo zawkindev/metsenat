@@ -1,5 +1,5 @@
 <template>
-  <div class="relative w-full group">
+  <div class="relative max-w-44 group">
     <CInput
       type="text"
       placeholder="Izlash"

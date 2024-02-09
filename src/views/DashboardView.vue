@@ -1,6 +1,8 @@
 <template>
   <div class="flex flex-col w-full overflow-visible">
-    <Bar v-if="shouldRenderBar" />
+    <div class="hidden sm:flex">
+      <Bar v-if="shouldRenderBar" />
+    </div>
     <RouterView></RouterView>
   </div>
 </template>

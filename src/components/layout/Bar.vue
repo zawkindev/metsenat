@@ -1,13 +1,15 @@
 <template>
   <div
-    class="w-full justify-between py-3 px-6 md:py-6 sm:px-8 md:px-32 bg-white hidden sm:flex "
+    class="w-full flex justify-between py-3 px-6 md:py-6 sm:px-8 md:px-16 lg:px-32 bg-white"
   >
     <slot>
-      <Tab
-        @activate="(index) => handleActivate(index)"
-        :default-tab="activeTab"
-        :options="tabs"
-      />
+      <div class="w-fit">
+        <Tab
+          @activate="(index) => handleActivate(index)"
+          :default-tab="activeTab"
+          :options="tabs"
+        />
+      </div>
       <div class="flex w-fit items-center gap-5">
         <Search class="h-full" />
         <CButton
@@ -16,11 +18,12 @@
           variant="outline"
           :withBg="true"
         >
-          <img class="w-7 h-auto" src="@/assets/images/icons/filter.svg" alt="filter icon" />
-          <p class="hidden md:flex">
-
-          Filter
-          </p>
+          <img
+            class="w-7 h-auto"
+            src="@/assets/images/icons/filter.svg"
+            alt="filter icon"
+          />
+          <p class="hidden md:flex">Filter</p>
         </CButton>
       </div>
     </slot>

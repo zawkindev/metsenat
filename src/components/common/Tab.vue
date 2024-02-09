@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row bg-white rounded-md border overflow-hidden">
+  <div class="flex flex-row w-full bg-white rounded-md border overflow-hidden">
     <div
       v-for="(option, index) in options"
       :key="index"
@@ -8,7 +8,7 @@
       @click="handleClick(index)"
     >
       <span
-        class="p-2 py-0 text-sm uppercase font-semibold"
+        class="p-2 py-4 text-sm uppercase font-semibold"
         :class="{ 'text-white': index === activeTab }"
         >{{ option }}</span
       >

@@ -10,8 +10,8 @@
       }}
       ko'rsatilmoqda
     </div>
-    <div class="flex items-center gap-2 sm:gap-4">
-      <div class="flex w-fit">
+    <div class="flex items-start sm:items-center gap-2 sm:gap-4">
+      <div class="flex w-fit justify-start items-start">
         <CSelect
           :isOpen="cselectStore.pageSize"
           @click="cselectStore.pageSize = !cselectStore.pageSize"
@@ -38,7 +38,7 @@
           </template>
         </CSelect>
       </div>
-      <div class="flex flex-wrap gap-2 justify-center">
+      <div class="flex flex-wrap gap-2 justify-center items-center">
         <button
           v-for="item in paginationData"
           :key="item"
