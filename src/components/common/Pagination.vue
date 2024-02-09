@@ -1,12 +1,16 @@
 <template>
-  <div class="flex items-center justify-between">
+  <div
+    class="flex flex-col-reverse gap-5 sm:flex-row items-center justify-between"
+  >
     <div>
       {{ totalCards }} tadan {{ (currentPage - 1) * cardsPerPage }}-{{
-        currentPage * cardsPerPage < totalCards ? currentPage * cardsPerPage : totalCards
+        currentPage * cardsPerPage < totalCards
+          ? currentPage * cardsPerPage
+          : totalCards
       }}
       ko'rsatilmoqda
     </div>
-    <div class="flex items-center gap-4">
+    <div class="flex items-center gap-2 sm:gap-4">
       <div class="flex w-fit">
         <CSelect
           :isOpen="cselectStore.pageSize"
@@ -34,20 +38,22 @@
           </template>
         </CSelect>
       </div>
-      <button
-        v-for="item in paginationData"
-        :key="item"
-        class="py-1 px-3 rounded-md border-2 duration-200"
-        :class="{
-          'bg-blue-500 border-blue-500 text-white': item === currentPage,
-          'bg-white': item !== currentPage,
-          'hover:border-blue-400': item !== '...',
-        }"
-        @click="emit('selectPage', item)"
-        :disabled="item === '...'"
-      >
-        <span>{{ item }}</span>
-      </button>
+      <div class="flex flex-wrap gap-2 justify-center">
+        <button
+          v-for="item in paginationData"
+          :key="item"
+          class="py-1 px-3 rounded-md border-2 duration-200"
+          :class="{
+            'bg-blue-500 border-blue-500 text-white': item === currentPage,
+            'bg-white': item !== currentPage,
+            'hover:border-blue-400': item !== '...',
+          }"
+          @click="emit('selectPage', item)"
+          :disabled="item === '...'"
+        >
+          <span>{{ item }}</span>
+        </button>
+      </div>
     </div>
   </div>
 </template>

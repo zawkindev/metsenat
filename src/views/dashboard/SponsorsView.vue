@@ -1,56 +1,58 @@
 <template>
-  <div class="flex flex-col px-32 pb-32">
-    <CTable>
-      <template #header>
-        <li class="w-[2%] text-center">#</li>
-        <li
-          v-for="(column, index) in columns"
-          :key="index"
-          :class="`w-[${column.width}] ${index === 0 ? 'text-left' : 'text-center'}`"
-          class="text-sm font-bold uppercase"
-        >
-          {{ column.label }}
-        </li>
-      </template>
+  <div class="flex flex-col gap-10 px-4 lg:px-32 pb-8 sm:pb-32 overflow-hidden">
+    <div class="overflow-auto mt-10">
+      <CTable>
+        <template #header>
+          <li class="w-[2%] text-center">#</li>
+          <li
+            v-for="(column, index) in columns"
+            :key="index"
+            :class="`w-[${column.width}] ${index === 0 ? 'text-left' : 'text-center'}`"
+            class="text-sm font-bold uppercase"
+          >
+            {{ column.label }}
+          </li>
+        </template>
 
-      <template #body>
-        <li
-          v-for="(item, index) in store.sponsorsList?.results"
-          :key="index"
-          class="bg-white py-[22px] px-[14px] rounded-lg my-5 border-[#B2B7C1]"
-        >
-          <ul class="flex items-center justify-between px-5">
-            <li class="w-[2%] text-left">{{ index + 1 }}</li>
-            <li class="w-[34%] text-left">{{ item?.full_name }}</li>
-            <li class="w-[10%] text-center">{{ item?.phone }}</li>
-            <li class="w-[16%] text-center">
-              {{ formatMoney(item?.spent)
-              }}<span class="ml-2 text-gray-400">UZS</span>
-            </li>
-            <li class="w-[15%] text-center">
-              {{ formatMoney(item?.sum) }}
-              <span class="ml-2 text-gray-400">UZS</span>
-            </li>
-            <li class="w-[15%] text-center">
-              {{ formatDate(item?.created_at) }}
-            </li>
-            <li class="w-[8%] text-center">
-              <!-- <CBadge :status="item?.get_status_display"></CBadge> -->
-              <Badge :variant="statusType[item?.get_status_display]">
-                {{ item?.get_status_display }}
-              </Badge>
-            </li>
-            <li class="w-[8%] text-left flex items-center justify-end">
-              <RouterLink
-                :to="{ name: 'SponsorDetails', params: { id: item.id } }"
-              >
-                <img src="@/assets/images/icons/eye.svg" alt="eye icon" />
-              </RouterLink>
-            </li>
-          </ul>
-        </li>
-      </template>
-    </CTable>
+        <template #body>
+          <li
+            v-for="(item, index) in store.sponsorsList?.results"
+            :key="index"
+            class="bg-white py-[22px] px-[14px] rounded-lg my-5 border-[#B2B7C1]"
+          >
+            <ul class="flex items-center justify-between px-5">
+              <li class="w-[2%] text-left">{{ index + 1 }}</li>
+              <li class="w-[34%] text-left">{{ item?.full_name }}</li>
+              <li class="w-[10%] text-center">{{ item?.phone }}</li>
+              <li class="w-[16%] text-center">
+                {{ formatMoney(item?.spent)
+                }}<span class="ml-2 text-gray-400">UZS</span>
+              </li>
+              <li class="w-[15%] text-center">
+                {{ formatMoney(item?.sum) }}
+                <span class="ml-2 text-gray-400">UZS</span>
+              </li>
+              <li class="w-[15%] text-center">
+                {{ formatDate(item?.created_at) }}
+              </li>
+              <li class="w-[8%] text-center">
+                <!-- <CBadge :status="item?.get_status_display"></CBadge> -->
+                <Badge :variant="statusType[item?.get_status_display]">
+                  {{ item?.get_status_display }}
+                </Badge>
+              </li>
+              <li class="w-[8%] text-left flex items-center justify-end">
+                <RouterLink
+                  :to="{ name: 'SponsorDetails', params: { id: item.id } }"
+                >
+                  <img src="@/assets/images/icons/eye.svg" alt="eye icon" />
+                </RouterLink>
+              </li>
+            </ul>
+          </li>
+        </template>
+      </CTable>
+    </div>
 
     <Pagination
       @select-page="(page) => selectPage(page)"
@@ -59,8 +61,11 @@
       :total-cards="store?.sponsorsList?.count"
       :cards-per-page="store?.pageSize"
     />
-        <FilterModal v-if="filterModal.isOpen" @close="close(filterModal)" variant="sponsor" />
-
+    <FilterModal
+      v-if="filterModal.isOpen"
+      @close="close(filterModal)"
+      variant="sponsor"
+    />
   </div>
 </template>
 

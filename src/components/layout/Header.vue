@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full z-10 bg-white py-0 sm:py-3 px-8 md:px-32 custom-shadow text-base select-none"
+    class="w-full z-10 bg-white py-2 px-6 sm:py-3 sm:px-8 md:px-32 custom-shadow text-base select-none"
   >
     <div v-if="variant == 'default'" class="flex justify-between select-none">
       <div class="flex items-center gap-2">
@@ -23,11 +23,13 @@
         />
         <div
           v-if="menuOpen"
-          class="absolute bg-white p-3 px-6 right-0 rounded-lg shadow-lg whitespace-nowrap"
+          class="absolute bg-white pr-8 p-4 right-0 rounded-lg shadow-lg whitespace-nowrap"
         >
           <p class="text-lg cursor-pointer active:text-blue-500">Asosiy</p>
           <p class="text-lg cursor-pointer active:text-blue-500">Grantlar</p>
-          <p class="text-lg cursor-pointer active:text-blue-500">Soliq imtiyozlari</p>
+          <p class="text-lg cursor-pointer active:text-blue-500">
+            Soliq imtiyozlari
+          </p>
         </div>
       </div>
       <div
@@ -44,30 +46,76 @@
           </div>
         </RouterLink>
 
-        <RouterLink :to="{ name: 'Auth' }">
-          <CButton variant="outline"> Ro'yhatdan o'tish </CButton>
-        </RouterLink>
+        <CButton @click="$router.push({ name: 'Auth' })" variant="outline">
+          Ro'yhatdan o'tish
+        </CButton>
+        <button @click="$router.push({ name: 'Auth' })">
+          sdkfja;lsdjf;aklf
+        </button>
       </div>
     </div>
 
-    <div v-if="variant == 'withoutMenu'" class="flex justify-between">
+    <div
+      v-if="variant == 'withoutMenu'"
+      class="flex justify-between items-center"
+    >
       <RouterLink :to="{ name: 'Stats' }">
-        <img alt="logo" src="@/assets/images/logo2.svg" />
+        <img class="w-14 h-auto" alt="logo" src="/logo.svg" />
       </RouterLink>
-      <div class="flex gap-10">
-        <div
-          class="flex bg-gray-200 p-1 items-center rounded-md cursor-pointer"
-        >
-          <span class="px-5 font-bold">Shohruz</span>
+      <div class="header flex gap-5">
+        <div class="sm:hidden flex gap-5 relative">
+          <Search />
+          <img
+            @click="menuOpen = !menuOpen"
+            class="w-12 h-auto"
+            alt="menu icon"
+            src="@/assets/images/icons/menu.svg"
+          />
+
           <div
-            class="px-1 pt-2 pb-0 flex items-end bg-success-200 rounded h-fit"
+            v-if="menuOpen"
+            class="absolute flex flex-col bg-white pr-8 pl-4 p-2 right-0 top-14 rounded-lg shadow-lg whitespace-nowrap"
           >
-            <img src="@/assets/images/icons/user1.svg" />
+            <RouterLink
+              :to="{ name: 'Stats' }"
+              class="text-lg cursor-pointer active:text-blue-500"
+            >
+              Dashboard
+            </RouterLink>
+
+            <RouterLink
+              :to="{ name: 'SponsorsList' }"
+              class="text-lg cursor-pointer active:text-blue-500"
+            >
+              Homiylar
+            </RouterLink>
+
+            <RouterLink
+              :to="{ name: 'StudentsList' }"
+              class="text-lg cursor-pointer active:text-blue-500"
+            >
+              Talabalar
+            </RouterLink>
+            <p class="text-lg cursor-pointer active:text-blue-500">Profile</p>
+            <p class="text-lg cursor-pointer active:text-blue-500">Log out</p>
           </div>
         </div>
-        <button @click="logOut">
-          <img alt="log out icon" src="@/assets/images/icons/log-out.svg" />
-        </button>
+
+        <div class="hidden sm:flex gap-5">
+          <div
+            class="flex bg-gray-200 p-1 items-center rounded-md cursor-pointer"
+          >
+            <span class="px-2 sm:px-5 font-bold">Shohruz</span>
+            <div
+              class="px-1 pt-2 pb-0 flex items-end bg-success-200 rounded h-fit"
+            >
+              <img src="@/assets/images/icons/user1.svg" />
+            </div>
+          </div>
+          <button @click="logOut">
+            <img alt="log out icon" src="@/assets/images/icons/log-out.svg" />
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -76,6 +124,7 @@
 <script setup>
 import Badge from "@/components/common/Badge.vue";
 import CButton from "@/components/base/CButton.vue";
+import Search from "@/components/common/Search.vue";
 import { RouterLink, useRouter } from "vue-router";
 import { ref } from "vue";
 
@@ -91,7 +140,13 @@ defineProps({
 
 const router = useRouter();
 
-const menuOpen = ref(true);
+const menuOpen = ref(false);
+
+window.addEventListener("click", (e) => {
+  if (!e.target.closest(".header")) {
+    menuOpen.value = false;
+  }
+});
 
 function logOut() {
   localStorage.removeItem("access-token");

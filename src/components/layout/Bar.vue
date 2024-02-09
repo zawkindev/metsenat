@@ -1,5 +1,7 @@
 <template>
-  <div class="flex w-full justify-between py-6 px-32 bg-white">
+  <div
+    class="w-full justify-between py-3 px-6 md:py-6 sm:px-8 md:px-32 bg-white hidden sm:flex "
+  >
     <slot>
       <Tab
         @activate="(index) => handleActivate(index)"
@@ -7,15 +9,18 @@
         :options="tabs"
       />
       <div class="flex w-fit items-center gap-5">
-        <Search class="min-w-72 h-full" />
+        <Search class="h-full" />
         <CButton
           v-if="$route.name !== 'Stats'"
           @click="open(filterModal)"
           variant="outline"
           :withBg="true"
         >
-          <img src="@/assets/images/icons/filter.svg" alt="filter icon" />
+          <img class="w-7 h-auto" src="@/assets/images/icons/filter.svg" alt="filter icon" />
+          <p class="hidden md:flex">
+
           Filter
+          </p>
         </CButton>
       </div>
     </slot>
@@ -45,6 +50,4 @@ const activeTab = computed(() =>
 function handleActivate(index) {
   router.push({ name: routeNames[index] });
 }
-
-
 </script>

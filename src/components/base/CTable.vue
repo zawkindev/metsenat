@@ -1,7 +1,7 @@
 <template>
-  <div class="w-full">
+  <div class="w-full tabble min-w-[1440px]">
     <ul
-      class="overflow-hidden w-full whitespace-nowrap flex my-12 flex-col list-none p-0"
+      class="overflow-auto w-full whitespace-nowrap flex flex-col list-none"
     >
       <li>
         <ul class="text-[#B1B1B8] text-left flex gap-6 w-full">
@@ -9,7 +9,7 @@
         </ul>
       </li>
 
-      <li class="w-full">
+      <li class="w-full overflow-visible">
         <slot name="body"> </slot>
       </li>
     </ul>
@@ -17,3 +17,9 @@
 </template>
 
 <script setup></script>
+
+<style>
+.tabble{
+  max-width: calc(100vw - 100px);
+}
+</style>

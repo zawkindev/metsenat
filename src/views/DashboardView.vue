@@ -5,7 +5,7 @@
   </div>
 </template>
 <script setup>
-import { computed, onBeforeMount, onMounted } from "vue";
+import { computed, onBeforeMount } from "vue";
 import { RouterView, useRoute } from "vue-router";
 import { useToast } from "vue-toastification";
 import Bar from "@/components/layout/Bar.vue";

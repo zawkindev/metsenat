@@ -1,8 +1,9 @@
 <template>
   <button
-    :class="getClasses(), {'grayscale': disabled}"
+    :class="getClasses()"
     :type="type"
-    class="flex justify-center gap-2 py-4 px-6 font-bold capitalize rounded-md border-2"
+    :disabled="disabled"
+    class="flex justify-center gap-2 p-3 md:py-3 md:px-6 font-bold capitalize rounded-md border-2 disabled:grayscale"
   >
     <slot />
   </button>
@@ -18,7 +19,7 @@ const props = defineProps({
     },
   },
   type: String,
-  disabled: Boolean
+  disabled: Boolean,
 });
 
 function getClasses() {

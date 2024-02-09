@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col px-32 pb-32">
+  <div class="flex flex-col gap-10 px-4 lg:px-32 pb-8 sm:pb-32 overflow-hidden">
     <div class="flex w-full justify-end pt-10">
       <RouterLink :to="{ name: 'AddStudent' }">
         <CButton class="primary">
@@ -30,47 +30,49 @@
         </CButton>
       </RouterLink>
     </div>
-    <CTable>
-      <template #header>
-        <li
-          v-for="(column, index) in columns"
-          :key="index"
-          :class="`w-[${column.width}] ${index === 1 ? 'text-left' : 'text-center'} uppercase text-sm font-bold`"
-        >
-          {{ column.label }}
-        </li>
-      </template>
+    <div class="overflow-auto">
+      <CTable>
+        <template #header>
+          <li
+            v-for="(column, index) in columns"
+            :key="index"
+            :class="`w-[${column.width}] ${index === 1 ? 'text-left' : 'text-center'} uppercase text-sm font-bold`"
+          >
+            {{ column.label }}
+          </li>
+        </template>
 
-      <template #body>
-        <li
-          v-for="(item, index) in store.studentsList?.results"
-          :key="index"
-          class="bg-white py-[22px] px-[14px] rounded-lg my-5 border-[#B2B7C1]"
-        >
-          <ul class="flex items-center justify-between">
-            <li class="w-[2%] text-center">{{ index + 1 }}</li>
-            <li class="w-[20%] text-left">{{ item.full_name }}</li>
-            <li class="w-[10%] text-center">
-              {{ item.type === 1 ? "Bakalavr" : "Magistr" }}
-            </li>
-            <li class="w-[30%] text-center">
-              {{ item.institute?.name }}
-            </li>
-            <li class="w-[15%] text-center">{{ formatMoney(item.given) }}</li>
-            <li class="w-[15%] text-center">
-              {{ formatMoney(item.contract) }}
-            </li>
-            <li class="w-[8%] text-center flex items-center justify-center">
-              <RouterLink
-                :to="{ name: 'StudentDetails', params: { id: item.id } }"
-              >
-                <img src="@/assets/images/icons/eye.svg" alt="eye icon" />
-              </RouterLink>
-            </li>
-          </ul>
-        </li>
-      </template>
-    </CTable>
+        <template #body>
+          <li
+            v-for="(item, index) in store.studentsList?.results"
+            :key="index"
+            class="bg-white py-[22px] px-[14px] rounded-lg my-5 border-[#B2B7C1]"
+          >
+            <ul class="flex items-center justify-between">
+              <li class="w-[2%] text-center">{{ index + 1 }}</li>
+              <li class="w-[20%] text-left">{{ item.full_name }}</li>
+              <li class="w-[10%] text-center">
+                {{ item.type === 1 ? "Bakalavr" : "Magistr" }}
+              </li>
+              <li class="w-[30%] text-center">
+                {{ item.institute?.name }}
+              </li>
+              <li class="w-[15%] text-center">{{ formatMoney(item.given) }}</li>
+              <li class="w-[15%] text-center">
+                {{ formatMoney(item.contract) }}
+              </li>
+              <li class="w-[8%] text-center flex items-center justify-center">
+                <RouterLink
+                  :to="{ name: 'StudentDetails', params: { id: item.id } }"
+                >
+                  <img src="@/assets/images/icons/eye.svg" alt="eye icon" />
+                </RouterLink>
+              </li>
+            </ul>
+          </li>
+        </template>
+      </CTable>
+    </div>
 
     <Pagination
       @select-page="(page) => selectPage(page)"
@@ -79,7 +81,11 @@
       :total-cards="store?.studentsList?.count"
       :cards-per-page="store?.pageSize"
     />
-    <FilterModal v-if="filterModal.isOpen" @close="close(filterModal)" variant="student" />
+    <FilterModal
+      v-if="filterModal.isOpen"
+      @close="close(filterModal)"
+      variant="student"
+    />
   </div>
 </template>
 

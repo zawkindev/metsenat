@@ -1,7 +1,10 @@
 <template>
-  <div class="flex mt-14 flex-col w-full px-32 pb-32 gap-10">
-    <div class="flex justify-between gap-10 flex-wrap">
+  <div
+    class="flex mt-6 sm:mt-14 flex-col w-full px-6 pb-8 sm:px-8 md:px-32 sm:pb-32 gap-10"
+  >
+    <div class="flex justify-between gap-3 sm:gap-10 flex-wrap w-full">
       <MoneyCard
+        class="self-end flex w-full"
         img="icons/money-blue.svg"
         :amount="response.total_need"
         title="Jami to'langan summa"
@@ -23,7 +26,7 @@
       >
       </MoneyCard>
     </div>
-    <div class="flex w-full h-[500px]">
+    <div class="flex w-full  h-64 sm:h-[500px]">
       <Chart />
     </div>
   </div>
@@ -37,7 +40,6 @@ import { onBeforeMount, ref } from "vue";
 
 const { get } = useFetch();
 
-
 const response = ref("");
 
 const fetchData = async () => {
@@ -48,7 +50,6 @@ const fetchData = async () => {
     console.log(error);
   }
 };
-
 
 onBeforeMount(() => {
   fetchData();

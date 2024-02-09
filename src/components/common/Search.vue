@@ -3,7 +3,7 @@
     <CInput
       type="text"
       placeholder="Izlash"
-      class="w-full h-full rounded-md pr-4 pl-10 bg-[#e8e8e8] border-2 border-transparent focus:border-primary-300 focus:outline-none"
+      class="h-full rounded-md pr-4 pl-10 bg-[#e8e8e8] border-2 border-transparent focus:border-primary-300 focus:outline-none"
       @focus="isFocused = true"
       @blur="isFocused = false"
     />
