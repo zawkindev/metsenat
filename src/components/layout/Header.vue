@@ -1,5 +1,7 @@
 <template>
-  <div class="w-full z-10 bg-white py-3 px-6 md:px-8 custom-shadow text-base select-none">
+  <div
+    class="w-full z-10 bg-white py-0 sm:py-3 px-8 md:px-32 custom-shadow text-base select-none"
+  >
     <div v-if="variant == 'default'" class="flex justify-between select-none">
       <div class="flex items-center gap-2">
         <RouterLink class="flex flex-shrink-0 gap-2" :to="{ name: 'Home' }">
@@ -12,7 +14,25 @@
         </RouterLink>
       </div>
 
-      <div class="hidden md:flex items-center text-base whitespace-nowrap gap-10">
+      <div class="md:hidden rounded-lg relative">
+        <img
+          @click="menuOpen = !menuOpen"
+          class="w-12 h-auto"
+          alt="menu icon"
+          src="@/assets/images/icons/menu.svg"
+        />
+        <div
+          v-if="menuOpen"
+          class="absolute bg-white p-3 px-6 right-0 rounded-lg shadow-lg whitespace-nowrap"
+        >
+          <p class="text-lg cursor-pointer active:text-blue-500">Asosiy</p>
+          <p class="text-lg cursor-pointer active:text-blue-500">Grantlar</p>
+          <p class="text-lg cursor-pointer active:text-blue-500">Soliq imtiyozlari</p>
+        </div>
+      </div>
+      <div
+        class="hidden md:flex items-center text-base whitespace-nowrap gap-10"
+      >
         <p>Asosiy</p>
         <p>Grantlar</p>
         <p>Soliq imtiyozlari</p>
@@ -57,6 +77,7 @@
 import Badge from "@/components/common/Badge.vue";
 import CButton from "@/components/base/CButton.vue";
 import { RouterLink, useRouter } from "vue-router";
+import { ref } from "vue";
 
 defineProps({
   variant: {
@@ -70,15 +91,11 @@ defineProps({
 
 const router = useRouter();
 
+const menuOpen = ref(true);
+
 function logOut() {
   localStorage.removeItem("access-token");
   localStorage.removeItem("toast-showed");
   router.push({ name: "Auth" });
 }
 </script>
-
-<style>
-p {
-  cursor: pointer;
-}
-</style>
