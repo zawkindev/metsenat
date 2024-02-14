@@ -1,7 +1,7 @@
 <template>
   <div
     :class="{ 'image-bg': $route.name === 'Home' }"
-    class="flex flex-col min-h-screen pb-32"
+    class="flex flex-col min-h-screen"
   >
     <Header :variant="headerVariant" />
     <RouterView />
@@ -29,15 +29,15 @@ const headerVariant = computed(() =>
   background-color: #f5f5f7;
 }
 
- @media only screen and (min-width: 934px) {
-   .image-bg{
-     background-position: bottom right;
-   }
- }
+@media only screen and (min-width: 934px) {
+  .image-bg {
+    background-position: bottom right;
+  }
+}
 
-  @media only screen and (min-width: 640px) {
-   .image-bg{
-     background-size: 50%;
-   }
- }
+@media only screen and (min-width: 640px) {
+  .image-bg {
+    background-size: 50%;
+  }
+}
 </style>

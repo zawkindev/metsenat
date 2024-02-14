@@ -8,7 +8,7 @@
       @click="handleClick(index)"
     >
       <span
-        class="py-2 sm:py-4 text-sm uppercase font-semibold"
+        class="p-2 sm:py-4 text-sm uppercase font-semibold"
         :class="{ 'text-white': index === activeTab }"
         >{{ option }}</span
       >

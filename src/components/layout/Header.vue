@@ -61,9 +61,9 @@
           </div>
         </RouterLink>
 
-        <CButton @click="$router.push({ name: 'Auth' })" variant="outline">
-          Ro'yhatdan o'tish
-        </CButton>
+        <RouterLink :to="{ name: 'Auth' }">
+          <CButton variant="outline"> Ro'yhatdan o'tish </CButton>
+        </RouterLink>
       </div>
     </div>
 

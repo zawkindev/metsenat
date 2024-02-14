@@ -89,12 +89,6 @@ const tabValues = ["jismoniy shaxs", "yuridik shaxs"];
 
 const selectedTab = ref(0);
 
-const inputValues = reactive({
-  fullName: "",
-  company: "",
-  phoneNumber: "",
-});
-
 const radioOptions = ref([]);
 
 function handleEmit(index) {
@@ -121,8 +115,9 @@ const form = reactive({
 
 const rules = computed(() => {
   return {
-    name: { required },
+    fullName: { required },
     phone: { required },
+    amount: { required },
   };
 });
 

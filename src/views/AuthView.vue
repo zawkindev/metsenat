@@ -30,8 +30,7 @@
         />
         <p v-show="data?.detail" class="text-red-600">Akkount topilmadi</p>
         <div class="flex">
-
-        <ReCaptcha />
+          <ReCaptcha @verify="(response) => (form.recaptcha = response)" />
         </div>
         <CButton @click.prevent="handleSubmit">Kirish</CButton>
       </div>
@@ -40,10 +39,11 @@
 </template>
 
 <script setup>
+import { computed, reactive, ref } from "vue";
 import { RouterLink, useRouter } from "vue-router";
 import { useFetch } from "@/composables/useFetch";
-import { useFormValidation } from "@/composables/useValidate";
-import { ref } from "vue";
+import { useVuelidate } from "@vuelidate/core";
+import { required } from "@vuelidate/validators";
 import Badge from "@/components/common/Badge.vue";
 import CButton from "@/components/base/CButton.vue";
 import FormGroup from "@/components/common/FormGroup.vue";
@@ -53,14 +53,28 @@ const { post } = useFetch();
 
 const router = useRouter();
 
-const { form, validateSubmit, v$ } = useFormValidation();
-
 const data = ref();
 
+const form = reactive({
+  name: "",
+  password: "",
+  recaptcha: "",
+});
+
+const rules = computed(() => {
+  return {
+    name: { required },
+    password: { required },
+    recaptcha: { required },
+  };
+});
+
+const v$ = useVuelidate(rules, form);
+
 async function handleSubmit() {
-  const result = validateSubmit();
+  const result = await v$.value.$validate();
+
   if (!result) {
-    alert("The form has errors");
     return;
   }
   postData();

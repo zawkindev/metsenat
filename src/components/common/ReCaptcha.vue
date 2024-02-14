@@ -5,6 +5,7 @@
     size="normal"
     theme="light"
     ref="vueRecaptcha"
+    @verify="(response) => $emit('verify', response)"
   >
   </vue-recaptcha>
 </template>
@@ -14,23 +15,24 @@ import vueRecaptcha from "vue3-recaptcha2";
 
 export default {
   name: "app",
+  emits: ['verify'],
   components: {
     vueRecaptcha,
   },
   data() {
     return {
       showRecaptcha: true,
-      loadingTimeout: 30000, // 30 seconds
+      loadingTimeout: 30000,
     };
   },
   methods: {
     recaptchaExpired() {
       this.$refs.vueRecaptcha.reset();
     },
+    onCaptchaVerified(response) {
+
+      console.log("reCAPTCHA verified:", response);
+    },
   },
 };
 </script>
-<style>
-
-
-</style>
