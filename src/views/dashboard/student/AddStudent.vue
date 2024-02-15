@@ -5,16 +5,16 @@
 
   <form
     @submit.prevent="handleSubmit"
-    class="flex flex-col w-7/12 mx-auto bg-white p-10 mt-14 gap-8 rounded-lg"
+    class="flex flex-col w-11/12 sm:w-10/12 md:w-7/12 mx-auto bg-white p-10 mt-14 gap-8 rounded-lg"
   >
-    <div class="flex justify-between items-center gap-10">
+    <div class="flex flex-col sm:flex-row justify-between items-center gap-10">
       <FormGroup
         :validation="v$?.fullName?.$error"
         errorMsg="F.I.SH majburiy"
         id="full_name"
         v-model="form.fullName"
         placeholder="Abdullayev Abdulla Abdulla o'g'li"
-        label="f.i.sh.(familiya ism$ sharif)"
+        label="f.i.sh.(familiya ism sharif)"
       />
       <FormGroup
         :validation="v$?.phone?.$error"
@@ -53,7 +53,7 @@
         </div>
       </template>
     </CSelect>
-    <div class="flex justify-between w-full gap-10">
+    <div class="flex flex-col sm:flex-row justify-between w-full gap-10">
       <div class="flex flex-col gap-2 w-full">
         <label :for="type" class="uppercase font-semibold"
           >talabalik turi</label
@@ -99,10 +99,9 @@
       <CButton class="primary">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
           viewBox="0 0 24 24"
           fill="none"
+          class="h-auto w-4 sm:w-6"
         >
           <path
             d="M19.9999 11.9999H4.00007"
@@ -119,7 +118,7 @@
             stroke-linejoin="round"
           />
         </svg>
-        <span class="font-bold text-xl"> qo'shish </span>
+        <span class="font-bold text-sm sm:text-xl"> qo'shish </span>
       </CButton>
     </div>
   </form>

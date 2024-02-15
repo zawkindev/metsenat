@@ -3,7 +3,7 @@
     :class="getClasses()"
     :type="type"
     :disabled="disabled"
-    class="flex justify-center gap-2 p-3 md:py-3 md:px-6 font-bold capitalize rounded-md border-2 disabled:grayscale"
+    class="flex justify-center gap-2 p-2 sm:p-3 md:py-3 md:px-6 font-bold capitalize rounded-md border-2 disabled:grayscale"
   >
     <slot />
   </button>

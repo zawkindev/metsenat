@@ -1,37 +1,41 @@
 <template>
   <div class="pb-96 background">
     <TitleBar>
-      <p class="text-xl font-bold" @click="$router.go(-1)">{{ sponsor?.full_name }}</p>
-      <Badge :variant="statusType[sponsor?.get_status_display]" :with-bg="true">
-        {{ sponsor?.get_status_display }}</Badge
-      >
+      <p class="text-xl font-bold" @click="$router.go(-1)">
+        {{ sponsor?.full_name }}
+      </p>
+   
     </TitleBar>
 
     <div
-      class="flex flex-col w-7/12 mx-auto bg-white p-10 mt-14 gap-8 rounded-lg"
+      class="relative flex flex-col w-11/12 sm:w-10/12 md:w-7/12 mx-auto bg-white p-6 sm:p-10 mt-14 gap-4 sm:gap-8 rounded-lg"
     >
       <div class="flex items-center justify-between">
-        <h3 class="font-bold text-3xl">Homiy haqida</h3>
-        <CButton variant="outline">
-          <img src="@/assets/images/icons/edit.svg" alt="edit icon" />
-          <p class="text-xl">tahrirlash</p>
-        </CButton>
+        <h3 class="font-bold text-2xl sm:text-3xl">Homiy haqida</h3>
+        <Badge
+          :variant="statusType[sponsor?.get_status_display]"
+          :with-bg="true"
+        >
+          {{ sponsor?.get_status_display }}</Badge
+        >
       </div>
       <div class="flex items-center gap-6">
-        <div class="w-28 h-28 p-6 rounded-xl bg-gray-200">
+        <div class="w-20 sm:w-28 h-auto p-3 sm:p-6 rounded-xl bg-gray-200">
           <img
             class="w-full h-full"
             alt="profile icon"
             src="@/assets/images/icons/user2.svg"
           />
         </div>
-        <p class="text-2xl h-fit font-bold box-border max-w-72 break-words">
+        <p
+          class="text-lg sm:text-2xl h-fit font-bold box-border max-w-72 break-words"
+        >
           {{ sponsor?.full_name }}
         </p>
       </div>
 
-      <div class="flex flex-row flex-wrap justify-start font-bold">
-        <div class="flex flex-row gap-40">
+      <div class="flex flex-wrap justify-start font-bold">
+        <div class="flex flex-col sm:flex-row justify-between gap-4 sm:gap-40">
           <div>
             <p class="text-gray-400 uppercase font-bold text-sm">
               telefon raqam
@@ -46,6 +50,10 @@
           </div>
         </div>
       </div>
+      <CButton class="flex self-end" variant="outline">
+        <img src="@/assets/images/icons/edit.svg" alt="edit icon" />
+        <p class="text-md sm:text-xl">tahrirlash</p>
+      </CButton>
     </div>
   </div>
 </template>
