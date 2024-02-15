@@ -1,6 +1,5 @@
 <template>
-  <CModal @close="emit('close')" class="gap-10">
-    <h3 class="text-3xl font-bold mb-5">Filter</h3>
+  <CModal name="filter" @close="emit('close')" class="gap-10">
     <Chr />
     <form @submit.prevent>
       <div
@@ -8,7 +7,7 @@
         class="flex flex-col gap-10 w-full py-10 overflow-visible"
       >
         <div class="flex flex-col gap-2 w-full">
-          <label :for="type" class="uppercase font-semibold"
+          <label class="uppercase font-semibold text-sm sm:text-lg"
             >talabalik turi</label
           >
           <CSelect
@@ -24,7 +23,7 @@
             </template>
             <template #options>
               <div
-                v-for="option in applicationTypes"
+                v-for="(option, index) in applicationTypes"
                 :key="option"
                 @click="form.application = option"
                 :class="{
@@ -46,7 +45,9 @@
           @select="(item) => (form.amount = item)"
           :activeOption="form.amount"
         >
-          To‘lov summasi
+          <p class="uppercase font-semibold text-sm sm:text-lg">
+            To‘lov summasi
+          </p>
         </RadioGroup>
         <FormGroup
           id="sana"
@@ -57,8 +58,8 @@
           :validation="v$?.date?.$error"
           errorMsg="sana majburiy"
         />
-        <div class="flex w-full justify-end gap-6">
-          <CButton class="bg-white border-blue-400 border-2 group">
+        <div class="flex w-full justify-end gap-4 sm:gap-6">
+          <CButton class="bg-white border-blue-400 border-2 group ">
             <svg
               width="24"
               height="24"
@@ -109,11 +110,11 @@
                 </g>
               </g>
             </svg>
-            <p class="text-xl text-blue-600 group-hover:text-white">tozalash</p>
+            <p class="hidden sm:block text-xl text-blue-600 group-hover:text-white">tozalash</p>
           </CButton>
           <CButton type="submit" @click.prevent="handleSubmit()">
             <img alt="eye icon" src="@/assets/images/icons/eye1.svg" />
-            <p class="text-xl whitespace-nowrap">natijani ko'rish</p>
+            <p class="hidden sm:block text-xl whitespace-nowrap">natijani ko'rish</p>
           </CButton>
         </div>
       </div>
@@ -122,7 +123,7 @@
         class="flex flex-col gap-10 w-full py-10 overflow-visible"
       >
         <div class="flex flex-col gap-2 w-full">
-          <label :for="type" class="uppercase font-semibold"
+          <label class="uppercase font-semibold text-sm sm:text-lg"
             >talabalik turi</label
           >
 
@@ -139,7 +140,7 @@
             </template>
             <template #options>
               <div
-                v-for="option in studentStore.types"
+                v-for="(option, index) in studentStore.types"
                 :key="option.id"
                 @click="form.studentType = option"
                 :class="{
@@ -155,7 +156,9 @@
           </CSelect>
         </div>
         <div class="flex flex-col gap-2 w-full">
-          <label :for="type" class="uppercase font-semibold">OTM</label>
+          <label for="id" class="uppercase font-semibold text-sm sm:text-lg"
+            >OTM</label
+          >
           <CSelect
             :validation="v$?.institute?.$error"
             errorMsg="OTM nomi raqam majburiy"
@@ -191,11 +194,12 @@
 </template>
 
 <script setup>
-import { onBeforeMount, ref } from "vue";
-import { useFormValidation } from "@/composables/useValidate";
+import { computed, onBeforeMount, reactive, ref } from "vue";
 import { useFetch } from "@/composables/useFetch.js";
+import { useVuelidate } from "@vuelidate/core";
 import { useCSelectStore } from "@/store/cselect.js";
 import { useStudentStore } from "@/store/student.js";
+import { required } from "@vuelidate/validators";
 import CModal from "@/components/base/CModal.vue";
 import CSelect from "@/components/base/CSelect.vue";
 import CButton from "@/components/base/CButton.vue";
@@ -219,8 +223,6 @@ const studentStore = useStudentStore();
 
 const { get } = useFetch();
 
-const { form, validateSubmit, v$ } = useFormValidation();
-
 const applicationTypes = [
   "Yangi",
   "Moderatsiyada",
@@ -231,12 +233,38 @@ const applicationTypes = [
 const checkBoxValues = ref([]);
 const otmList = ref([]);
 
+const form = reactive({
+  fullName: "",
+  studentType: "",
+  phone: "",
+  institute: "",
+  contract: "",
+  amount: "",
+  application: "",
+});
+
+const rules = computed(() => {
+  return {
+    fullName: { required },
+    studentType: { required },
+    phone: { required },
+    institute: { required },
+    contract: { required },
+    amount: { required },
+    application: { required },
+  };
+});
+
+const v$ = useVuelidate(rules, form);
+
 async function handleSubmit() {
-  const result = validateSubmit();
+  const result = await v$.value.$validate();
+
   if (!result) {
-    alert("The form has errors");
+    console.log("faail already: ", result);
     return;
   }
+  console.log("Bu yerda post request bo'lishi mumkin edi");
 }
 
 const fetchData = async () => {

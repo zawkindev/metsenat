@@ -1,6 +1,17 @@
 <template>
-  <div class="flex flex-col gap-10 px-4 lg:px-32 pb-8 sm:pb-32 overflow-hidden">
-    <div class="overflow-auto mt-10">
+  <div class="flex flex-col pt-5 sm:pt-16  gap-5 sm:gap-10 px-4 lg:px-32 pb-8 sm:pb-32 overflow-hidden">
+    <div class="flex sm:hidden w-full justify-end">
+      <CButton @click="open(filterModal)" variant="outline" :withBg="true">
+        <img
+          class="w-6 h-auto"
+          src="@/assets/images/icons/filter.svg"
+          alt="filter icon"
+        />
+        <p class="hidden md:flex">Filter</p>
+      </CButton>
+    </div>
+
+    <div class="overflow-auto">
       <CTable>
         <template #header>
           <li class="w-[2%] text-center">#</li>
@@ -76,12 +87,13 @@ import { useModalStore } from "@/store/modal";
 import { useFetch } from "@/composables/useFetch";
 import { formatDate, formatMoney } from "@/utils/index";
 import CTable from "@/components/base/CTable.vue";
+import CButton from "@/components/base/CButton.vue";
 import Badge from "@/components/common/Badge.vue";
 import Pagination from "@/components/common/Pagination.vue";
 import FilterModal from "@/modals/FilterModal.vue";
 
 const { get } = useFetch();
-const { filterModal, close } = useModalStore();
+const { filterModal, close, open } = useModalStore();
 
 const store = useSponsorStore();
 

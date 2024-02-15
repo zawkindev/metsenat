@@ -1,14 +1,13 @@
 <template>
-  <div class="flex flex-col gap-10 px-4 lg:px-32 pb-8 sm:pb-32 overflow-hidden">
-    <div class="flex w-full justify-end pt-10">
+  <div class="flex flex-col pt-5 sm:pt-16  gap-5 sm:gap-10  px-4 lg:px-32 pb-8 sm:pb-32 overflow-hidden">
+    <div class="flex sm:hidden w-full justify-end gap-4">
       <RouterLink :to="{ name: 'AddStudent' }">
         <CButton class="primary">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
             viewBox="0 0 24 24"
             fill="none"
+            class="h-auto w-6"
           >
             <path
               d="M19.9999 11.9999H4.00007"
@@ -25,10 +24,17 @@
               stroke-linejoin="round"
             />
           </svg>
-
-          Talaba qo'shish
+          <span class="hidden sm:block"> Talaba qo'shish </span>
         </CButton>
       </RouterLink>
+      <CButton @click="open(filterModal)" variant="outline" :withBg="true">
+        <img
+          class="w-6 h-auto"
+          src="@/assets/images/icons/filter.svg"
+          alt="filter icon"
+        />
+        <p class="hidden md:flex">Filter</p>
+      </CButton>
     </div>
     <div class="overflow-auto">
       <CTable>
@@ -101,7 +107,7 @@ import Pagination from "@/components/common/Pagination.vue";
 import FilterModal from "@/modals/FilterModal.vue";
 
 const { get } = useFetch();
-const { filterModal, close } = useModalStore();
+const { filterModal, close, open } = useModalStore();
 
 const store = useStudentStore();
 

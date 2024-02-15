@@ -44,5 +44,4 @@ defineProps({
     required: true,
   },
 });
-
 </script>

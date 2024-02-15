@@ -3,7 +3,7 @@
     :class="{ 'border-primary-300': isActive }"
     class="relative flex p-2 sm:p-3 gap-1 rounded-md border-2 bg-white"
   >
-    <p class="font-bold text-xl">
+    <p class="font-bold text-md sm:text-xl">
       {{ value }}
     </p>
     <span
