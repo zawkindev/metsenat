@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-12">
+  <div class="flex flex-col gap-16">
     <div class="flex w-full justify-center items-center">
       <RouterLink class="flex gap-2" :to="{ name: 'Home' }">
         <img src="@/assets/images/logo.svg" />
@@ -29,8 +29,13 @@
           label="parol"
         />
         <p v-show="data?.detail" class="text-red-600">Akkount topilmadi</p>
-        <div class="flex">
+        <div class="flex relative">
           <ReCaptcha @verify="(response) => (form.recaptcha = response)" />
+          <span
+            v-if="v$?.recaptcha?.$error"
+            class="text-red-600 absolute bottom-[-22px]"
+            >ReCaptcha majburiy</span
+          >
         </div>
         <CButton @click.prevent="handleSubmit">Kirish</CButton>
       </div>

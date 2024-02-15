@@ -9,10 +9,10 @@
   >
     <div class="flex justify-between items-center gap-10">
       <FormGroup
-        :validation="v$?.name?.$error"
+        :validation="v$?.fullName?.$error"
         errorMsg="F.I.SH majburiy"
         id="full_name"
-        v-model="form.name"
+        v-model="form.fullName"
         placeholder="Abdullayev Abdulla Abdulla o'g'li"
         label="f.i.sh.(familiya ism$ sharif)"
       />
@@ -66,12 +66,12 @@
         >
           <template #selectedOption>
             <p class="flex items-center capitalize">
-              {{ form.studentType.value || "Barchasi" }}
+              {{ form.studentType?.value || "Barchasi" }}
             </p>
           </template>
           <template #options>
             <div
-              v-for="option in studentStore.types"
+              v-for="(option, index) in studentStore.types"
               :key="option.id"
               @click="form.studentType = option"
               :class="{
@@ -94,9 +94,6 @@
         placeholder="summani kiriting"
         label="Kontrakt summa"
       />
-      <pre>
-      {{ form.contract }}
-      </pre>
     </div>
     <div class="flex justify-end">
       <CButton class="primary">
@@ -129,19 +126,19 @@
 </template>
 
 <script setup>
-import { onBeforeMount, ref } from "vue";
+import { computed, onBeforeMount, reactive, ref } from "vue";
 import { useRouter } from "vue-router";
+import { useVuelidate } from "@vuelidate/core";
 import { useStudentStore } from "@/store/student.js";
 import { useCSelectStore } from "@/store/cselect.js";
 import { useFetch } from "@/composables/useFetch";
-import { useFormValidation } from "@/composables/useValidate";
+import { required } from "@vuelidate/validators";
 import TitleBar from "@/components/layout/TitleBar.vue";
 import CSelect from "@/components/base/CSelect.vue";
 import CButton from "@/components/base/CButton.vue";
 import FormGroup from "@/components/common/FormGroup.vue";
 
 const { get, post } = useFetch();
-const { form, validateSubmit, v$ } = useFormValidation();
 
 const router = useRouter();
 
@@ -150,25 +147,48 @@ const cselectStore = useCSelectStore();
 
 const response = ref();
 
+const form = reactive({
+  fullName: "",
+  studentType: "",
+  phone: "",
+  institute: "",
+  contract: "",
+});
+
+const rules = computed(() => {
+  return {
+    fullName: { required },
+    studentType: { required },
+    phone: { required },
+    institute: { required },
+    contract: { required },
+  };
+});
+
+const v$ = useVuelidate(rules, form);
+
 async function handleSubmit() {
-  const isFormCorrect = await v$.value.$touch();
-  if (!isFormCorrect) {
+  const result = await v$.value.$validate();
+
+  if (!result) {
+    console.log("faail already: ", result);
     return;
   }
-  await addStudent();
+  addStudent();
 }
 
 const addStudent = async () => {
   try {
     const response = await post(`student-create/`, {
-      full_name: form.name,
-      type: form.studentType.id,
+      full_name: form.fullName,
+      type: Number(form.studentType?.id),
       phone: String(form.phone),
-      institute: form.institute.name,
+      institute: form.institute.id,
       contract: form.contract,
     });
 
     console.log("add studeeeent: ", response);
+    console.log("Type of student: ", form.studentType.id);
 
     router.push({ name: "StudentsList" });
   } catch (error) {
