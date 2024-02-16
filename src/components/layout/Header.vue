@@ -95,26 +95,34 @@
           >
             <RouterLink
               :to="{ name: 'Stats' }"
-              class="text-lg cursor-pointer active:text-blue-500"
+              :class="{ 'text-blue-500': $route.name === 'Stats' }"
+              class="text-lg cursor-pointer"
             >
-              Dashboard
+              <p>Dashboard</p>
             </RouterLink>
 
             <RouterLink
               :to="{ name: 'SponsorsList' }"
-              class="text-lg cursor-pointer active:text-blue-500"
+              :class="{ 'text-blue-500': $route.name === 'SponsorsList' }"
+              class="text-lg cursor-pointer"
             >
-              Homiylar
+              <p>Homiylar</p>
             </RouterLink>
 
             <RouterLink
               :to="{ name: 'StudentsList' }"
-              class="text-lg cursor-pointer active:text-blue-500"
+              :class="{ 'text-blue-500': $route.name === 'StudentsList' }"
+              class="text-lg cursor-pointer"
             >
-              Talabalar
+              <p>Talabalar</p>
             </RouterLink>
             <p class="text-lg cursor-pointer active:text-blue-500">Profile</p>
-            <p class="text-lg cursor-pointer active:text-blue-500">Log out</p>
+            <p
+              @click="logOut"
+              class="text-lg cursor-pointer active:text-blue-500"
+            >
+              Log out
+            </p>
           </div>
         </div>
 
@@ -139,11 +147,11 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
+import { RouterLink, useRouter } from "vue-router";
 import Badge from "@/components/common/Badge.vue";
 import CButton from "@/components/base/CButton.vue";
 import Search from "@/components/common/Search.vue";
-import { RouterLink, useRouter } from "vue-router";
-import { ref } from "vue";
 
 defineProps({
   variant: {
@@ -157,17 +165,17 @@ defineProps({
 
 const router = useRouter();
 
-const menuOpen = ref(false);
 
-window.addEventListener("click", (e) => {
-  if (!e.target.closest(".header")) {
-    menuOpen.value = false;
-  }
-});
+const menuOpen = ref(false);
 
 function logOut() {
   localStorage.removeItem("access-token");
   localStorage.removeItem("toast-showed");
   router.push({ name: "Auth" });
 }
+window.addEventListener("click", (e) => {
+  if (!e.target.closest(".header")) {
+    menuOpen.value = false;
+  }
+});
 </script>

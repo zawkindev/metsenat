@@ -38,17 +38,22 @@
             </template>
           </CSelect>
         </div>
-        <RadioGroup
-          :options="Object.entries(checkBoxValues).map(([_, value]) => value)"
-          :validation="v$?.amount?.$error"
-          errorMsg="summa majburiy"
-          @select="(item) => (form.amount = item)"
-          :activeOption="form.amount"
-        >
-          <p class="uppercase font-semibold text-sm sm:text-lg">
-            To‘lov summasi
-          </p>
-        </RadioGroup>
+        <div>
+          <RadioGroup
+            :options="Object.entries(checkBoxValues).map(([_, value]) => value)"
+            :validation="v$?.amount?.$error"
+            errorMsg="summa majburiy"
+            @select="(item) => (form.amount = item)"
+            :activeOption="form.amount"
+          >
+            <p class="uppercase font-semibold text-sm sm:text-lg">
+              To‘lov summasi
+            </p>
+          </RadioGroup>
+          <span v-if="v$?.amount?.$error" class="text-red-600"
+            >summa majburiy</span
+          >
+        </div>
         <FormGroup
           id="sana"
           label="sana"
@@ -59,7 +64,7 @@
           errorMsg="sana majburiy"
         />
         <div class="flex w-full justify-end gap-4 sm:gap-6">
-          <CButton class="bg-white border-blue-400 border-2 group ">
+          <CButton class="bg-white border-blue-400 border-2 group">
             <svg
               width="24"
               height="24"
@@ -110,11 +115,17 @@
                 </g>
               </g>
             </svg>
-            <p class="hidden sm:block text-xl text-blue-600 group-hover:text-white">tozalash</p>
+            <p
+              class="hidden sm:block text-xl text-blue-600 group-hover:text-white"
+            >
+              tozalash
+            </p>
           </CButton>
           <CButton type="submit" @click.prevent="handleSubmit()">
             <img alt="eye icon" src="@/assets/images/icons/eye1.svg" />
-            <p class="hidden sm:block text-xl whitespace-nowrap">natijani ko'rish</p>
+            <p class="hidden sm:block text-xl whitespace-nowrap">
+              natijani ko'rish
+            </p>
           </CButton>
         </div>
       </div>

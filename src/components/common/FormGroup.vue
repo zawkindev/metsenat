@@ -10,7 +10,7 @@
       :class="{ 'border-red-400': v$?.password?.$error }"
       @update:modelValue="(value) => emit('update:modelValue', value)"
     />
-    <span v-if="validation" class="text-red-600 absolute bottom-[-30px]">{{
+    <span v-if="validation" class="text-red-600 absolute bottom-[-23px]">{{
       errorMsg
     }}</span>
   </div>

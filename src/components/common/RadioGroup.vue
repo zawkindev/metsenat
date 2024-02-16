@@ -12,7 +12,6 @@
         @click="emit('select', item)"
       />
     </div>
-    <span v-if="validation" class="text-red-600">{{ errorMsg }}</span>
   </div>
 </template>
 
@@ -25,7 +24,7 @@ const props = defineProps({
     type: Array,
     required: true,
   },
-  validation: Boolean,
+
   activeOption: Number,
 });
 

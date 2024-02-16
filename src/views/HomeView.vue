@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col md:flex-row pb-16">
+  <div class="flex flex-col md:flex-row pb-64">
     <div class="flex w-full md:w-7/12 h-full justify-center mt-20">
       <form
         @submit.prevent="handleSubmit"
@@ -27,26 +27,30 @@
           label="Telefon raqam"
           type="tel"
         />
-
-        <RadioGroup
-          :options="radioOptions"
-          :validation="v$?.amount?.$error"
-          errorMsg="To'lov summasi majburiy"
-          @select="(item) => (form.amount = item)"
-        >
-          <p class="text-sm sm:text-lg">To‘lov summasi</p>
-        </RadioGroup>
-
-        <div v-if="selectedTab === 1" class="flex flex-col gap-2">
-          <label for="company" class="uppercase font-semibold"
-            >Tashkilot nomi</label
+        <div>
+          <RadioGroup
+            :options="Object.entries(checkBoxValues).map(([_, value]) => value)"
+            @select="(item) => (form.sum = item)"
+            :activeOption="form.sum"
           >
-          <CInput
-            id="company"
-            v-model="inputValues.company"
-            placeholder="Commeta"
-          />
+            <p class="uppercase font-semibold text-sm sm:text-lg">
+              To‘lov summasi
+            </p>
+          </RadioGroup>
+          <span v-if="v$?.sum?.$error" class="text-red-600"
+            >To'lov summasi majburiy</span
+          >
         </div>
+
+        <FormGroup
+          v-if="selectedTab === 1"
+          id="firm"
+          v-model="form.firm"
+          placeholder="Commeta"
+          :validation="v$?.firm?.$error"
+          errorMsg="Tashkilot nomi majburiy"
+          label="Tashkilot nomi"
+        />
 
         <CButton> Yuborish </CButton>
       </form>
@@ -76,48 +80,41 @@ import { useFetch } from "@/composables/useFetch.js";
 import { useVuelidate } from "@vuelidate/core";
 import { required } from "@vuelidate/validators";
 import Tab from "@/components/common/Tab.vue";
-import CInput from "@/components/base/CInput.vue";
 import CButton from "@/components/base/CButton.vue";
 import RadioGroup from "@/components/common/RadioGroup.vue";
 import FormGroup from "@/components/common/FormGroup.vue";
 
 defineEmits(["activate"]);
 
-const { get } = useFetch();
+const { get, post } = useFetch();
+
 
 const tabValues = ["jismoniy shaxs", "yuridik shaxs"];
 
 const selectedTab = ref(0);
 
-const radioOptions = ref([]);
+const checkBoxValues = ref([]);
 
 function handleEmit(index) {
   selectedTab.value = index;
   console.log(index);
 }
 
-const fetchData = async () => {
-  try {
-    const response = await get(`tariff-list`);
-    radioOptions.value = response;
-
-    console.log(response);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 const form = reactive({
   fullName: "",
   phone: "",
-  amount: "",
+  sum: "",
+  paymentType: ["kontrakt"],
+  firm: "",
+  spent: "",
+  comment: "",
 });
 
 const rules = computed(() => {
   return {
     fullName: { required },
     phone: { required },
-    amount: { required },
+    paymentType: { required },
   };
 });
 
@@ -127,11 +124,39 @@ async function handleSubmit() {
   const result = await v$.value.$validate();
 
   if (!result) {
+    console.log("0129: ", result);
     return;
   }
-
-  alert("Form submitted successfully");
+  await addSponsor();
 }
+
+const addSponsor = async () => {
+  try {
+    const response = await post(`sponsor-create/`, {
+      full_name: form.fullName,
+      phone: String(form.phone),
+      sum: Number(form.sum.summa),
+      payment_type: form.paymentType,
+      firm: form.firm,
+    });
+
+    console.log("add SPONSOR: ", response);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+};
+
+const fetchData = async () => {
+  try {
+    const response = await get(`tariff-list`);
+    checkBoxValues.value = response;
+    checkBoxValues.value.push({ id: 908, summa: "BOSHQA" });
+
+    console.log(response);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 onBeforeMount(() => {
   fetchData();
