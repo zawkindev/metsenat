@@ -1,5 +1,7 @@
 <template>
-  <div class="flex flex-col pt-5 sm:pt-16  gap-5 sm:gap-10  px-4 lg:px-32 pb-8 sm:pb-32 overflow-hidden">
+  <div
+    class="flex flex-col pt-5 sm:pt-16 gap-5 sm:gap-10 px-4 lg:px-32 pb-8 sm:pb-32 overflow-hidden"
+  >
     <div class="flex sm:hidden w-full justify-end gap-4">
       <RouterLink :to="{ name: 'AddStudent' }">
         <CButton class="primary">
@@ -55,7 +57,7 @@
             class="bg-white py-[22px] px-[14px] rounded-lg my-5 border-[#B2B7C1]"
           >
             <ul class="flex items-center justify-between">
-              <li class="w-[2%] text-center">{{ index + 1 }}</li>
+              <li class="w-[2%] text-center truncate">{{ index + 1 }}</li>
               <li class="w-[20%] text-left">{{ item.full_name }}</li>
               <li class="w-[10%] text-center">
                 {{ item.type === 1 ? "Bakalavr" : "Magistr" }}
@@ -153,5 +155,10 @@ onMounted(() => {
 <style>
 path {
   stroke: white;
+}
+li {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 </style>
