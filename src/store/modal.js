@@ -5,6 +5,9 @@ export const useModalStore = defineStore("modal", () => {
   const filterModal = ref({
     isOpen: false,
   });
+  const editModal = ref({
+    isOpen: false,
+  });
 
   function open(modal) {
     modal.isOpen = true;
@@ -18,6 +21,7 @@ export const useModalStore = defineStore("modal", () => {
 
   return {
     filterModal,
+    editModal,
     open,
     close,
   };

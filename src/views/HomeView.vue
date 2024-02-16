@@ -8,7 +8,7 @@
         <h2 class="text-2xl sm:text-4xl font-sans w-4/5 font-bold">
           Homiy sifatida ariza topshirish
         </h2>
-        <Tab :options="tabValues" @activate="(index) => handleEmit(index)" />
+        <Tab :options="tabValues" @activate="(index) => handleSelect(index)" />
 
         <FormGroup
           id="fullName"
@@ -95,7 +95,7 @@ const selectedTab = ref(0);
 
 const checkBoxValues = ref([]);
 
-function handleEmit(index) {
+function handleSelect(index) {
   selectedTab.value = index;
   console.log(index);
 }

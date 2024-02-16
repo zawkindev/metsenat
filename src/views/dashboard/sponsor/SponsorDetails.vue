@@ -4,7 +4,6 @@
       <p class="text-xl font-bold" @click="$router.go(-1)">
         {{ sponsor?.full_name }}
       </p>
-   
     </TitleBar>
 
     <div
@@ -50,29 +49,37 @@
           </div>
         </div>
       </div>
-      <CButton class="flex self-end" variant="outline">
+      <CButton @click="open(editModal)" class="flex self-end" variant="outline">
         <img src="@/assets/images/icons/edit.svg" alt="edit icon" />
         <p class="text-md sm:text-xl">tahrirlash</p>
       </CButton>
     </div>
   </div>
+  <EditModal
+    v-if="editModal.isOpen"
+    @close="close(editModal)"
+    variant="sponsor"
+  />
 </template>
 
 <script setup>
-import TitleBar from "@/components/layout/TitleBar.vue";
-import { useSponsorStore } from "@/store/sponsor";
 import { computed, onBeforeMount } from "vue";
 import { useRoute } from "vue-router";
-import Badge from "@/components/common/Badge.vue";
-import CButton from "@/components/base/CButton.vue";
+import { useSponsorStore } from "@/store/sponsor";
+import { useModalStore } from "@/store/modal";
 import { formatMoney } from "@/utils/index";
 import { useFetch } from "@/composables/useFetch";
+import TitleBar from "@/components/layout/TitleBar.vue";
+import Badge from "@/components/common/Badge.vue";
+import CButton from "@/components/base/CButton.vue";
+import EditModal from "@/modals/EditModal.vue";
 
 const route = useRoute();
 
 const store = useSponsorStore();
 
 const { get } = useFetch();
+const { editModal, close, open } = useModalStore();
 
 const sponsor = computed(() => store.sponsor);
 

@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col gap-2 w-full relative">
-    <label :for="id" class="uppercase font-semibold text-sm sm:text-lg">{{
+    <label :for="id" class="uppercase font-semibold text-sm sm:text-md">{{
       label
     }}</label>
     <CInput
