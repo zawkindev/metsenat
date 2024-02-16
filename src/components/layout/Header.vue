@@ -97,6 +97,7 @@
               :to="{ name: 'Stats' }"
               :class="{ 'text-blue-500': $route.name === 'Stats' }"
               class="text-lg cursor-pointer"
+              @click="closeMenu"
             >
               <p>Dashboard</p>
             </RouterLink>
@@ -105,6 +106,7 @@
               :to="{ name: 'SponsorsList' }"
               :class="{ 'text-blue-500': $route.name === 'SponsorsList' }"
               class="text-lg cursor-pointer"
+              @click="closeMenu"
             >
               <p>Homiylar</p>
             </RouterLink>
@@ -113,6 +115,7 @@
               :to="{ name: 'StudentsList' }"
               :class="{ 'text-blue-500': $route.name === 'StudentsList' }"
               class="text-lg cursor-pointer"
+              @click="closeMenu"
             >
               <p>Talabalar</p>
             </RouterLink>
@@ -165,8 +168,11 @@ defineProps({
 
 const router = useRouter();
 
-
 const menuOpen = ref(false);
+
+function closeMenu() {
+  menuOpen.value = false;
+}
 
 function logOut() {
   localStorage.removeItem("access-token");

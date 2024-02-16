@@ -6,11 +6,13 @@ export const useCSelectStore = defineStore("cselect", () => {
   const studentType = ref(false);
   const pageSize = ref(false);
   const application = ref(false)
+  const sum = ref(false)
 
   return {
     institute,
     studentType,
     pageSize,
-    application
+    application,
+    sum
   };
 });

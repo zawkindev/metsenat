@@ -6,6 +6,7 @@
     theme="light"
     ref="vueRecaptcha"
     @verify="(response) => $emit('verify', response)"
+    class="w-12"
   >
   </vue-recaptcha>
 </template>

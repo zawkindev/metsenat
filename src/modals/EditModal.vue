@@ -1,5 +1,5 @@
 <template>
-  <CModal name="filter" @close="emit('close')" class="gap-10">
+  <CModal name="edit" @close="emit('close')" class="gap-10">
     <Chr />
     <form @submit.prevent>
       <div
@@ -22,12 +22,44 @@
           <FormGroup
             id="phone"
             v-model="form.phone"
-            placeholder="+998"
+            placeholder="998 90 909 99 99"
             :validation="v$?.phone?.$error"
             errorMsg="Telefon raqami majburiy"
             label="Telefon raqam"
             type="tel"
           />
+          <div class="flex flex-col gap-2 w-full">
+            <label class="uppercase font-semibold text-sm sm:text-md"
+              >homiylik summasi</label
+            >
+            <CSelect
+              :validation="v$?.sum?.$error"
+              errorMsg="talabalik turi majburiy"
+              :isOpen="cselectStore.sum"
+              @click="cselectStore.sum = !cselectStore.sum"
+            >
+              <template #selectedOption>
+                <p class="flex items-center capitalize">
+                  {{ form.sum || "Barchasi" }}
+                </p>
+              </template>
+              <template #options>
+                <div
+                  v-for="(option, index) in sumOptions"
+                  :key="option.id"
+                  @click="form.sum = option.summa"
+                  :class="{
+                    'border-t-2': index !== 0,
+                    'rounded-t-xl': index === 0,
+                    'rounded-b-xl': index === sumOptions.length - 1,
+                  }"
+                  class="px-3 py-3 cursor-pointer items-center flex text-lg hover:bg-gray-100"
+                >
+                  <span>{{ option.summa }}</span>
+                </div>
+              </template>
+            </CSelect>
+          </div>
         </div>
       </div>
       <!-- <div -->
@@ -134,6 +166,9 @@ const emit = defineEmits(["close"]);
 
 const cselectStore = useCSelectStore();
 const studentStore = useStudentStore();
+const sumOptions = computed(() =>
+  Object.entries(tariffList.value).map(([_, value]) => value),
+);
 
 const { get } = useFetch();
 
@@ -152,28 +187,22 @@ function handleSelect(index) {
   console.log(index);
 }
 
-const checkBoxValues = ref([]);
+const tariffList = ref([]);
 const otmList = ref([]);
 
 const form = reactive({
   fullName: "",
-  studentType: "",
   phone: "",
-  institute: "",
-  contract: "",
-  amount: "",
-  application: "",
+  sum: "",
+  isLegal: "",
+  firm: "",
+  comment: "",
 });
 
 const rules = computed(() => {
   return {
     fullName: { required },
-    studentType: { required },
     phone: { required },
-    institute: { required },
-    contract: { required },
-    amount: { required },
-    application: { required },
   };
 });
 
@@ -192,7 +221,9 @@ async function handleSubmit() {
 const fetchData = async () => {
   try {
     otmList.value = await get(`institute-list`);
-    checkBoxValues.value = await get(`tariff-list`);
+    tariffList.value = await get(`tariff-list`);
+    console.log("tariffList: ", tariffList.value);
+    console.log(sumOptions.value);
   } catch (error) {
     console.log(error);
   }
