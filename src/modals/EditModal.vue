@@ -1,7 +1,7 @@
 <template>
   <CModal name="edit" @close="emit('close')" class="gap-10">
     <Chr />
-    <form @submit.prevent>
+    <form @submit.prevent="handleSubmit">
       <div
         v-if="variant == 'sponsor'"
         class="flex flex-col gap-10 w-full py-10 overflow-visible"
@@ -59,6 +59,16 @@
                 </div>
               </template>
             </CSelect>
+          </div>
+          <div class="flex w-full justify-end gap-4 sm:gap-6">
+            <CButton type="submit" @click.prevent="handleSubmit()">
+              <img
+                class="h-auto w-6 sm:w-8"
+                alt="eye icon"
+                src="@/assets/images/icons/save.svg"
+              />
+              <p class="text-md sm:text-xl whitespace-nowrap">saqlash</p>
+            </CButton>
           </div>
         </div>
       </div>
@@ -142,16 +152,15 @@ import { computed, onBeforeMount, reactive, ref } from "vue";
 import { useFetch } from "@/composables/useFetch.js";
 import { useVuelidate } from "@vuelidate/core";
 import { useCSelectStore } from "@/store/cselect.js";
-import { useStudentStore } from "@/store/student.js";
 import { required } from "@vuelidate/validators";
 import CModal from "@/components/base/CModal.vue";
 import CSelect from "@/components/base/CSelect.vue";
 import CButton from "@/components/base/CButton.vue";
 import Chr from "@/components/base/Chr.vue";
-import RadioGroup from "@/components/common/RadioGroup.vue";
 import FormGroup from "@/components/common/FormGroup.vue";
 
 import Tab from "@/components/common/Tab.vue";
+import { useRoute } from "vue-router";
 
 defineProps({
   variant: {
@@ -164,20 +173,18 @@ defineProps({
 
 const emit = defineEmits(["close"]);
 
+const route = useRoute()
+const router = useRoute();
+
+
+const { put } = useFetch();
+
 const cselectStore = useCSelectStore();
-const studentStore = useStudentStore();
 const sumOptions = computed(() =>
   Object.entries(tariffList.value).map(([_, value]) => value),
 );
 
 const { get } = useFetch();
-
-const applicationTypes = [
-  "Yangi",
-  "Moderatsiyada",
-  "Tasdiqlangan",
-  "Bekor qilingan",
-];
 
 const tabValues = ["jismoniy shaxs", "yuridik shaxs"];
 const selectedTab = ref(0);
@@ -189,6 +196,7 @@ function handleSelect(index) {
 
 const tariffList = ref([]);
 const otmList = ref([]);
+const data = ref();
 
 const form = reactive({
   fullName: "",
@@ -215,8 +223,21 @@ async function handleSubmit() {
     console.log("faail already: ", result);
     return;
   }
-  console.log("Bu yerda post request bo'lishi mumkin edi");
+  putData();
 }
+
+const putData = async () => {
+  try {
+    data.value = await put(`/sponsor-update/${route.params.id}/`, {
+      username: form.name,
+      password: form.password,
+    });
+
+    router.push({ name: "Stats" });
+  } catch (error) {
+    console.error("Post error", error.message);
+  }
+};
 
 const fetchData = async () => {
   try {
