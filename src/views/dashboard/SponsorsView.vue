@@ -1,5 +1,7 @@
 <template>
-  <div class="flex flex-col pt-5 sm:pt-16  gap-5 sm:gap-10 px-4 lg:px-32 pb-8 sm:pb-32 overflow-hidden">
+  <div
+    class="flex flex-col pt-5 sm:pt-16 gap-5 sm:gap-10 px-4 lg:px-32 pb-8 sm:pb-32 overflow-hidden"
+  >
     <div class="flex sm:hidden w-full justify-end">
       <CButton @click="open(filterModal)" variant="outline" :withBg="true">
         <img
@@ -143,3 +145,11 @@ onMounted(() => {
   fetchData(store.sponsorsCurrentPage || 1);
 });
 </script>
+
+<style>
+li {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+</style>
