@@ -6,7 +6,7 @@
         v-if="variant == 'sponsor'"
         class="flex flex-col gap-10 w-full py-10 overflow-visible"
       >
-        <div class="flex flex-col gap-4 w-full">
+        <div class="flex flex-col gap-8 w-full">
           <Tab
             :options="tabValues"
             @activate="(index) => handleSelect(index)"
@@ -160,7 +160,7 @@ import Chr from "@/components/base/Chr.vue";
 import FormGroup from "@/components/common/FormGroup.vue";
 
 import Tab from "@/components/common/Tab.vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
 defineProps({
   variant: {
@@ -173,9 +173,8 @@ defineProps({
 
 const emit = defineEmits(["close"]);
 
-const route = useRoute()
-const router = useRoute();
-
+const route = useRoute();
+const router = useRouter();
 
 const { put } = useFetch();
 
@@ -228,12 +227,17 @@ async function handleSubmit() {
 
 const putData = async () => {
   try {
-    data.value = await put(`/sponsor-update/${route.params.id}/`, {
-      username: form.name,
-      password: form.password,
+    data.value = await put(`sponsor-update/${route.params.id}/`, {
+      full_name: "string",
+      phone: "string",
+      sum: 0,
+      is_legal: true,
+      firm: "string",
+      comment: "string",
     });
 
-    router.push({ name: "Stats" });
+    router.go(-1);
+    console.log("params ID: ", route.params.id);
   } catch (error) {
     console.error("Post error", error.message);
   }
