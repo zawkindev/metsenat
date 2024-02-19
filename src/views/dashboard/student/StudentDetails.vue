@@ -5,10 +5,6 @@
         <p @click="$router.go(-1)" class="text-xl font-bold">
           {{ student?.full_name }}
         </p>
-        <CButton variant="outline">
-          <img src="@/assets/images/icons/plus.svg" alt="edit icon" />
-          <p class="hidden sm:block text-xl">homiy qo'shish</p>
-        </CButton>
       </div>
     </TitleBar>
 
@@ -17,7 +13,7 @@
     >
       <div class="flex items-center justify-between">
         <h3 class="font-bold text-2xl sm:text-3xl">Talaba haqida</h3>
-        <CButton variant="outline">
+        <CButton @click="open(editModal)" variant="outline">
           <img src="@/assets/images/icons/edit.svg" alt="edit icon" />
           <p class="hidden sm:block text-xl">tahrirlash</p>
         </CButton>
@@ -38,7 +34,7 @@
       <p class="text-gray-400 uppercase font-bold text-sm">telefon raqam</p>
       <p>{{ student?.phone }}</p>
       <Chr> o'qish joyi</Chr>
-      <div class="flex flex-row flex-wrap justify-start gap-10 sm:gap-40 font-bold">
+      <div class="flex flex-row flex-wrap justify-start gap-10 font-bold">
         <div class="flex flex-col gap-5">
           <div>
             <p class="text-gray-400 uppercase font-bold text-sm">otm</p>
@@ -78,18 +74,25 @@
       </div>
     </div>
   </div>
+  <EditModal
+      v-if="editModal.isOpen"
+      @close="close(editModal)"
+      variant="student"
+  />
 </template>
 
 <script setup>
-import TitleBar from "@/components/layout/TitleBar.vue";
-import { useMetsenatStore } from "@/store/store.js";
 import { computed, onBeforeMount } from "vue";
 import { useRoute } from "vue-router";
+import { useFetch } from "@/composables/useFetch.js";
+import { useMetsenatStore } from "@/store/store.js";
+import { useModalStore } from "@/store/modal";
+import { defineStudentType } from "@/helpers/helpers.js";
+import { formatMoney } from "@/utils/index.js";
 import CButton from "@/components/base/CButton.vue";
 import Chr from "@/components/base/Chr.vue";
-import { formatMoney } from "@/utils/index.js";
-import { defineStudentType } from "@/helpers/helpers.js";
-import { useFetch } from "@/composables/useFetch.js";
+import TitleBar from "@/components/layout/TitleBar.vue";
+import EditModal from "@/modals/EditModal.vue";
 
 const route = useRoute();
 
@@ -98,6 +101,8 @@ const store = useMetsenatStore();
 const student = computed(() => store.student);
 
 const { get } = useFetch();
+
+const { editModal, close, open } = useModalStore();
 
 const fetchData = async () => {
   try {

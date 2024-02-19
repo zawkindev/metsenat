@@ -60,6 +60,15 @@
               </template>
             </CSelect>
           </div>
+          <FormGroup
+              v-if="selectedTab === 1"
+              id="firm"
+              v-model="form.firm"
+              placeholder="Commeta"
+              :validation="v$?.firm?.$error"
+              errorMsg="Tashkilot nomi majburiy"
+              label="Tashkilot nomi"
+          />
           <div class="flex w-full justify-end gap-4 sm:gap-6">
             <CButton type="submit" @click.prevent="handleSubmit()">
               <img
@@ -72,77 +81,77 @@
           </div>
         </div>
       </div>
-      <!-- <div -->
-      <!--   v-if="variant == 'student'" -->
-      <!--   class="flex flex-col gap-10 w-full py-10 overflow-visible" -->
-      <!-- > -->
-      <!--   <div class="flex flex-col gap-2 w-full"> -->
-      <!--     <label class="uppercase font-semibold text-sm sm:text-lg" -->
-      <!--       >talabalik turi</label -->
-      <!--     > -->
-      <!---->
-      <!--     <CSelect -->
-      <!--       :validation="v$?.studentType?.$error" -->
-      <!--       errorMsg="talabalik turi majburiy" -->
-      <!--       :isOpen="cselectStore.studentType" -->
-      <!--       @click="cselectStore.studentType = !cselectStore.studentType" -->
-      <!--     > -->
-      <!--       <template #selectedOption> -->
-      <!--         <p class="flex items-center capitalize"> -->
-      <!--           {{ form.studentType.value || "Barchasi" }} -->
-      <!--         </p> -->
-      <!--       </template> -->
-      <!--       <template #options> -->
-      <!--         <div -->
-      <!--           v-for="(option, index) in studentStore.types" -->
-      <!--           :key="option.id" -->
-      <!--           @click="form.studentType = option" -->
-      <!--           :class="{ -->
-      <!--             'border-t-2': index !== 0, -->
-      <!--             'rounded-t-xl': index === 0, -->
-      <!--             'rounded-b-xl': index === studentStore.types.length - 1, -->
-      <!--           }" -->
-      <!--           class="px-3 py-3 cursor-pointer items-center flex text-lg hover:bg-gray-100" -->
-      <!--         > -->
-      <!--           <span>{{ option.value }}</span> -->
-      <!--         </div> -->
-      <!--       </template> -->
-      <!--     </CSelect> -->
-      <!--   </div> -->
-      <!--   <div class="flex flex-col gap-2 w-full"> -->
-      <!--     <label for="id" class="uppercase font-semibold text-sm sm:text-lg" -->
-      <!--       >OTM</label -->
-      <!--     > -->
-      <!--     <CSelect -->
-      <!--       :validation="v$?.institute?.$error" -->
-      <!--       errorMsg="OTM nomi raqam majburiy" -->
-      <!--       v-model="form.institute" -->
-      <!--       :isOpen="cselectStore.institute" -->
-      <!--       @click="cselectStore.institute = !cselectStore.institute" -->
-      <!--     > -->
-      <!--       <template #selectedOption> -->
-      <!--         <p class="flex items-center"> -->
-      <!--           {{ form.institute?.name || "OTMni tanlang" }} -->
-      <!--         </p> -->
-      <!--       </template> -->
-      <!--       <template #options> -->
-      <!--         <div -->
-      <!--           v-for="(option, index) in otmList" -->
-      <!--           :key="index" -->
-      <!--           @click="form.institute = option" -->
-      <!--           :class="{ -->
-      <!--             'border-t-2': index !== 0, -->
-      <!--             'rounded-t-xl': index === 0, -->
-      <!--             'rounded-b-xl': index === otmList.length - 1, -->
-      <!--           }" -->
-      <!--           class="px-3 py-3 cursor-pointer items-center flex text-lg hover:bg-gray-100" -->
-      <!--         > -->
-      <!--           <span>{{ option.name }}</span> -->
-      <!--         </div> -->
-      <!--       </template> -->
-      <!--     </CSelect> -->
-      <!--   </div> -->
-      <!-- </div> -->
+       <div
+         v-if="variant == 'student'"
+         class="flex flex-col gap-10 w-full py-10 overflow-visible"
+       >
+         <div class="flex flex-col gap-2 w-full">
+           <label class="uppercase font-semibold text-sm sm:text-lg"
+             >talabalik turi</label
+           >
+
+           <CSelect
+             :validation="v$?.studentType?.$error"
+             errorMsg="talabalik turi majburiy"
+             :isOpen="cselectStore.studentType"
+             @click="cselectStore.studentType = !cselectStore.studentType"
+           >
+             <template #selectedOption>
+               <p class="flex items-center capitalize">
+                 {{ form.studentType.value || "Barchasi" }}
+               </p>
+             </template>
+             <template #options>
+               <div
+                 v-for="(option, index) in studentStore.types"
+                 :key="option.id"
+                 @click="form.studentType = option"
+                 :class="{
+                   'border-t-2': index !== 0,
+                   'rounded-t-xl': index === 0,
+                   'rounded-b-xl': index === studentStore.types.length - 1,
+                 }"
+                 class="px-3 py-3 cursor-pointer items-center flex text-lg hover:bg-gray-100"
+               >
+                 <span>{{ option.value }}</span>
+               </div>
+             </template>
+           </CSelect>
+         </div>
+         <div class="flex flex-col gap-2 w-full">
+           <label for="id" class="uppercase font-semibold text-sm sm:text-lg"
+             >OTM</label
+           >
+           <CSelect
+             :validation="v$?.institute?.$error"
+             errorMsg="OTM nomi raqam majburiy"
+             v-model="form.institute"
+             :isOpen="cselectStore.institute"
+             @click="cselectStore.institute = !cselectStore.institute"
+           >
+             <template #selectedOption>
+               <p class="flex items-center">
+                 {{ form.institute?.name || "OTMni tanlang" }}
+               </p>
+             </template>
+             <template #options>
+               <div
+                 v-for="(option, index) in otmList"
+                 :key="index"
+                 @click="form.institute = option"
+                 :class="{
+                   'border-t-2': index !== 0,
+                   'rounded-t-xl': index === 0,
+                   'rounded-b-xl': index === otmList.length - 1,
+                 }"
+                 class="px-3 py-3 cursor-pointer items-center flex text-lg hover:bg-gray-100"
+               >
+                 <span>{{ option.name }}</span>
+               </div>
+             </template>
+           </CSelect>
+         </div>
+       </div>
     </form>
   </CModal>
 </template>
@@ -219,7 +228,7 @@ async function handleSubmit() {
   const result = await v$.value.$validate();
 
   if (!result) {
-    console.log("faail already: ", result);
+    console.log("fail already: ", result);
     return;
   }
   putData();
