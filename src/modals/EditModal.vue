@@ -9,6 +9,7 @@
         <div class="flex flex-col gap-8 w-full">
           <Tab
               :options="tabValues"
+              :default-tab="Number(form.isLegal)"
               @activate="(index) => handleSelect(index)"
           />
           <FormGroup
@@ -63,10 +64,10 @@
             </CSelect>
           </div>
           <FormGroup
-              v-if="selectedTab === 1"
+              v-if="form.isLegal"
               id="firm"
               v-model="form.firm"
-              :value="form.contract"
+              :value="form.firm"
               placeholder="Commeta"
               :validation="v$?.firm?.$error"
               errorMsg="Tashkilot nomi majburiy"
