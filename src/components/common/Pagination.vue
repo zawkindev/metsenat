@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col-reverse sm:flex-row  gap-5 items-center justify-between"
+    class="flex flex-col-reverse sm:flex-row gap-5 items-center justify-between"
   >
     <div>
       {{ totalCards }} tadan {{ (currentPage - 1) * cardsPerPage }}-{{
@@ -10,7 +10,9 @@
       }}
       ko'rsatilmoqda
     </div>
-    <div class="flex justify-between items-start sm:items-center gap-2 sm:gap-4 w-full sm:w-fit">
+    <div
+      class="flex justify-between items-start sm:items-center gap-2 sm:gap-4 w-full sm:w-fit"
+    >
       <div class="flex justify-start items-start">
         <CSelect
           :isOpen="cselectStore.pageSize"

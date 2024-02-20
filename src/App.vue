@@ -16,5 +16,4 @@ const route = useRoute();
 const currentLayout = computed(() =>
   route.meta.layout === "default" ? DefaultLayout : AuthLayout,
 );
-
 </script>

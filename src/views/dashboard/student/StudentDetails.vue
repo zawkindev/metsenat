@@ -27,7 +27,9 @@
             src="@/assets/images/icons/user2.svg"
           />
         </div>
-        <p class="text-xl sm:text-2xl h-fit font-bold box-border max-w-72 break-words">
+        <p
+          class="text-xl sm:text-2xl h-fit font-bold box-border max-w-72 break-words"
+        >
           {{ student?.full_name }}
         </p>
       </div>
@@ -75,9 +77,9 @@
     </div>
   </div>
   <EditModal
-      v-if="editModal.isOpen"
-      @close="close(editModal)"
-      variant="student"
+    v-if="editModal.isOpen"
+    @close="close(editModal)"
+    variant="student"
   />
 </template>
 
@@ -85,7 +87,7 @@
 import { computed, onBeforeMount } from "vue";
 import { useRoute } from "vue-router";
 import { useFetch } from "@/composables/useFetch.js";
-import {useStudentStore} from "@/store/student.js";
+import { useStudentStore } from "@/store/student.js";
 import { useModalStore } from "@/store/modal";
 import { defineStudentType } from "@/helpers/helpers.js";
 import { formatMoney } from "@/utils/index.js";

@@ -7,16 +7,16 @@ export const useStudentStore = defineStore("metsenat", () => {
   const studentsCurrentPage = ref(1);
   const pageSize = ref(10);
   const types = [
-  { id: 1, value: "Bakalavr" },
-  { id: 2, value: "Magistr" },
-  { id: 3, value: "Doktorantura" },
-];
+    { id: 1, value: "Bakalavr" },
+    { id: 2, value: "Magistr" },
+    { id: 3, value: "Doktorantura" },
+  ];
 
   return {
     student,
     studentsList,
     studentsCurrentPage,
     pageSize,
-    types
+    types,
   };
 });

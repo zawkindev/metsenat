@@ -13,6 +13,6 @@ export const useSponsorStore = defineStore("metsenat", () => {
     sponsorsList,
     sponsorsCurrentPage,
     pageSize,
-    amount
+    amount,
   };
 });

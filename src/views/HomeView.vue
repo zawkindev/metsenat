@@ -88,7 +88,6 @@ defineEmits(["activate"]);
 
 const { get, post } = useFetch();
 
-
 const tabValues = ["jismoniy shaxs", "yuridik shaxs"];
 
 const selectedTab = ref(0);

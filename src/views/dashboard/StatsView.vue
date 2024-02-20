@@ -26,7 +26,7 @@
       >
       </MoneyCard>
     </div>
-    <div class="flex w-full  h-64 sm:h-[500px]">
+    <div class="flex w-full h-64 sm:h-[500px]">
       <Chart />
     </div>
   </div>

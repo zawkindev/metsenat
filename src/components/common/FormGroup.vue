@@ -9,7 +9,9 @@
       :placeholder="placeholder"
       :class="{ 'border-red-400': v$?.password?.$error }"
       :value="value"
-      @update:modelValue="(updateValue) => emit('update:modelValue', updateValue)"
+      @update:modelValue="
+        (updateValue) => emit('update:modelValue', updateValue)
+      "
     />
     <span v-if="validation" class="text-red-600 absolute bottom-[-23px]">{{
       errorMsg

@@ -1,5 +1,8 @@
 <template>
-  <div :class="getClasses()" class="w-fit text-sm sm:text-base font-normal whitespace-nowrap">
+  <div
+    :class="getClasses()"
+    class="w-fit text-sm sm:text-base font-normal whitespace-nowrap"
+  >
     <slot />
   </div>
 </template>

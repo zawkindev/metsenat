@@ -16,7 +16,7 @@ import vueRecaptcha from "vue3-recaptcha2";
 
 export default {
   name: "app",
-  emits: ['verify'],
+  emits: ["verify"],
   components: {
     vueRecaptcha,
   },
@@ -31,7 +31,6 @@ export default {
       this.$refs.vueRecaptcha.reset();
     },
     onCaptchaVerified(response) {
-
       console.log("reCAPTCHA verified:", response);
     },
   },

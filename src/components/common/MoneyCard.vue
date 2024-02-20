@@ -1,5 +1,7 @@
 <template>
-  <div class="flex p-3 sm:p-6 gap-3 whitespace-nowrap bg-white rounded-lg w-full sm:w-fit">
+  <div
+    class="flex p-3 sm:p-6 gap-3 whitespace-nowrap bg-white rounded-lg w-full sm:w-fit"
+  >
     <img class="" :src="getImgUrl(img)" />
     <div class="flex flex-col">
       <p class="text-sm text-gray-400">{{ title }}</p>

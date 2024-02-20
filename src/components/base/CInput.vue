@@ -1,7 +1,12 @@
 <template>
-  <input :id="id" :type="type" v-model="inputValue" :placeholder="placeholder"
+  <input
+    :id="id"
+    :type="type"
+    v-model="inputValue"
+    :placeholder="placeholder"
     @input="emit('update:modelValue', $event.target.value)"
-    class="rounded-md w-full py-2 px-4 focus:outline-none bg-gray-50 border-2 border-slate-200 sm:border-[#E0E7FF] focus:border-primary-200" />
+    class="rounded-md w-full py-2 px-4 focus:outline-none bg-gray-50 border-2 border-slate-200 sm:border-[#E0E7FF] focus:border-primary-200"
+  />
 </template>
 
 <script setup>

@@ -1,9 +1,9 @@
 <template>
-  <div class="flex flex-col w-full h-full bg-white p-2 pb-10 sm:p-10 sm:pb-20 rounded-lg">
-
-
-  <p class="text-lg sm:text-3xl font-bold">Homiy va Talabalar soni</p>
-  <Line :data="data" :options="options" />
+  <div
+    class="flex flex-col w-full h-full bg-white p-2 pb-10 sm:p-10 sm:pb-20 rounded-lg"
+  >
+    <p class="text-lg sm:text-3xl font-bold">Homiy va Talabalar soni</p>
+    <Line :data="data" :options="options" />
   </div>
 </template>
 
