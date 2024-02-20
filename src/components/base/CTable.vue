@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full tabble min-w-[1440px]">
+  <div class="w-full tabble min-w-[1200px]">
     <ul
       class="overflow-auto w-full whitespace-nowrap flex flex-col list-none"
     >
