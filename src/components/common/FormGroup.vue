@@ -8,7 +8,8 @@
       :type="type"
       :placeholder="placeholder"
       :class="{ 'border-red-400': v$?.password?.$error }"
-      @update:modelValue="(value) => emit('update:modelValue', value)"
+      :value="value"
+      @update:modelValue="(updateValue) => emit('update:modelValue', updateValue)"
     />
     <span v-if="validation" class="text-red-600 absolute bottom-[-23px]">{{
       errorMsg
@@ -40,5 +41,6 @@ defineProps({
     required: true,
   },
   placeholder: String,
+  value: String,
 });
 </script>

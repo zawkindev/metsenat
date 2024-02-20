@@ -85,7 +85,7 @@
 import { computed, onBeforeMount } from "vue";
 import { useRoute } from "vue-router";
 import { useFetch } from "@/composables/useFetch.js";
-import { useMetsenatStore } from "@/store/store.js";
+import {useStudentStore} from "@/store/student.js";
 import { useModalStore } from "@/store/modal";
 import { defineStudentType } from "@/helpers/helpers.js";
 import { formatMoney } from "@/utils/index.js";
@@ -96,7 +96,7 @@ import EditModal from "@/modals/EditModal.vue";
 
 const route = useRoute();
 
-const store = useMetsenatStore();
+const store = useStudentStore();
 
 const student = computed(() => store.student);
 
